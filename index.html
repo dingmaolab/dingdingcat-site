@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>另起炉录 · 在 AI 变革里躬身试新</title>
+<style>
+  :root{
+    --paper:#f7f2ea; --ink:#211a14; --muted:#8a7d6d;
+    --ember:#d8551f; --ember-soft:#f0a868; --line:#e4dac9;
+    --card:#fffdf9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.8;
+    background-image:radial-gradient(rgba(33,26,20,.035) 1px,transparent 1.3px);
+    background-size:26px 26px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+  header{padding:64px 0 0;display:flex;align-items:center;gap:12px}
+  .mark{width:30px;height:30px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 50% 62%,#ffd9a0,var(--ember) 58%,#9a3410);
+    box-shadow:0 0 0 4px rgba(216,85,31,.12)}
+  .brand{font-size:19px;font-weight:800;letter-spacing:4px}
+  .hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+  .kicker{font-family:Consolas,monospace;font-size:13px;letter-spacing:2px;color:var(--ember);margin-bottom:22px}
+  h1{font-size:46px;line-height:1.28;font-weight:800;letter-spacing:1px}
+  h1 em{font-style:normal;color:var(--ember)}
+  .lead{margin-top:26px;font-size:17px;color:#4a3f33;max-width:600px}
+  .prompt{margin-top:34px;font-family:Consolas,monospace;font-size:14px;
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ember);
+    border-radius:8px;padding:14px 18px;color:#5a4d3d}
+  .prompt .p{color:var(--ember)}
+  .prompt .cursor{display:inline-block;width:8px;height:15px;background:var(--ember);vertical-align:-2px}
+  section{padding:44px 0}
+  h2{font-size:15px;letter-spacing:3px;color:var(--muted);font-weight:700;margin-bottom:22px}
+  h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
+  .now li{list-style:none;padding:14px 0;border-bottom:1px dashed var(--line);display:flex;gap:16px}
+  .now li:last-child{border-bottom:none}
+  .now .tag{font-family:Consolas,monospace;font-size:12px;color:var(--ember);flex:none;width:64px;padding-top:3px}
+  footer{padding:40px 0 64px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  footer .no{font-family:Consolas,monospace;color:var(--ember)}
+  @media(max-width:560px){h1{font-size:34px}.hero{padding:48px 0 32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="mark"></span>
+    <span class="brand">另起炉录</span>
+  </header>
+
+  <div class="hero">
+    <div class="kicker">VIBE CODING · 躬身试新</div>
+    <h1>打破固有框架，<br>在 AI 变革里<em>亲手做一遍</em>。</h1>
+    <p class="lead">不追概念，不喊口号。把新工具、新模型真的用一遍，写清楚能不能用、卡在哪、值不值得。慢一点，但想清楚。</p>
+    <div class="prompt"><span class="p">&gt;</span> 你好，我想做一个自己的网站<span class="cursor"></span></div>
+  </div>
+
+  <section>
+    <h2>此刻在做</h2>
+    <ul class="now">
+      <li><span class="tag">连载</span><span>Vibe Coding 上手课 —— 手把手盖一个个人博客 + 教程网站</span></li>
+      <li><span class="tag">实践</span><span>用 Claude Code 接国产模型，把想法一点点变成能跑的东西</span></li>
+      <li><span class="tag">沉淀</span><span>把踩过的坑和想明白的事，记成可以回看的账本</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>另起炉录 · 慢慢探索，沉淀思考与实践</span>
+    <span class="no">est. 2026</span>
+  </footer>
+</div>
+</body>
+</html>
