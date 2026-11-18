@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""另起炉录 · 静态站点生成器。md 文章 → html 页面。无框架，单文件可懂。"""
+"""叮叮猫儿Lab · 静态站点生成器。md 文章 → html 页面。无框架，单文件可懂。"""
 import re, html, io
 from pathlib import Path
 
@@ -15,7 +15,10 @@ line-height:1.9;background-image:radial-gradient(rgba(33,26,20,.035) 1px,transpa
 .wrap{max-width:720px;margin:0 auto;padding:0 28px}
 nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
 nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
-nav .mark{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 50% 62%,#ffd9a0,var(--ember) 58%,#9a3410)}
+nav .mark{width:24px;height:21px;position:relative;background:radial-gradient(circle at 35% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 65% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);border-radius:50% 50% 46% 46%}
+nav .mark::before,nav .mark::after{content:"";position:absolute;top:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--ember)}
+nav .mark::before{left:1px;transform:rotate(-18deg)}
+nav .mark::after{right:1px;transform:rotate(18deg)}
 nav a{color:var(--muted);text-decoration:none;font-size:14px}
 nav a.on,nav a:hover{color:var(--ember)}
 .head{padding:54px 0 30px}
@@ -105,10 +108,10 @@ def page(title, kicker, content, active, h1=None, meta_line=""):
         head += "</div>"
     return f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>{html.escape(title)} · 另起炉录</title><style>{STYLE}</style></head><body><div class="wrap">
-<nav><span class="b"><span class="mark"></span>另起炉录</span>{nav}</nav>
+<title>{html.escape(title)} · 叮叮猫儿Lab</title><style>{STYLE}</style></head><body><div class="wrap">
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span>{nav}</nav>
 {head}{content}
-<footer><span>另起炉录 · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
+<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
 </div></body></html>"""
 
 
@@ -144,13 +147,13 @@ def main():
 
     # 关于页
     about_body = """<article>
-<p>这里是另起炉录。一个在 AI 变革里躬身试新的人。</p>
-<p>不追概念，不喊口号。把新工具、新模型真的用一遍，写清楚能不能用、卡在哪、值不值得。</p>
+<p>这里是叮叮猫儿Lab。漫游数字世界，实验 AI 与互联网。</p>
+<p>不追概念，不喊口号。把新工具、新模型真的用一遍，同步新鲜动态与实践思考。</p>
 <h2>这个站</h2>
 <p>它跟着「Vibe Coding 上手课」一起长。课程做到哪，它就长到哪。博客放想法，教程放步骤，都归在一个域名下。</p>
 <p>整站纯静态，用 AI 一行一行写出来。慢一点，但想清楚。</p>
 </article>"""
-    (ROOT / "about.html").write_text(page("关于", "关于", about_body, "about", h1="关于另起炉录"), encoding="utf-8")
+    (ROOT / "about.html").write_text(page("关于", "关于", about_body, "about", h1="关于叮叮猫儿Lab"), encoding="utf-8")
 
     print(f"built {len(arts)} articles -> a/ ; list.html ; about.html")
     for meta, body, slug in arts:

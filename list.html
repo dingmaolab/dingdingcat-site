@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>文章 · 另起炉录</title><style>
+<title>文章 · 叮叮猫儿Lab</title><style>
 :root{--paper:#f7f2ea;--ink:#211a14;--muted:#8a7d6d;--ember:#d8551f;--line:#e4dac9;--card:#fffdf9}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);
@@ -8,7 +8,10 @@ line-height:1.9;background-image:radial-gradient(rgba(33,26,20,.035) 1px,transpa
 .wrap{max-width:720px;margin:0 auto;padding:0 28px}
 nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
 nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
-nav .mark{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 50% 62%,#ffd9a0,var(--ember) 58%,#9a3410)}
+nav .mark{width:24px;height:21px;position:relative;background:radial-gradient(circle at 35% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 65% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);border-radius:50% 50% 46% 46%}
+nav .mark::before,nav .mark::after{content:"";position:absolute;top:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--ember)}
+nav .mark::before{left:1px;transform:rotate(-18deg)}
+nav .mark::after{right:1px;transform:rotate(18deg)}
 nav a{color:var(--muted);text-decoration:none;font-size:14px}
 nav a.on,nav a:hover{color:var(--ember)}
 .head{padding:54px 0 30px}
@@ -35,7 +38,7 @@ footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);f
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 @media(max-width:560px){h1{font-size:28px}}
 </style></head><body><div class="wrap">
-<nav><span class="b"><span class="mark"></span>另起炉录</span><a href="index.html">主页</a><a href="list.html" class="on">文章</a><a href="about.html">关于</a></nav>
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html" class="on">文章</a><a href="about.html">关于</a></nav>
 <div class="head"><div class="kicker">全部文章</div><h1>文章</h1><div class="meta">共 2 篇 · 按系列归类</div></div><div class="list"><div class="series"><h2>上手课</h2><a class="item" href="a/001-为什么做这个站.html"><span class="no">1</span><span class="t">为什么我要亲手做一个网站</span><span class="d">2026-11-15</span></a></div><div class="series"><h2>讲清</h2><a class="item" href="a/002-模型和harness是两回事.html"><span class="no">1</span><span class="t">模型和 harness 是两回事</span><span class="d">2026-11-15</span></a></div></div>
-<footer><span>另起炉录 · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
+<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
 </div></body></html>

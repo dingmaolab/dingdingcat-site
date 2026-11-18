@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>另起炉录 · 在 AI 变革里躬身试新</title>
+<title>叮叮猫儿Lab · 在 AI 变革里躬身试新</title>
 <style>
   :root{
     --paper:#f7f2ea; --ink:#211a14; --muted:#8a7d6d;
@@ -19,9 +19,12 @@
   }
   .wrap{max-width:760px;margin:0 auto;padding:0 28px}
   header{padding:64px 0 0;display:flex;align-items:center;gap:12px}
-  .mark{width:30px;height:30px;border-radius:50%;flex:none;
-    background:radial-gradient(circle at 50% 62%,#ffd9a0,var(--ember) 58%,#9a3410);
-    box-shadow:0 0 0 4px rgba(216,85,31,.12)}
+  .mark{width:30px;height:27px;position:relative;flex:none;
+    background:radial-gradient(circle at 35% 58%,#2a1608 2px,transparent 2.6px),radial-gradient(circle at 65% 58%,#2a1608 2px,transparent 2.6px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);
+    border-radius:50% 50% 46% 46%;box-shadow:0 0 0 4px rgba(216,85,31,.12)}
+  .mark::before,.mark::after{content:"";position:absolute;top:-6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--ember)}
+  .mark::before{left:2px;transform:rotate(-18deg)}
+  .mark::after{right:2px;transform:rotate(18deg)}
   .brand{font-size:19px;font-weight:800;letter-spacing:4px}
   .hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
   .kicker{font-family:Consolas,monospace;font-size:13px;letter-spacing:2px;color:var(--ember);margin-bottom:22px}
@@ -49,13 +52,13 @@
 <div class="wrap">
   <header>
     <span class="mark"></span>
-    <span class="brand">另起炉录</span>
+    <span class="brand">叮叮猫儿Lab</span>
   </header>
 
   <div class="hero">
-    <div class="kicker">VIBE CODING · 躬身试新</div>
-    <h1>打破固有框架，<br>在 AI 变革里<em>亲手做一遍</em>。</h1>
-    <p class="lead">不追概念，不喊口号。把新工具、新模型真的用一遍，写清楚能不能用、卡在哪、值不值得。慢一点，但想清楚。</p>
+    <div class="kicker">VIBE CODING · 数字漫游</div>
+    <h1>漫游数字世界，<br>实验 <em>AI 与互联网</em>。</h1>
+    <p class="lead">不追概念，不喊口号。把新工具、新模型真的用一遍，同步新鲜动态与实践思考。慢一点，但想清楚。</p>
     <div class="prompt"><span class="p">&gt;</span> 你好，我想做一个自己的网站<span class="cursor"></span></div>
   </div>
 
@@ -69,7 +72,7 @@
   </section>
 
   <footer>
-    <span>另起炉录 · 慢慢探索，沉淀思考与实践</span>
+    <span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span>
     <span class="no">est. 2026</span>
   </footer>
 </div>
