@@ -147,13 +147,13 @@ def md(body):
     return "\n".join(out)
 
 
-def page(title, kicker, content, active, h1=None, meta_line="", extra_style=""):
+def page(title, kicker, content, active, h1=None, meta_line="", extra_style="", base=""):
     nav = ""
     for href, label, key in [("index.html", "主页", "home"), ("learn.html", "课程", "learn"),
                              ("list.html", "文章", "list"), ("gallery.html", "图文", "gallery"),
-                             ("about.html", "关于", "about")]:
+                            ("about.html", "关于", "about")]:
         cls = ' class="on"' if key == active else ""
-        nav += f'<a href="{href}"{cls}>{label}</a>'
+        nav += f'<a href="{base}{href}"{cls}>{label}</a>' 
     head = ""
     if h1:
         head = f'<div class="head"><div class="kicker">{kicker}</div><h1>{html.escape(h1)}</h1>'
@@ -209,7 +209,7 @@ def main():
         else:
             ml = f'{meta.get("series","")} · 第 {meta.get("number","")} 篇 · {meta.get("date","")}'
         html_out = page(meta.get("title", slug), meta.get("series", "文章"),
-                        content, "list", h1=meta.get("title", slug), meta_line=ml)
+                        content, "list", h1=meta.get("title", slug), meta_line=ml, base="../")
         (OUT / f"{slug}.html").write_text(html_out, encoding="utf-8")
 
     # P3：文章页(list)=散装单篇（post only），栏目 chips 过滤；图文独立成 gallery
