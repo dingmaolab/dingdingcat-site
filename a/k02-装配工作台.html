@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
 <title>第2课｜装配工作台：装个 IDE，看着 AI 改你的文件 · 叮叮猫儿Lab</title>
-<link rel="icon" sizes="16x16" href="favicon-16.png"><link rel="icon" sizes="32x32" href="favicon-32.png">
+<link rel="icon" sizes="16x16" href="../favicon-16.png"><link rel="icon" sizes="32x32" href="../favicon-32.png">
 <style>
 :root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--cobalt:#1d4e89;--must:#e3c24b;--line:#e3e3df;--card:#ffffff}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -83,7 +83,7 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 </style></head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
-<nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="index.html">首页</a><a class="nl on" href="learn.html">课程</a><a class="nl" href="list.html">文章</a><a class="nl" href="gallery.html">图文</a><a class="nl" href="about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
+<nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
 <div class="head"><div class="kicker">上手课</div><h1>第2课｜装配工作台：装个 IDE，看着 AI 改你的文件</h1><div class="meta">上手课 · 第 2 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>第1课，AI 有了手脚，能思考，能干活。但干活的地方是一个文字窗口。你让它改个文件，它回你一句&quot;改好了&quot;。</p>
 <p>改没改，改在哪，有没有顺手多改，你一概看不见。</p>
 <p>这不是 AI 的问题，是你没在机房。这一课把机房装成有监控的样子——它干活的时候，你看得见。</p>
@@ -130,7 +130,7 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <ul><li>Claude Code for VS Code 官方文档：https://code.claude.com/docs/en/vs-code</li><li>VS Code 的 diff 与源代码管理入门：https://code.visualstudio.com/docs/editor/versioncontrol</li><li>VS Code 下载：https://code.visualstudio.com</li></ul></article><div class="pn"><a class="cta g" href="k01-认识全景装好环境.html">← 上一课：第1课｜认识全景，装好环境：你的头一句 AI 对话</a><a class="cta" href="k03-后悔药.html">下一课：第3课｜后悔药：git 的三个救命动作 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：从装到看完两次 diff，新手约半小时</li><li>费用：VS Code 免费，扩展免费，这两次对话的 token 几乎不计钱（精确以平台用量页为准）</li></ul></aside></div>
 <footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
-<div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="index.html">首页</a><a class="dl on" href="learn.html">课程</a><a class="dl" href="list.html">文章</a><a class="dl" href="gallery.html">图文</a><a class="dl" href="about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
+<div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
 <script>
 function wire(searchId,itemSel,groupSel,emptyId){
  var q=document.getElementById(searchId); if(!q) return;

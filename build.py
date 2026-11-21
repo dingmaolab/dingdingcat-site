@@ -204,14 +204,14 @@ def md(body):
     return "\n".join(out)
 
 
-def page(title, content, active, head="", extra_head="", scripts=""):
-    links = "".join(f'<a class="nl{" on" if k == active else ""}" href="{h}">{lab}</a>' for h, lab, k in NAV)
-    dl = "".join(f'<a class="dl{" on" if k == active else ""}" href="{h}">{lab}</a>' for h, lab, k in NAV)
+def page(title, content, active, head="", extra_head="", scripts="", base=""):
+    links = "".join(f'<a class="nl{" on" if k == active else ""}" href="{base}{h}">{lab}</a>' for h, lab, k in NAV)
+    dl = "".join(f'<a class="dl{" on" if k == active else ""}" href="{base}{h}">{lab}</a>' for h, lab, k in NAV)
     return (f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
 <title>{html.escape(title)} · 叮叮猫儿Lab</title>
-<link rel="icon" sizes="16x16" href="favicon-16.png"><link rel="icon" sizes="32x32" href="favicon-32.png">
+<link rel="icon" sizes="16x16" href="{base}favicon-16.png"><link rel="icon" sizes="32x32" href="{base}favicon-32.png">
 <style>{STYLE}</style>{extra_head}</head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
@@ -274,7 +274,7 @@ def main():
         else:
             body_html = f'<div class="narrow">{content}{navrow}</div>'
         hp = head_block(meta.get("series", "文章"), meta.get("title", slug), ml)
-        (OUT / f"{slug}.html").write_text(page(meta.get("title", slug), body_html, "learn" if kind == "course" else "list", head=hp), encoding="utf-8")
+        (OUT / f"{slug}.html").write_text(page(meta.get("title", slug), body_html, "learn" if kind == "course" else "list", head=hp, base="../"), encoding="utf-8")
 
     # ---------- learn.html：课程馆 = 封面卡流 + 章节分组 + 轻搜索 ----------
     n_course = sum(1 for k, *_ in arts if k == "course")
