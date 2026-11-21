@@ -1,80 +1,85 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>叮叮猫儿Lab · 在 AI 变革里躬身试新</title>
-<style>
-  :root{
-    --paper:#f7f2ea; --ink:#211a14; --muted:#8a7d6d;
-    --ember:#d8551f; --ember-soft:#f0a868; --line:#e4dac9;
-    --card:#fffdf9;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:"Microsoft YaHei","PingFang SC",sans-serif;
-    background:var(--paper); color:var(--ink); line-height:1.8;
-    background-image:radial-gradient(rgba(33,26,20,.035) 1px,transparent 1.3px);
-    background-size:26px 26px;
-  }
-  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
-  header{padding:64px 0 0;display:flex;align-items:center;gap:12px}
-  .mark{width:30px;height:27px;position:relative;flex:none;
-    background:radial-gradient(circle at 35% 58%,#2a1608 2px,transparent 2.6px),radial-gradient(circle at 65% 58%,#2a1608 2px,transparent 2.6px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);
-    border-radius:50% 50% 46% 46%;box-shadow:0 0 0 4px rgba(216,85,31,.12)}
-  .mark::before,.mark::after{content:"";position:absolute;top:-6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--ember)}
-  .mark::before{left:2px;transform:rotate(-18deg)}
-  .mark::after{right:2px;transform:rotate(18deg)}
-  .brand{font-size:19px;font-weight:800;letter-spacing:4px}
-  .hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
-  .kicker{font-family:Consolas,monospace;font-size:13px;letter-spacing:2px;color:var(--ember);margin-bottom:22px}
-  h1{font-size:46px;line-height:1.28;font-weight:800;letter-spacing:1px}
-  h1 em{font-style:normal;color:var(--ember)}
-  .lead{margin-top:26px;font-size:17px;color:#4a3f33;max-width:600px}
-  .prompt{margin-top:34px;font-family:Consolas,monospace;font-size:14px;
-    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ember);
-    border-radius:8px;padding:14px 18px;color:#5a4d3d}
-  .prompt .p{color:var(--ember)}
-  .prompt .cursor{display:inline-block;width:8px;height:15px;background:var(--ember);vertical-align:-2px}
-  section{padding:44px 0}
-  h2{font-size:15px;letter-spacing:3px;color:var(--muted);font-weight:700;margin-bottom:22px}
-  h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
-  .now li{list-style:none;padding:14px 0;border-bottom:1px dashed var(--line);display:flex;gap:16px}
-  .now li:last-child{border-bottom:none}
-  .now .tag{font-family:Consolas,monospace;font-size:12px;color:var(--ember);flex:none;width:64px;padding-top:3px}
-  footer{padding:40px 0 64px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  footer .no{font-family:Consolas,monospace;color:var(--ember)}
-  @media(max-width:560px){h1{font-size:34px}.hero{padding:48px 0 32px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header>
-    <span class="mark"></span>
-    <span class="brand">叮叮猫儿Lab</span>
-  </header>
-
-  <div class="hero">
-    <div class="kicker">VIBE CODING · 数字漫游</div>
-    <h1>漫游数字世界，<br>实验 <em>AI 与互联网</em>。</h1>
-    <p class="lead">不追概念，不喊口号。把新工具、新模型真的用一遍，同步新鲜动态与实践思考。慢一点，但想清楚。</p>
-    <div class="prompt"><span class="p">&gt;</span> 你好，我想做一个自己的网站<span class="cursor"></span></div>
-  </div>
-
-  <section>
-    <h2>此刻在做</h2>
-    <ul class="now">
-      <li><span class="tag">连载</span><span>Vibe Coding 上手课 —— 手把手盖一个个人博客 + 教程网站</span></li>
-      <li><span class="tag">实践</span><span>用 Claude Code 接国产模型，把想法一点点变成能跑的东西</span></li>
-      <li><span class="tag">沉淀</span><span>把踩过的坑和想明白的事，记成可以回看的账本</span></li>
-    </ul>
-  </section>
-
-  <footer>
-    <span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span>
-    <span class="no">est. 2026</span>
-  </footer>
-</div>
-</body>
-</html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>首页 · 叮叮猫儿Lab</title><style>
+:root{--paper:#f7f2ea;--ink:#211a14;--muted:#8a7d6d;--ember:#d8551f;--line:#e4dac9;--card:#fffdf9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(33,26,20,.035) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:720px;margin:0 auto;padding:0 28px}
+nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
+nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
+nav .mark{width:24px;height:21px;position:relative;background:radial-gradient(circle at 35% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 65% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);border-radius:50% 50% 46% 46%}
+nav .mark::before,nav .mark::after{content:"";position:absolute;top:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--ember)}
+nav .mark::before{left:1px;transform:rotate(-18deg)}
+nav .mark::after{right:1px;transform:rotate(18deg)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a.on,nav a:hover{color:var(--ember)}
+.head{padding:54px 0 30px}
+.kicker{font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:var(--ember);margin-bottom:16px}
+h1{font-size:36px;line-height:1.3;font-weight:800}
+.meta{margin-top:16px;color:var(--muted);font-size:13px;font-family:Consolas,monospace}
+article{padding:10px 0 50px}
+article p{margin:0 0 20px;font-size:16.5px;color:#3a3128}
+article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
+article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a4d3d;border-radius:0 8px 8px 0}
+article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article strong{color:var(--ink)}
+.pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 6px;font-size:14px}
+.pn a{text-decoration:none;color:var(--ink);max-width:48%}
+.pn .lab{font-family:Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--muted);display:block}
+.pn .t{color:var(--ember);font-weight:700}
+.list{padding:20px 0 50px}
+.series{margin-bottom:36px}
+.series h2{font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
+.series h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px}
+.item:hover .t{color:var(--ember)}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:13px;flex:none;width:40px;padding-top:3px}
+.item .t{font-size:16px;font-weight:600}
+.item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.search{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:15px/1.5 inherit;color:var(--ink);outline:none;margin:6px 0 4px}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(216,85,31,.14)}
+.hint{font-size:12px;color:var(--muted);margin-bottom:20px}
+.dim{opacity:.25}
+.empty{margin-top:20px;padding:18px 20px;border:1.5px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:14px}
+.empty .go{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer .no{font-family:Consolas,monospace;color:var(--ember)}
+@media(max-width:560px){h1{font-size:28px}}
+</style></head><body><div class="wrap">
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html" class="on">主页</a><a href="learn.html">课程</a><a href="list.html">文章</a><a href="gallery.html">图文</a><a href="about.html">关于</a></nav>
+<div class="head">
+<div class="kicker">DINGDINGCAT LAB · 漫游数字世界</div>
+<h1>把新工具、新模型真的用一遍，<br>写清楚能不能用、卡在哪、值不值。</h1>
+<div class="meta">实验 AI 与互联网 · 同步新鲜动态与实践思考 · 只写实测的账</div></div>
+<section class="now">
+<h2>此刻在做</h2>
+<div class="nowrow"><span class="tag">连载</span><a href="learn.html">Vibe Coding 上手课 —— 手把手盖一个个人博客 + 教程网站</a><span class="cnt">共 9 课</span></div>
+<div class="nowrow"><span class="tag">实践</span><a href="learn.html">最新一期：第9课｜动手之前，先有方案和任务单——你签的是&quot;改起来多贵&quot;</a></div>
+<div class="nowrow"><span class="tag">沉淀</span><a href="list.html">散装文章 1 篇 · 图文 0 帖，记成可以回看的账本</a></div>
+</section>
+<section class="hero-course">
+<a class="bigcard" href="a/k09-方案与任务单.html">
+<div class="bc-k">在上的课 · VIBE CODING 上手课</div>
+<div class="bc-t">第9课｜动手之前，先有方案和任务单——你签的是&quot;改起来多贵&quot;</div>
+<div class="bc-d">零基础 / 纯静态 / 全程现金成本约一顿饭的零头 —— <b>从第 1 课开始 →</b></div></a>
+</section>
+<section class="recent">
+<h2>最新单篇</h2>
+<a class="item" href="a/001-为什么做这个站.html"><span class="no">发刊词</span><span class="t">为什么我要亲手做一个网站</span><span class="d">2026-11-15</span></a>
+</section>
+<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
+</div><style>
+.now{padding:10px 0 26px}.now h2,.recent h2{font-size:14px;letter-spacing:3px;color:var(--muted);margin-bottom:12px}
+.nowrow{display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);min-height:44px}
+.nowrow .tag{font-family:Consolas,monospace;font-size:11px;color:var(--ember);letter-spacing:2px;flex:none;width:44px}
+.nowrow a{color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:600}.nowrow a:hover{color:var(--ember)}
+.nowrow .cnt{margin-left:auto;font-family:Consolas,monospace;font-size:12px;color:var(--muted)}
+.bigcard{display:block;border:1.5px solid var(--ember);border-radius:16px;background:var(--card);padding:26px 28px;text-decoration:none;margin:8px 0 34px}
+.bc-k{font-family:Consolas,monospace;font-size:11px;letter-spacing:3px;color:var(--ember)}
+.bc-t{font-size:22px;font-weight:800;color:var(--ink);margin:10px 0 8px}
+.bc-d{color:var(--muted);font-size:14px}.bc-d b{color:var(--ink)}
+.recent{padding-bottom:20px}
+</style></body></html>

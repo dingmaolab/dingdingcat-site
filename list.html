@@ -49,7 +49,29 @@ footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);f
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 @media(max-width:560px){h1{font-size:28px}}
 </style></head><body><div class="wrap">
-<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html" class="on">文章</a><a href="learn.html">课程</a><a href="about.html">关于</a></nav>
-<div class="head"><div class="kicker">全部文章</div><h1>文章</h1><div class="meta">共 1 篇 · 按栏目归类</div></div><div class="list"><div class="series"><h2>发刊词</h2><a class="item" href="a/001-为什么做这个站.html"><span class="no">1</span><span class="t">为什么我要亲手做一个网站</span><span class="d">2026-11-15</span></a></div></div>
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="learn.html">课程</a><a href="list.html" class="on">文章</a><a href="gallery.html">图文</a><a href="about.html">关于</a></nav>
+<div class="head"><div class="kicker">全部文章</div><h1>文章</h1><div class="meta">共 1 篇 · 课程在「课程」区，图文在「图文」区</div></div><input class="search" id="q" placeholder="搜标题（/ 直达 · Esc 清空）"><div class="hint">只搜标题，正文不进索引 · 共 1 篇</div><div class="chips"><span class="chip on" data-cat="">全部</span><span class="chip" data-cat="发刊词">发刊词</span></div><div class="list" id="rows"><a class="item" data-cat="发刊词" data-t="为什么我要亲手做一个网站" href="a/001-为什么做这个站.html"><span class="no">1</span><span class="t">为什么我要亲手做一个网站</span><span class="d">2026-11-15</span></a></div><div class="empty hide" id="empty">这个栏目下还没有存货。<br><br><span class="go" id="c2">清空筛选</span> 看全部 1 篇</div>
 <footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
-</div></body></html>
+</div><style>.chips{display:flex;gap:10px;margin:0 0 18px;flex-wrap:wrap}.chip{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;background:var(--card);cursor:pointer;min-height:40px;display:inline-flex;align-items:center}.chip.on{background:var(--ember);color:#fff;border-color:var(--ember);font-weight:700}</style><script>
+(function(){
+ var q=document.getElementById('q'),chips=[].slice.call(document.querySelectorAll('.chip')),
+     rows=[].slice.call(document.querySelectorAll('#rows .item')),empty=document.getElementById('empty'),cur="";
+ function apply(){
+   var k=q.value.trim().toLowerCase(),hit=0;
+   rows.forEach(function(el){
+     var okc=!cur||el.getAttribute('data-cat')===cur,
+         okt=!k||el.getAttribute('data-t').indexOf(k)>-1, show=okc&&okt;
+     el.classList.toggle('hide',!show); if(show)hit++;
+   });
+   empty.classList.toggle('hide',hit!==0);
+ }
+ chips.forEach(function(c){c.addEventListener('click',function(){
+   chips.forEach(function(x){x.classList.remove('on');});c.classList.add('on');cur=c.getAttribute('data-cat');apply();});});
+ q.addEventListener('input',apply);
+ document.getElementById('c2').addEventListener('click',function(){q.value='';cur='';
+   chips.forEach(function(x){x.classList.remove('on');});chips[0].classList.add('on');apply();});
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'&&document.activeElement===q){q.value='';apply();q.blur();}
+ });
+})();</script></body></html>

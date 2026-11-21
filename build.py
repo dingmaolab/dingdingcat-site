@@ -149,8 +149,9 @@ def md(body):
 
 def page(title, kicker, content, active, h1=None, meta_line="", extra_style=""):
     nav = ""
-    for href, label, key in [("index.html", "主页", "home"), ("list.html", "文章", "list"),
-                             ("learn.html", "课程", "learn"), ("about.html", "关于", "about")]:
+    for href, label, key in [("index.html", "主页", "home"), ("learn.html", "课程", "learn"),
+                             ("list.html", "文章", "list"), ("gallery.html", "图文", "gallery"),
+                             ("about.html", "关于", "about")]:
         cls = ' class="on"' if key == active else ""
         nav += f'<a href="{href}"{cls}>{label}</a>'
     head = ""
@@ -211,22 +212,64 @@ def main():
                         content, "list", h1=meta.get("title", slug), meta_line=ml)
         (OUT / f"{slug}.html").write_text(html_out, encoding="utf-8")
 
-    # 文章页(list)：仅散装（post/gallery），课程不混排
-    loose = [(k, m, s) for k, m, b, s in arts if k != "course"]
-    lg = {}
-    for k, meta, slug in loose:
-        lg.setdefault(meta.get("series", "单篇"), []).append((int(meta.get("number", 0)), meta, slug))
-    blocks = []
-    for series, items in sorted(lg.items(), key=lambda kv: min(m.get("date","") for _, m, _ in kv[1])):
-        rows = "".join(
-            f'<a class="item" href="a/{slug}.html"><span class="no">{meta.get("number","")}</span>'
-            f'<span class="t">{html.escape(meta.get("title",slug))}</span>'
-            f'<span class="d">{meta.get("date","")}</span></a>'
-            for _, meta, slug in sorted(items))
-        blocks.append(f'<div class="series"><h2>{html.escape(series)}</h2>{rows}</div>')
-    list_html = page("文章", "全部文章", '<div class="list">' + "".join(blocks) + "</div>",
-                     "list", h1="文章", meta_line=f"共 {len(loose)} 篇 · 按栏目归类")
+    # P3：文章页(list)=散装单篇（post only），栏目 chips 过滤；图文独立成 gallery
+    posts = [(k, m, s) for k, m, b, s in arts if k == "post"]
+    galleries = [(k, m, s) for k, m, b, s in arts if k == "gallery"]
+    cats = sorted({m.get("series", "单篇") for _, m, _ in posts})
+    chips = '<div class="chips"><span class="chip on" data-cat="">全部</span>' + "".join(
+        f'<span class="chip" data-cat="{html.escape(c)}">{html.escape(c)}</span>' for c in cats) + "</div>"
+    rows = "".join(
+        f'<a class="item" data-cat="{html.escape(m.get("series","单篇"))}" data-t="{html.escape(m.get("title","").lower())}"'
+        f' href="a/{s}.html"><span class="no">{m.get("number","")}</span>'
+        f'<span class="t">{html.escape(m.get("title",s))}</span><span class="d">{m.get("date","")}</span></a>'
+        for _, m, s in sorted(posts, key=lambda x: (x[1].get("series",""), int(x[1].get("number", 0)))))
+    list_body = (f'<input class="search" id="q" placeholder="搜标题（/ 直达 · Esc 清空）">'
+                 f'<div class="hint">只搜标题，正文不进索引 · 共 {len(posts)} 篇</div>{chips}'
+                 f'<div class="list" id="rows">{rows}</div>'
+                 f'<div class="empty hide" id="empty">这个栏目下还没有存货。<br><br><span class="go" id="c2">清空筛选</span> 看全部 {len(posts)} 篇</div>')
+    list_js = """
+(function(){
+ var q=document.getElementById('q'),chips=[].slice.call(document.querySelectorAll('.chip')),
+     rows=[].slice.call(document.querySelectorAll('#rows .item')),empty=document.getElementById('empty'),cur="";
+ function apply(){
+   var k=q.value.trim().toLowerCase(),hit=0;
+   rows.forEach(function(el){
+     var okc=!cur||el.getAttribute('data-cat')===cur,
+         okt=!k||el.getAttribute('data-t').indexOf(k)>-1, show=okc&&okt;
+     el.classList.toggle('hide',!show); if(show)hit++;
+   });
+   empty.classList.toggle('hide',hit!==0);
+ }
+ chips.forEach(function(c){c.addEventListener('click',function(){
+   chips.forEach(function(x){x.classList.remove('on');});c.classList.add('on');cur=c.getAttribute('data-cat');apply();});});
+ q.addEventListener('input',apply);
+ document.getElementById('c2').addEventListener('click',function(){q.value='';cur='';
+   chips.forEach(function(x){x.classList.remove('on');});chips[0].classList.add('on');apply();});
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'&&document.activeElement===q){q.value='';apply();q.blur();}
+ });
+})();"""
+    list_html = page("文章", "全部文章", list_body, "list", h1="文章",
+                     meta_line=f"共 {len(posts)} 篇 · 课程在「课程」区，图文在「图文」区")
+    list_html = list_html.replace("</body>", f"<style>.chips{{display:flex;gap:10px;margin:0 0 18px;flex-wrap:wrap}}.chip{{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;background:var(--card);cursor:pointer;min-height:40px;display:inline-flex;align-items:center}}.chip.on{{background:var(--ember);color:#fff;border-color:var(--ember);font-weight:700}}</style><script>{list_js}</script></body>")
     (ROOT / "list.html").write_text(list_html, encoding="utf-8")
+
+    # P3：gallery.html——图文书架（小绿书 3:4 卡），空态兜底
+    if galleries:
+        gcards = "".join(
+            f'<a class="gcard" href="a/{s}.html"><span class="gimg">{html.escape(m.get("title",""))}</span>'
+            f'<div class="gbody"><h3>{html.escape(m.get("title",s))}</h3><span>{m.get("date","")}</span></div></a>'
+            for _, m, s in galleries)
+        g_body = f'<div class="grid">{gcards}</div>'
+    else:
+        g_body = ('<div class="empty">这一架还没搬完——图文（小绿书）正在从公众号归档，'
+                  '先去 <a href="learn.html" style="color:var(--ember);font-weight:700">课程区</a> 或 '
+                  '<a href="list.html" style="color:var(--ember);font-weight:700">文章区</a> 转转。</div>')
+    gal_html = page("图文", "小绿书归档", g_body, "gallery", h1="图文",
+                    meta_line=f"共 {len(galleries)} 帖 · 图为主，字为辅")
+    gal_html = gal_html.replace("</body>", '<style>.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:20px 0 50px}.gcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);text-decoration:none;color:var(--ink)}.gimg{display:block;aspect-ratio:3/4;background:linear-gradient(160deg,#2a1608,#9a3410)}.gbody{padding:12px 14px}.gbody h3{font-size:14.5px}.gbody span{font-size:12px;color:var(--muted);font-family:Consolas,monospace}</style></body>')
+    (ROOT / "gallery.html").write_text(gal_html, encoding="utf-8")
 
     # 课程路径页 learn.html（P2）：课表流 + 轻搜索 + 空结果逃生口
     n_course = sum(1 for k, *_ in arts if k == "course")
@@ -255,6 +298,47 @@ def main():
     learn_html = learn_html.replace("</body>", f"<script>{SEARCH_JS}</script></body>")
     (ROOT / "learn.html").write_text(learn_html, encoding="utf-8")
 
+    # P4：首页 Now Page（转为数据驱动生成，手写版退役；数字全部现算）
+    latest_course = None
+    for s, items in ordered:
+        if s == "上手课":
+            latest_course = items[-1]
+    recent_posts = sorted(posts, key=lambda x: x[1].get("date", ""), reverse=True)[:3]
+    idx_body = f"""<div class="head">
+<div class="kicker">DINGDINGCAT LAB · 漫游数字世界</div>
+<h1>把新工具、新模型真的用一遍，<br>写清楚能不能用、卡在哪、值不值。</h1>
+<div class="meta">实验 AI 与互联网 · 同步新鲜动态与实践思考 · 只写实测的账</div></div>
+<section class="now">
+<h2>此刻在做</h2>
+<div class="nowrow"><span class="tag">连载</span><a href="learn.html">Vibe Coding 上手课 —— 手把手盖一个个人博客 + 教程网站</a><span class="cnt">共 {n_course} 课</span></div>
+<div class="nowrow"><span class="tag">实践</span><a href="learn.html">最新一期：{html.escape(latest_course[1].get('title','')) if latest_course else '整理中'}</a></div>
+<div class="nowrow"><span class="tag">沉淀</span><a href="list.html">散装文章 {len(posts)} 篇 · 图文 {len(galleries)} 帖，记成可以回看的账本</a></div>
+</section>
+<section class="hero-course">
+<a class="bigcard" href="{"a/"+latest_course[2]+".html" if latest_course else "learn.html"}">
+<div class="bc-k">在上的课 · VIBE CODING 上手课</div>
+<div class="bc-t">{html.escape(latest_course[1].get('title','')) if latest_course else '课程整理中'}</div>
+<div class="bc-d">零基础 / 纯静态 / 全程现金成本约一顿饭的零头 —— <b>从第 1 课开始 →</b></div></a>
+</section>
+<section class="recent">
+<h2>最新单篇</h2>
+{"".join(f'<a class="item" href="a/{s}.html"><span class="no">{m.get("series","")}</span><span class="t">{html.escape(m.get("title",s))}</span><span class="d">{m.get("date","")}</span></a>' for _, m, s in recent_posts)}
+</section>"""
+    idx_html = page("首页", "", idx_body, "home")
+    idx_html = idx_html.replace("</body>", """<style>
+.now{padding:10px 0 26px}.now h2,.recent h2{font-size:14px;letter-spacing:3px;color:var(--muted);margin-bottom:12px}
+.nowrow{display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px dashed var(--line);min-height:44px}
+.nowrow .tag{font-family:Consolas,monospace;font-size:11px;color:var(--ember);letter-spacing:2px;flex:none;width:44px}
+.nowrow a{color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:600}.nowrow a:hover{color:var(--ember)}
+.nowrow .cnt{margin-left:auto;font-family:Consolas,monospace;font-size:12px;color:var(--muted)}
+.bigcard{display:block;border:1.5px solid var(--ember);border-radius:16px;background:var(--card);padding:26px 28px;text-decoration:none;margin:8px 0 34px}
+.bc-k{font-family:Consolas,monospace;font-size:11px;letter-spacing:3px;color:var(--ember)}
+.bc-t{font-size:22px;font-weight:800;color:var(--ink);margin:10px 0 8px}
+.bc-d{color:var(--muted);font-size:14px}.bc-d b{color:var(--ink)}
+.recent{padding-bottom:20px}
+</style></body>""")
+    (ROOT / "index.html").write_text(idx_html, encoding="utf-8")
+
     # 关于页
     about_body = """<article>
 <p>这里是叮叮猫儿Lab。漫游数字世界，实验 AI 与互联网。</p>
@@ -265,7 +349,7 @@ def main():
 </article>"""
     (ROOT / "about.html").write_text(page("关于", "关于", about_body, "about", h1="关于叮叮猫儿Lab"), encoding="utf-8")
 
-    print(f"built {len(arts)} articles ({n_course} course) -> a/ ; list.html ; learn.html ; about.html")
+    print(f"built {len(arts)} articles ({n_course} course / {len(posts)} post / {len(galleries)} gallery) -> index.html ; learn.html ; list.html ; gallery.html ; about.html ; a/")
     for s, items in ordered:
         print(f"  [{s}] {len(items)} 课: " + ", ".join(str(n) for n, _, _ in items))
 
