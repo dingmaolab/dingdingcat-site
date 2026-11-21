@@ -338,12 +338,23 @@ def main():
 
     # 关于页
     about_body = """<article>
-<p>这里是叮叮猫儿Lab。漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</p>
-<p>不追概念，不喊口号。把新工具、新模型真的用一遍，写清楚能不能用、卡在哪、值不值。</p>
-<h2>这个站</h2>
-<p>它跟着「Vibe Coding 上手课」一起长。课程做到哪，它就长到哪。博客放想法，教程放步骤，都归在一个域名下。</p>
-<p>整站纯静态，用 AI 一行一行写出来。慢一点，但想清楚。</p>
-</article>"""
+<p class="quote">我决定用AI亲手建个人网站，让博客、教程随课程一起生长并留存。</p>
+<p>这个站干的事很简单：<strong>公众号发过的每一篇，这里都在。</strong>课程按编号排好，想系统学就从第 1 课进来；散装按时间躺着，闲逛随意。文章永久存档，不随平台算法沉底。</p>
+<div class="follow">
+  <img src="qrcode.jpg" alt="微信公众号二维码">
+  <div><strong>连载更新在公众号</strong><br>扫码关注，更新不错过。<br><span class="acc">微信公众号 · 叮叮猫儿Lab</span></div>
+</div>
+<p class="foot">找事：公众号后台留言即可。这个站由它的作者在 Claude Code 里一手盖成——你正在看的页面，本身就是课程的作品。</p>
+</article>
+<style>
+.quote{font-size:19px;font-weight:700;border-left:3px solid var(--ember);padding:4px 0 4px 22px;line-height:1.8}
+.follow{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:26px 0}
+.follow img{width:128px;height:128px;border:1px solid var(--line);border-radius:8px;flex:none}
+.follow strong{color:var(--ink)}
+.follow .acc{display:inline-block;margin-top:8px;font-family:Consolas,monospace;font-size:12px;border:1px solid var(--ink);border-radius:999px;padding:3px 12px}
+.foot{color:var(--muted);font-size:13.5px;line-height:2}
+@media(max-width:560px){.follow{flex-direction:column;text-align:center}}
+</style>"""
     (ROOT / "about.html").write_text(page("关于", "关于", about_body, "about", h1="关于叮叮猫儿Lab"), encoding="utf-8")
 
     print(f"built {len(arts)} articles ({n_course} course / {len(posts)} post / {len(galleries)} gallery) -> index.html ; learn.html ; list.html ; gallery.html ; about.html ; a/")
