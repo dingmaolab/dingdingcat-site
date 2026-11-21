@@ -231,6 +231,10 @@ def head_block(kicker, h1, meta=""):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    keep = {f.stem + ".html" for f in ART.glob("*.md")}
+    for stale in OUT.glob("*.html"):
+        if stale.name not in keep:
+            stale.unlink(); print(f"[sweep] 清理孤儿页面 {stale.name}")
     arts = []
     for f in sorted(ART.glob("*.md")):
         meta, body = parse(f.read_text(encoding="utf-8"))
