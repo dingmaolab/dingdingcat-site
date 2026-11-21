@@ -307,7 +307,7 @@ def main():
     idx_body = f"""<div class="head">
 <div class="kicker">DINGDINGCAT LAB · 漫游数字世界</div>
 <h1>把新工具、新模型真的用一遍，<br>写清楚能不能用、卡在哪、值不值。</h1>
-<div class="meta">实验 AI 与互联网 · 同步新鲜动态与实践思考 · 只写实测的账</div></div>
+<div class="meta">漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</div></div>
 <section class="now">
 <h2>此刻在做</h2>
 <div class="nowrow"><span class="tag">连载</span><a href="learn.html">Vibe Coding 上手课 —— 手把手盖一个个人博客 + 教程网站</a><span class="cnt">共 {n_course} 课</span></div>
@@ -341,8 +341,8 @@ def main():
 
     # 关于页
     about_body = """<article>
-<p>这里是叮叮猫儿Lab。漫游数字世界，实验 AI 与互联网。</p>
-<p>不追概念，不喊口号。把新工具、新模型真的用一遍，同步新鲜动态与实践思考。</p>
+<p>这里是叮叮猫儿Lab。漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</p>
+<p>不追概念，不喊口号。把新工具、新模型真的用一遍，写清楚能不能用、卡在哪、值不值。</p>
 <h2>这个站</h2>
 <p>它跟着「Vibe Coding 上手课」一起长。课程做到哪，它就长到哪。博客放想法，教程放步骤，都归在一个域名下。</p>
 <p>整站纯静态，用 AI 一行一行写出来。慢一点，但想清楚。</p>
