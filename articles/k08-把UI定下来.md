@@ -2,6 +2,7 @@
 title: 第8课｜把 UI 定下来：AI 能出四十张，你只要答三个问题
 kind: course
 series: 上手课
+chapter: 见世界
 number: 8
 date: 2026-11-21
 tags: [vibe coding, 教程]

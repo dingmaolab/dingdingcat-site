@@ -1,69 +1,122 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
 <title>关于 · 叮叮猫儿Lab</title>
-<link rel="icon" sizes="16x16" href="favicon-16.png"><link rel="icon" sizes="32x32" href="favicon-32.png"><style>
-:root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--line:#e3e3df;--card:#ffffff;--cobalt:#1d4e89}
+<link rel="icon" sizes="16x16" href="favicon-16.png"><link rel="icon" sizes="32x32" href="favicon-32.png">
+<style>
+:root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--cobalt:#1d4e89;--must:#e3c24b;--line:#e3e3df;--card:#ffffff}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);
-line-height:1.9;background-image:radial-gradient(rgba(20,20,20,.030) 1px,transparent 1.3px);background-size:26px 26px}
-.wrap{max-width:720px;margin:0 auto;padding:0 28px}
-nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
-nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
-nav a{color:var(--muted);text-decoration:none;font-size:14px}
-nav a.on,nav a:hover{color:var(--ember)}
-.head{padding:54px 0 30px}
-.kicker{font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:var(--ember);margin-bottom:16px}
-h1{font-size:36px;line-height:1.3;font-weight:800}
-.meta{margin-top:16px;color:var(--muted);font-size:13px;font-family:Consolas,monospace}
-article{padding:10px 0 50px}
-article p{margin:0 0 20px;font-size:16.5px;color:#3a3128}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(20,20,20,.03) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 26px}
+nav{padding:22px 0;display:flex;align-items:center;gap:4px;border-bottom:1.5px solid var(--ink)}
+nav .b{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16.5px;margin-right:auto;letter-spacing:.02em}
+nav .lab{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:600}
+nav .links{display:flex;gap:2px}
+nav a.nl{color:var(--muted);text-decoration:none;font-size:14px;padding:7px 14px;border-radius:9px}
+nav a.nl:hover{color:var(--ink)}
+nav a.nl.on{color:var(--ink);font-weight:800;background:rgba(223,90,48,.10)}
+.burger{display:none}
+#navcb{display:none}
+.drawer{display:none}
+@media(max-width:700px){
+ nav .links{display:none}
+ .burger{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid var(--ink);border-radius:10px;font-size:17px;font-weight:800;cursor:pointer;background:var(--card)}
+ #navcb:checked ~ .drawer{display:flex}
+ .drawer{position:fixed;inset:0;z-index:60;background:rgba(20,20,20,.4)}
+ .drawer .ovl{flex:1}
+ .drawer .panel{width:76%;max-width:320px;background:#fff;height:100%;padding:26px;display:flex;flex-direction:column;box-shadow:24px 0 60px rgba(0,0,0,.25)}
+ .drawer a.dl{font-size:25px;font-weight:900;letter-spacing:-.02em;padding:13px 0;border-bottom:1px solid #f0efeb;color:var(--ink);text-decoration:none}
+ .drawer a.dl.on{color:var(--ember)}
+ .drawer .dfoot{margin-top:auto;font-size:11.5px;color:var(--muted);line-height:2}
+}
+.head{padding:54px 0 22px}
+.kicker{font-family:Consolas,monospace;font-size:11.5px;letter-spacing:4px;color:var(--ember);margin-bottom:14px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.32;font-weight:900;letter-spacing:-.025em}
+.meta{margin-top:14px;color:var(--muted);font-size:13.5px;font-family:Consolas,monospace}
+article{padding:8px 0 34px}
+article p{margin:0 0 20px;font-size:16.5px;color:#2f2c27}
 article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
-article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a4d3d;border-radius:0 8px 8px 0}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
 article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
-.pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 6px;font-size:14px}
-.pn a{text-decoration:none;color:var(--ink);max-width:48%}
-.pn .lab{font-family:Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--muted);display:block}
-.pn .t{color:var(--ember);font-weight:700}
-.list{padding:20px 0 50px}
-.series{margin-bottom:36px}
-.series h2{font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
-.series h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
-.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px}
+.lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
+.marginal{position:sticky;top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.5px;color:#5a554b}
+.marginal h2{font-size:11.5px;letter-spacing:3px;color:var(--muted);margin:0 0 12px;font-weight:700}
+.marginal p{margin:0 0 10px;font-size:13.5px;color:#5a554b}
+.marginal ul{margin:0 0 6px 18px}.marginal li{margin:4px 0}
+.narrow{max-width:720px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding:6px 0 30px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--ink);transition:.18s;display:flex;flex-direction:column}
+.ccard:hover{border-color:var(--ember);transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,20,20,.08)}
+.ccard img{width:100%;aspect-ratio:1800/766;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.ccard .cb{padding:14px 18px 16px}
+.ccard .ck{font:700 11px Consolas,monospace;letter-spacing:2px;color:var(--ember)}
+.ccard .ct{font-size:15.5px;font-weight:800;margin-top:7px;letter-spacing:-.01em;line-height:1.5}
+.ccard .cd{font-size:12px;color:var(--muted);margin-top:6px;font-family:Consolas,monospace}
+.chapter-h{display:flex;align-items:baseline;gap:14px;margin:36px 0 4px}
+.chapter-h h2{font-size:19px;font-weight:900;letter-spacing:-.01em}
+.chapter-h span{font:700 10.5px Consolas,monospace;letter-spacing:2px;color:var(--ember);background:rgba(223,90,48,.1);padding:3px 10px;border-radius:999px}
+.search{width:100%;max-width:540px;padding:13px 17px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);font-size:15px;color:var(--ink);outline:none;margin:6px 0}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(223,90,48,.13)}
+.hint{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.empty{margin:16px 0 40px;padding:20px;border:1.5px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:14px;background:var(--card)}
+.empty a,.empty .go-try,.empty .go-clear{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+.chips{display:flex;gap:10px;margin:16px 0 8px;flex-wrap:wrap}
+.chip{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;background:var(--card);cursor:pointer;min-height:40px;display:inline-flex;align-items:center;color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px;transition:opacity .18s}
 .item:hover .t{color:var(--ember)}
-.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:13px;flex:none;width:40px;padding-top:3px}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:12.5px;flex:none;width:70px;padding-top:4px;letter-spacing:1px}
 .item .t{font-size:16px;font-weight:600}
 .item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
-.search{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:15px/1.5 inherit;color:var(--ink);outline:none;margin:6px 0 4px}
-.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(216,85,31,.14)}
-.hint{font-size:12px;color:var(--muted);margin-bottom:20px}
-.dim{opacity:.25}
-.empty{margin-top:20px;padding:18px 20px;border:1.5px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:14px}
-.empty .go{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
-footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.dim{opacity:.2}
+.cta{display:inline-block;padding:11px 22px;border-radius:11px;font-size:14px;font-weight:700;background:var(--ember);color:#fff;text-decoration:none;margin:14px 10px 0 0}
+.cta.g{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.pn{border-top:1.5px solid var(--ink);margin-top:26px;padding-top:18px}
+footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
-@media(max-width:560px){h1{font-size:28px}}
-</style></head><body><div class="wrap">
-<nav><span class="b"><svg viewBox="0 0 100 100" style="width:24px;height:24px;border-radius:6px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i style="font-family:Georgia,serif;font-style:italic">Lab</i></span><a href="index.html">主页</a><a href="learn.html">课程</a><a href="list.html">文章</a><a href="gallery.html">图文</a><a href="about.html" class="on">关于</a></nav>
-<div class="head"><div class="kicker">关于</div><h1>关于叮叮猫儿Lab</h1></div><article>
-<p class="quote">我决定用AI亲手建个人网站，让博客、教程随课程一起生长并留存。</p>
-<p>这个站干的事很简单：<strong>公众号发过的每一篇，这里都在。</strong>课程按编号排好，想系统学就从第 1 课进来；散装按时间躺着，闲逛随意。文章永久存档，不随平台算法沉底。</p>
-<div class="follow">
-  <img src="qrcode.jpg" alt="微信公众号二维码">
-  <div><strong>连载更新在公众号</strong><br>扫码关注，更新不错过。<br><span class="acc">微信公众号 · 叮叮猫儿Lab</span></div>
+.hide{display:none}
+</style><style>.follow{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:26px 0}.follow img{width:132px;height:132px;border-radius:8px;flex:none;border:1px solid var(--line)}.follow .acc{display:inline-block;margin-top:8px;font:700 12px Consolas,monospace;border:1px solid var(--ink);border-radius:999px;padding:3px 12px}@media(max-width:560px){.follow{flex-direction:column;text-align:center}}</style></head><body>
+<input type="checkbox" id="navcb">
+<div class="wrap">
+<nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="index.html">首页</a><a class="nl" href="learn.html">课程</a><a class="nl" href="list.html">文章</a><a class="nl" href="gallery.html">图文</a><a class="nl on" href="about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
+<div class="head"><div class="kicker">ABOUT</div><h1>关于叮叮猫儿Lab</h1></div><div class="narrow"><article><p style="font-size:19px;font-weight:700;border-left:3px solid var(--ember);padding-left:20px;line-height:1.8">「我决定用AI亲手建个人网站，让博客、教程随课程一起生长并留存。」</p><p>这个站干的事很简单：<strong>公众号发过的每一篇，这里都在。</strong>课程按编号排好，想系统学就从第 1 课进来；散装按时间躺着，闲逛随意。文章永久存档，不随平台算法沉底。</p><div class="follow"><img src="qrcode.jpg" alt="微信公众号二维码"><div><strong>连载更新在公众号</strong><br>扫码关注，更新不错过。<br><span class="acc">微信公众号 · 叮叮猫儿Lab</span></div></div><p style="color:var(--muted);font-size:13.5px;line-height:2">找事：公众号后台留言即可。<br>这个站由它的作者在 Claude Code 里一手盖成——你正在看的页面，本身就是课程的作品。</p></article></div>
+<footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
-<p class="foot">找事：公众号后台留言即可。这个站由它的作者在 Claude Code 里一手盖成——你正在看的页面，本身就是课程的作品。</p>
-</article>
-<style>
-.quote{font-size:19px;font-weight:700;border-left:3px solid var(--ember);padding:4px 0 4px 22px;line-height:1.8}
-.follow{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:26px 0}
-.follow img{width:128px;height:128px;border:1px solid var(--line);border-radius:8px;flex:none}
-.follow strong{color:var(--ink)}
-.follow .acc{display:inline-block;margin-top:8px;font-family:Consolas,monospace;font-size:12px;border:1px solid var(--ink);border-radius:999px;padding:3px 12px}
-.foot{color:var(--muted);font-size:13.5px;line-height:2}
-@media(max-width:560px){.follow{flex-direction:column;text-align:center}}
-</style>
-<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
-</div></body></html>
+<div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="index.html">首页</a><a class="dl" href="learn.html">课程</a><a class="dl" href="list.html">文章</a><a class="dl" href="gallery.html">图文</a><a class="dl on" href="about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
+<script>
+function wire(searchId,itemSel,groupSel,emptyId){
+ var q=document.getElementById(searchId); if(!q) return;
+ var items=[].slice.call(document.querySelectorAll(itemSel));
+ var groups=groupSel?[].slice.call(document.querySelectorAll(groupSel)):[];
+ var empty=document.getElementById(emptyId);
+ function apply(){
+   var k=(q.value||'').trim().toLowerCase(),hit=0;
+   items.forEach(function(el){
+     var on=false;
+     if(k){on=el.getAttribute('data-t').split('|').some(function(pp){return pp.indexOf(k)>-1;});
+       el.classList.toggle('dim',!on); if(on)hit++;}
+     else el.classList.remove('dim');
+   });
+   if(groups.length)groups.forEach(function(g){
+     var vis=[].slice.call(g.querySelectorAll(itemSel)).some(function(l){return !k||!l.classList.contains('dim');});
+     g.classList.toggle('hide',!!k&&!vis);
+   });
+   if(empty){empty.classList.toggle('hide',!(k&&hit===0));
+     var e=empty.querySelector('#ekw'); if(e)e.textContent=q.value;}
+ }
+ q.addEventListener('input',apply);
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'&&document.activeElement===q){q.value='';apply();q.blur();}
+ });
+ document.querySelectorAll('.go-clear,.go-try').forEach(function(g){
+   g.addEventListener('click',function(){q.value=g.classList.contains('go-try')?(g.getAttribute('data-k')||''):'';apply();q.focus();});
+ });
+}
+</script>
+</body></html>
