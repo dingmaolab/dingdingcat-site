@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>第6课｜AI 的失忆病：写一页规矩，治好它 · 叮叮猫儿Lab</title><style>
+:root{--paper:#f7f2ea;--ink:#211a14;--muted:#8a7d6d;--ember:#d8551f;--line:#e4dac9;--card:#fffdf9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(33,26,20,.035) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:720px;margin:0 auto;padding:0 28px}
+nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
+nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
+nav .mark{width:24px;height:21px;position:relative;background:radial-gradient(circle at 35% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 65% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);border-radius:50% 50% 46% 46%}
+nav .mark::before,nav .mark::after{content:"";position:absolute;top:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--ember)}
+nav .mark::before{left:1px;transform:rotate(-18deg)}
+nav .mark::after{right:1px;transform:rotate(18deg)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a.on,nav a:hover{color:var(--ember)}
+.head{padding:54px 0 30px}
+.kicker{font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:var(--ember);margin-bottom:16px}
+h1{font-size:36px;line-height:1.3;font-weight:800}
+.meta{margin-top:16px;color:var(--muted);font-size:13px;font-family:Consolas,monospace}
+article{padding:10px 0 50px}
+article p{margin:0 0 20px;font-size:16.5px;color:#3a3128}
+article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
+article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a4d3d;border-radius:0 8px 8px 0}
+article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article strong{color:var(--ink)}
+.pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 6px;font-size:14px}
+.pn a{text-decoration:none;color:var(--ink);max-width:48%}
+.pn .lab{font-family:Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--muted);display:block}
+.pn .t{color:var(--ember);font-weight:700}
+.list{padding:20px 0 50px}
+.series{margin-bottom:36px}
+.series h2{font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
+.series h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px}
+.item:hover .t{color:var(--ember)}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:13px;flex:none;width:40px;padding-top:3px}
+.item .t{font-size:16px;font-weight:600}
+.item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.search{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:15px/1.5 inherit;color:var(--ink);outline:none;margin:6px 0 4px}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(216,85,31,.14)}
+.hint{font-size:12px;color:var(--muted);margin-bottom:20px}
+.dim{opacity:.25}
+.empty{margin-top:20px;padding:18px 20px;border:1.5px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:14px}
+.empty .go{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer .no{font-family:Consolas,monospace;color:var(--ember)}
+@media(max-width:560px){h1{font-size:28px}}
+</style></head><body><div class="wrap">
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html" class="on">文章</a><a href="learn.html">课程</a><a href="about.html">关于</a></nav>
+<div class="head"><div class="kicker">上手课</div><h1>第6课｜AI 的失忆病：写一页规矩，治好它</h1><div class="meta">上手课 · 第 6 课 · 2026-11-21</div></div><article><p>你有没有撞过这样的事：昨天在一个会话里，你千叮万嘱让它别动某个文件、按某种格式来；今天新开一个会话，它照样给你改得面目全非。</p>
+<p>不是它叛逆。是新会话一睁眼，就是张白纸。你和它昨天的所有口头约定，都不在这张纸上。</p>
+<p>这一课我们不讲道理，直接做实验：同一个模型、同一个项目文件夹、同一道题，两边就差一页规矩文件，别的都一样。两份答卷的差异，你亲眼看完就懂了。</p>
+<h2>本课目标</h2>
+<ul><li>弄明白失忆机制：对话记忆不留存，只有&quot;记忆文件&quot;每次都跟着</li><li>给你的项目写出头一份 CLAUDE.md，四段格式照抄我的</li><li>知道&quot;渐进式加载&quot;这个词：规矩文件要薄，厚的东西放外面引用</li></ul>
+<h2>概念卡</h2>
+<ul><li><strong>CLAUDE.md</strong>：放在项目里的规矩文件，Claude Code 每次在你项目目录开工时自动读它——官方文档的说法就叫&quot;How Claude remembers your project&quot;。你也可以有一份全局的放在用户目录，跟项目这份叠加生效（不是谁覆盖谁），小白阶段先只用项目这一份。</li><li><strong>失忆</strong>：你上次会话交代的口头规矩，新会话一概不知道。能穿越会话的只有文件。</li><li><strong>宪法（项目的）</strong>：几条&quot;这个项目绝对不做什么&quot;。重点：这些是代码里读不出来的东西，代码只能说明&quot;现在是什么样&quot;，说不出&quot;不许变成什么样&quot;。</li><li><strong>渐进式加载</strong>：CLAUDE.md 保持短，细节拆进别的文件，主文件用 <code>@路径</code> 指路，AI 按需再深入。官方的引用语法就是 @ 开头。</li></ul>
+<h2>实验记录</h2>
+<h3>设置</h3>
+<p>题目是我网站真会遇到的一道：&quot;访客在我网站上常看系列教程，我想加一个搜索框，访客问什么，AI 根据站内文章内容回答他。好做吗？&quot;</p>
+<p>我的站点有一条从建站就立的宪法（全文稍后贴）：纯静态、AI 只在生产过程帮忙、密钥不进前端。</p>
+<p>请了两个零背景代理——全新的，没参与过我们任何对话——进同一个文件夹答同一道题。一个我吩咐&quot;忽略规矩文件，只看代码&quot;；另一个吩咐&quot;先读规矩文件再答&quot;。</p>
+<h3>头一轮，温和题：猜，也能猜对</h3>
+<p>先给你看第一轮（题目换成&quot;加个展示各系列数据结构、能看能搜的页面&quot;）的结果，因为这轮的答案很有教育意义：<strong>两组答得差不多好</strong>。没规矩那位照样说出&quot;纯静态、build.py 里加生成步、数据内嵌、几十行原生 JS 客户端过滤、不引框架&quot;，甚至还正确指出主页是手写要同步加导航。</p>
+<p>它怎么做到的？读代码猜的——把项目翻了个遍，烧了两万来 token，相当于把你家重新勘察一遍。</p>
+<p>这轮先别急着说&quot;那失忆无所谓嘛&quot;。项目小、意图全写在代码里时，猜确实能猜对。<strong>但猜对是运气和成本，不是可靠。</strong> 真正的分界线在第二轮——那道代码里读不出答案的题。</p>
+<h3>第二轮，毒题：差异炸开</h3>
+<p><strong>无宪法那位的答卷</strong>（原文节选）：</p>
+<blockquote>好做，你的站是纯静态站，文章源现成……生成 search-index.json……访客提问后把&quot;问题 + 文章原文&quot;发给大模型 API，要求它只依据所给文章作答……关键注意点——静态站没有后端，API 密钥绝不能写进前端 JS，必须加一个轻量中转（如 Cloudflare Workers 或 Vercel 无服务器函数）替你保管密钥、转发请求……按 IP 限流并设每日额度防刷防费用失控……半天到一天能跑通。</blockquote>
+<p><strong>有宪法那位的答卷</strong>（原文节选）：</p>
+<blockquote>先说结论：「访客现场提问、AI 现场作答」这种实时问答做不了——项目硬规矩写明纯静态、无运行时 AI、无后端，且密钥不能进前端，实时方案三条全撞。但合规的替代版很好做：把 AI 挪到生产阶段，每次构建时生成&quot;读者常问问题 → 基于原文的回答&quot;写死进数据……前端只用一小段原生 JS 本地做关键词匹配……零运行时调用、零密钥。</blockquote>
+<h3>实验告诉我们三件事</h3>
+<p>头一件，无宪法那位<strong>技术上没有错</strong>。它是业界标准答案，甚至自己警告了密钥不能进前端——懂行。但对这个项目，它是最危险的那种正确：一个上班族的教程站，被它一句话变成要运维三个新服务（中转函数、限流、费用监控）。这正好是上一课那张地图里&quot;三家药方&quot;之外的事——你的项目能不能承接一个方案，跟方案本身好不好，是两个问题。</p>
+<p>第二件，有宪法那位头一句是&quot;做不了&quot;。救场的不是智商，是规矩。代码里读不出来的那几行字——为什么不做后端、AI 的权限边界到哪——就是 CLAUDE.md 的本职。</p>
+<p>第三件，两个答卷出自同一个脑子。一页文本的差距，就是失忆和失忆痊愈的差距。</p>
+<h2>我网站这份宪法，全文在这</h2>
+<p><code>`</code></p>
+<p># 网站项目规矩（叮叮猫儿Lab · 个人博客+教程站）</p>
+<h2>这是什么</h2>
+<p>一个纯静态的个人网站，跟着「Vibe Coding 上手课」一起长。</p>
+<h2>硬规矩</h2>
+<ul><li>纯静态：访客拿到的永远是 HTML 文件，无后端、无数据库、无运行时 AI 调用。</li><li>AI 只在生产过程帮忙（写代码、生成摘要），产物写死进页面。</li><li>文章用 Markdown 写在 articles/，顶部 frontmatter 必含 title/series/number/date。</li><li>series 字段决定归进哪个书架，不要写死系列。</li><li>风格：纸感底色 + 炉火暖色（#d8551f），改样式保持这套变量。</li></ul>
+<h2>命令</h2>
+<ul><li>生成全站：python build.py</li><li>改完文章重新跑 build.py 即可</li></ul>
+<h2>不要做</h2>
+<ul><li>不要引入框架/构建工具链（保持单文件可懂）</li><li>不要把密钥写进任何前端文件</li><li>不要加运行时后端</li></ul>
+<p><code>`</code></p>
+<p>二十九行。注意它的写法：<strong>每条都是能判真假的句子</strong>，不是&quot;保持简单&quot;&quot;代码要干净&quot;这种没法执行的感想。&quot;不引入任何框架&quot;能拦住一次跑偏，&quot;简约一点&quot;什么都拦不住。</p>
+<h2>顺带认识 AGENTS.md：规矩文件还有个通用名</h2>
+<p>有人会发现市面上还有另一种文件名：AGENTS.md。简单交代——它是个<strong>开放标准</strong>，自称&quot;给 agent 看的 README&quot;，不隶属哪家工具，几万个开源项目在用，Codex、Cursor 这些 agent 都认它（官网 agents.md）。</p>
+<p>Claude Code 怎么待见它？我这台 2.1.330 实测有效：从 2.1.277 起，目录链里<strong>没有</strong> CLAUDE.md 时，它会去找 AGENTS.md。但有个坑要记住——链子里只要存在任何 CLAUDE.md，AGENTS.md 就被整个忽略。所以跨工具的标准做法不是玄学，是两行字的事：规矩正文全写在 AGENTS.md 里，CLAUDE.md 就留一行 <code>@AGENTS.md</code>。</p>
+<p>我自己的内容系统账号就是这么配的：CLAUDE.md 打开只有那一行，AGENTS.md 才是正本。一份规矩，多种工具共读，不用抄两遍。</p>
+<p>对你现阶段的意思：只用 Claude Code，一份 CLAUDE.md 干净利落；项目可能被别的 agent 碰、或者你就是不想维护两份，就上面这个两文件套路。</p>
+<h2>写你自己的</h2>
+<p>你的项目现在也有文件夹、有 git、有远端家了，该给它立规矩了。四段照抄：这是什么（两三行）、硬规矩（你的绝对不）、命令（怎么跑起来）、不要做。</p>
+<p>从零开始的话，头五条规矩往往是你已经撞过或想过的事：不收费买字体、页脚署谁的名、要不要 Analytics、能不能上框架。写下来，哪怕只有四行。</p>
+<p>规矩会越来越多，别把 CLAUDE.md 撑肿——它得短到一屏看得完才管用。厚的部分拆出去，主文件一行 <code>@docs/design.md</code> 就能把那页拽进来，AI 用得到才深入，这就是渐进式加载。我自己的内容系统整个就是这个结构：进门一页纸，上面一张表写着&quot;做什么读什么、什么不许读&quot;，你以后会撞见同款。</p>
+<h2>跟做步骤</h2>
+<p>1. 在项目文件夹开新会话，先问：&quot;如果我想加一个功能，这个项目的规矩和限制是什么？&quot;——存下这份含糊的答案 2. 在项目根写 <code>CLAUDE.md</code>，四段格式，先 5-8 行 3. 关掉，再开一个全新会话，问一模一样的问题 4. 对比两次答案：第二次应该开始引用你写的原话 5. 以后每撞一次它越界，回来给宪法补一条——这文件是养出来的，不是供出来的</p>
+<h2>及格标准</h2>
+<p>新会话里问&quot;这个项目有什么规矩&quot;，它答出来的内容能对上你 CLAUDE.md 里的硬规矩原句。从&quot;它猜&quot;变成&quot;它有出处&quot;，就及格。</p>
+<h2>卡住了</h2>
+<ul><li><strong>写了没生效</strong>：CLAUDE.md 必须在项目根目录，且会话要在该目录启动；改完内容开新会话再试。</li><li><strong>它还是越界</strong>：多半是你写得太空。&quot;保持轻量&quot;拦不住任何东西，&quot;不许引入构建工具和框架，全部原生 HTML/CSS&quot;才拦得住。每条自检一下能不能判真假。</li><li><strong>越写越长</strong>：砍。把长规矩挪进单独文件，主文件留 <code>@引用</code>。一屏是上限。</li><li><strong>不知道写啥规矩</strong>：等式——你上次心里嘀咕&quot;它怎么这样&quot;的那件事，就是头一条。</li></ul>
+<h2>轮到你了</h2>
+<p>现在给你的项目想两三条&quot;代码说不出&quot;的绝对不，写进宪法。它们平时看不见你，下一次新会话，它们会替你把住关。</p>
+<p>下一课开始动真格的需求：这次轮到 AI 烤问你，你答题。规矩有了，该有正事。</p>
+<h2>深入读</h2>
+<ul><li>官方记忆文档·How Claude remembers your project（含 @import 语法，当天验活）：https://code.claude.com/docs/en/memory</li><li>AGENTS.md 开放标准官网（当天验活）：https://agents.md/</li></ul>
+<h2>本课账单</h2>
+<ul><li>时间：读实验加写自己那份宪法，新手约三十分钟</li><li>费用：两轮对照实验加你自己试问的几次对话，几分钱量级（实测以平台用量页为准）；我这两组实验各烧了两万来 token、合计约两毛以内，DeepSeek 家底经得起这种折腾</li></ul></article><div class="pn"><a href="k05-需求怎么钉住.html"><span class="lab">← 上一课</span><span class="t">第5课｜需求怎么钉住：三家工具一张图，我选最轻的那家</span></a><a href="k07-被烤一小时.html" style="text-align:right"><span class="lab">下一课 →</span><span class="t">第7课｜被 AI 烤了一个钟头，我的需求少了两个文件</span></a></div>
+<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
+</div></body></html>

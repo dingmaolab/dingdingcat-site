@@ -22,23 +22,34 @@ article{padding:10px 0 50px}
 article p{margin:0 0 20px;font-size:16.5px;color:#3a3128}
 article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a4d3d;border-radius:0 8px 8px 0}
 article ul{margin:0 0 20px 22px}article li{margin:6px 0}
 article strong{color:var(--ink)}
+.pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 6px;font-size:14px}
+.pn a{text-decoration:none;color:var(--ink);max-width:48%}
+.pn .lab{font-family:Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--muted);display:block}
+.pn .t{color:var(--ember);font-weight:700}
 .list{padding:20px 0 50px}
 .series{margin-bottom:36px}
 .series h2{font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
 .series h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
-.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink)}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px}
 .item:hover .t{color:var(--ember)}
 .item .no{font-family:Consolas,monospace;color:var(--ember);font-size:13px;flex:none;width:40px;padding-top:3px}
 .item .t{font-size:16px;font-weight:600}
 .item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.search{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:15px/1.5 inherit;color:var(--ink);outline:none;margin:6px 0 4px}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(216,85,31,.14)}
+.hint{font-size:12px;color:var(--muted);margin-bottom:20px}
+.dim{opacity:.25}
+.empty{margin-top:20px;padding:18px 20px;border:1.5px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:14px}
+.empty .go{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
 footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 @media(max-width:560px){h1{font-size:28px}}
 </style></head><body><div class="wrap">
-<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html">文章</a><a href="about.html" class="on">关于</a></nav>
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html">文章</a><a href="learn.html">课程</a><a href="about.html" class="on">关于</a></nav>
 <div class="head"><div class="kicker">关于</div><h1>关于叮叮猫儿Lab</h1></div><article>
 <p>这里是叮叮猫儿Lab。漫游数字世界，实验 AI 与互联网。</p>
 <p>不追概念，不喊口号。把新工具、新模型真的用一遍，同步新鲜动态与实践思考。</p>

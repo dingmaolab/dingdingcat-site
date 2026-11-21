@@ -1,5 +1,6 @@
 ---
 title: 模型和 harness 是两回事
+kind: course
 series: 讲清
 number: 1
 date: 2026-11-15

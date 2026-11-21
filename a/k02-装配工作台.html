@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>第2课｜装配工作台：装个 IDE，看着 AI 改你的文件 · 叮叮猫儿Lab</title><style>
+:root{--paper:#f7f2ea;--ink:#211a14;--muted:#8a7d6d;--ember:#d8551f;--line:#e4dac9;--card:#fffdf9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(33,26,20,.035) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:720px;margin:0 auto;padding:0 28px}
+nav{padding:34px 0;display:flex;align-items:center;gap:22px;border-bottom:1px solid var(--line)}
+nav .b{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:3px;font-size:17px;margin-right:auto}
+nav .mark{width:24px;height:21px;position:relative;background:radial-gradient(circle at 35% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 65% 58%,#2a1608 1.6px,transparent 2.2px),radial-gradient(circle at 50% 68%,#ffd9a0,var(--ember) 58%,#9a3410);border-radius:50% 50% 46% 46%}
+nav .mark::before,nav .mark::after{content:"";position:absolute;top:-5px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid var(--ember)}
+nav .mark::before{left:1px;transform:rotate(-18deg)}
+nav .mark::after{right:1px;transform:rotate(18deg)}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a.on,nav a:hover{color:var(--ember)}
+.head{padding:54px 0 30px}
+.kicker{font-family:Consolas,monospace;font-size:12px;letter-spacing:2px;color:var(--ember);margin-bottom:16px}
+h1{font-size:36px;line-height:1.3;font-weight:800}
+.meta{margin-top:16px;color:var(--muted);font-size:13px;font-family:Consolas,monospace}
+article{padding:10px 0 50px}
+article p{margin:0 0 20px;font-size:16.5px;color:#3a3128}
+article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
+article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a4d3d;border-radius:0 8px 8px 0}
+article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article strong{color:var(--ink)}
+.pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:22px 0 6px;font-size:14px}
+.pn a{text-decoration:none;color:var(--ink);max-width:48%}
+.pn .lab{font-family:Consolas,monospace;font-size:11px;letter-spacing:2px;color:var(--muted);display:block}
+.pn .t{color:var(--ember);font-weight:700}
+.list{padding:20px 0 50px}
+.series{margin-bottom:36px}
+.series h2{font-size:15px;letter-spacing:3px;color:var(--muted);margin-bottom:14px}
+.series h2::before{content:"";display:inline-block;width:18px;height:2px;background:var(--ember);vertical-align:4px;margin-right:10px}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px}
+.item:hover .t{color:var(--ember)}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:13px;flex:none;width:40px;padding-top:3px}
+.item .t{font-size:16px;font-weight:600}
+.item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.search{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font:15px/1.5 inherit;color:var(--ink);outline:none;margin:6px 0 4px}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(216,85,31,.14)}
+.hint{font-size:12px;color:var(--muted);margin-bottom:20px}
+.dim{opacity:.25}
+.empty{margin-top:20px;padding:18px 20px;border:1.5px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:14px}
+.empty .go{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+footer{padding:34px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer .no{font-family:Consolas,monospace;color:var(--ember)}
+@media(max-width:560px){h1{font-size:28px}}
+</style></head><body><div class="wrap">
+<nav><span class="b"><span class="mark"></span>叮叮猫儿Lab</span><a href="index.html">主页</a><a href="list.html" class="on">文章</a><a href="learn.html">课程</a><a href="about.html">关于</a></nav>
+<div class="head"><div class="kicker">上手课</div><h1>第2课｜装配工作台：装个 IDE，看着 AI 改你的文件</h1><div class="meta">上手课 · 第 2 课 · 2026-11-21</div></div><article><p>第1课，AI 有了手脚，能思考，能干活。但干活的地方是一个文字窗口。你让它改个文件，它回你一句&quot;改好了&quot;。</p>
+<p>改没改，改在哪，有没有顺手多改，你一概看不见。</p>
+<p>这不是 AI 的问题，是你没在机房。这一课把机房装成有监控的样子——它干活的时候，你看得见。</p>
+<h2>本课目标</h2>
+<ul><li>装上 VS Code 和它的官方 Claude Code 扩展</li><li>分清图形面板和终端两种用法，知道它们是同一个引擎</li><li>做到新手最重要的一件事：让 AI 改一下文件，你打开 diff 亲眼看完</li></ul>
+<h2>概念卡</h2>
+<p>这一课只有三个词，每个都当场要用。</p>
+<ul><li><strong>IDE</strong>：Integrated Development Environment，集成开发环境。名字唬人，东西不唬人——一个加强版文本编辑器，能开整个文件夹、看文件树、比对改动、还能内置终端。我们只用一种：VS Code，微软出的，免费，用的人最多。</li><li><strong>扩展</strong>：给 IDE 加的插件。装上 Claude Code 扩展，VS Code 里就多出一个专门的聊天面板，不用离开编辑器指挥 AI。</li><li><strong>diff</strong>：文件改动前后的对照视图。删了哪行、加了哪行，并排列给你看。这是你以后每次验收的核心工具，今天先见一面。</li></ul>
+<h2>装配过程</h2>
+<h3>第一步，把驾驶舱装上</h3>
+<p>电脑里没有 VS Code 的，浏览器打开 code.visualstudio.com，Download 按钮点下去，装的时候一路下一步。</p>
+<p>已经装了的，确认版本不低于 1.94——那是官方扩展要求的底线。帮助菜单里点&quot;关于&quot;就能看到，或者终端里跑 <code>code --version</code>。我本机是 1.121.0，达标。</p>
+<h3>第二步，装扩展。这里我先替你把一堵小墙撞上</h3>
+<p>图形做法是在 VS Code 左侧点扩展图标，搜 Claude Code，点 Install。终端做法更短，PowerShell 里跑：</p>
+<p><code>`</code>powershell code --install-extension anthropic.claude-code <code>`</code></p>
+<p>我一开始敲的是 <code>anthropic.claude</code>，少了后面那截。报回来一行：</p>
+<p><code>`</code> Extension &#x27;anthropic.claude&#x27; not found. <code>`</code></p>
+<p>扩展 ID 是&quot;发布者.名字&quot;的格式，差一个字符都不认。所以以后遇到 not found，别急着怀疑&quot;这东西不存在吧&quot;，先查 ID。</p>
+<p>装对了的输长这样（版本号可能比我的新）：</p>
+<p><code>`</code> Extension &#x27;anthropic.claude-code&#x27; v2.1.330 was successfully installed. <code>`</code></p>
+<p>想验一下，跑 <code>code --list-extensions</code>，列表里躺着这行就成了。</p>
+<h3>第三步，开文件夹，开面板</h3>
+<p>这一步是 IDE 和普通记事本分水岭第一次显形：<strong>你打开的不是一个文件，是一个文件夹。</strong></p>
+<p>File 菜单，Open Folder，选你的项目目录。还没有项目的，新建一个空文件夹就行，以后这门课都会在里面干活。</p>
+<p>然后看侧边栏。这个扩展官方介绍的说法是，让你在 IDE 里用 Claude Code 而不用离开它，它给 VS Code 加了三个面板：主会话、副面板、会话列表。点开 Claude 入口，图形界面里就能开新会话，跟我平时用的命令行是同一个小脑瓜。</p>
+<p>更喜欢终端的话，Ctrl+<code>（数字1左边那个键）打开 VS Code 内置终端，直接敲 </code>claude`。官方甚至提供一个叫 Claude Code: Use Terminal 的设置项，让你在图形和终端之间二选一。两种形态，一个引擎，穿没穿外套的区别。</p>
+<h3>第四步，本课的正主：看 diff</h3>
+<p>对 AI 说一句小事，比如：</p>
+<blockquote>在 hello.txt 里写三行自我介绍。</blockquote>
+<p>它干完，先别急着双击文件看内容。点左侧栏的源代码管理图标（分支形状那个），你的新文件就挂在那里。点开它，出现的就是 diff：左边一片空，右边三行绿，全是新增。</p>
+<p>再让它改同一个文件：&quot;把第三行换成两句。&quot;再开一次 diff，这回有绿有加，删的加的并排给你看。</p>
+<p>把这个画面记住。以后所有课里的验收，&quot;看、验、驳回&quot;里的看，落点都是这一屏。官方 README 里写着它能&quot;在你的编辑器窗口里直接提议改动&quot;、&quot;接受前先审它的计划&quot;——话是它说的，账要你自己看。</p>
+<p>AI 改文件不稀奇。稀奇的是你看得清它改在哪、有没有多手。这一眼，就是你和&quot;盲信 AI&quot;的人之间头一道分水岭。</p>
+<h2>跟做步骤</h2>
+<p>1. 装 VS Code，或确认版本 ≥ 1.94 2. <code>code --install-extension anthropic.claude-code</code>，用 <code>code --list-extensions</code> 验证 3. File → Open Folder 打开你的项目文件夹 4. 侧边栏点开 Claude 面板，或 Ctrl+<code> 开内置终端跑 </code>claude` 5. 让它建一个文件、再改同一个文件，两次都打开 diff 看完</p>
+<h2>及格标准</h2>
+<p>你亲眼看过两次 diff 画面——一次新建，一次修改——并且知道以后任何改动，去哪个图标下面找。不要求看懂代码，只要求看过。</p>
+<h2>卡住了</h2>
+<ul><li><strong>Extension not found</strong>：ID 敲错了。正主是 <code>anthropic.claude-code</code>，我撞过这堵墙。</li><li><strong>扩展装不上、搜索空白</strong>：公司电脑配了代理的常见症状。正常渠道不行再来找我，这条我还没替你真跑过，先不乱开药方。</li><li><strong>侧边栏找不到 Claude 图标</strong>：先彻底退出 VS Code 重开一次。再看是不是没开文件夹——没打开项目，面板再在也没地方干活。</li><li><strong>命令行不认 <code>code</code></strong>：重装 VS Code 时勾上&quot;添加到 PATH&quot;那个选项；或者先用图形界面，这条命令不是命根。</li></ul>
+<h2>轮到你了</h2>
+<p>给 AI 提一个你&quot;想看看它怎么下手&quot;的要求。比如：把 hello.txt 拆成两个文件。看它干完，打开 diff，数一数它到底动了几个文件，跟你想要的是不是一回事。</p>
+<p>下节课讲一件更重的事：它改的东西你要是反悔了，怎么退回去。diff 让你看清&quot;改了什么&quot;，git 让你能回到&quot;没改之前&quot;。</p>
+<h2>深入读</h2>
+<ul><li>Claude Code for VS Code 官方文档：https://code.claude.com/docs/en/vs-code</li><li>VS Code 的 diff 与源代码管理入门：https://code.visualstudio.com/docs/editor/versioncontrol</li><li>VS Code 下载：https://code.visualstudio.com</li></ul>
+<h2>本课账单</h2>
+<ul><li>时间：从装到看完两次 diff，新手约半小时</li><li>费用：VS Code 免费，扩展免费，这两次对话的 token 几乎不计钱（精确以平台用量页为准）</li></ul></article><div class="pn"><a href="k01-认识全景装好环境.html"><span class="lab">← 上一课</span><span class="t">第1课｜认识全景，装好环境：你的头一句 AI 对话</span></a><a href="k03-后悔药.html" style="text-align:right"><span class="lab">下一课 →</span><span class="t">第3课｜后悔药：git 的三个救命动作</span></a></div>
+<footer><span>叮叮猫儿Lab · 慢慢探索，沉淀思考与实践</span><span class="no">est. 2026</span></footer>
+</div></body></html>
