@@ -54,10 +54,10 @@ tags: [vibe coding, 教程]
 ssh -T git@github.com
 ```
 
-我这台机器收到的回音是：
+我这台机器收到的回音是（写这课之后的第二天，GitHub 账号改成了新名字，这是改名后重测的现行输出）：
 
 ```
-Hi qiluluai! You've successfully authenticated, but GitHub does not provide shell access.
+Hi dingmaolab! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 新手看到 `does not provide shell access` 容易心里一沉，以为哪里配砸了。恰恰相反——**它认出了你的名字，这就是配对成功**。GitHub 故意不给你命令行入口，只留 git 通道。这句话是好消息，不是坏消息。

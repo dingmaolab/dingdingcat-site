@@ -117,8 +117,8 @@ article code{overflow-wrap:anywhere}
 <p>过程两步。你电脑上生成一对钥匙（Windows 在 PowerShell、Mac 在「终端」里跑同一句 <code>ssh-keygen -t ed25519</code>，一路回车）；然后把公钥的内容复制到 GitHub 网页 Settings → SSH keys 里。</p>
 <p>配好之后验证，跑：</p>
 <pre><code>ssh -T git@github.com</code></pre>
-<p>我这台机器收到的回音是：</p>
-<pre><code>Hi qiluluai! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<p>我这台机器收到的回音是（写这课之后的第二天，GitHub 账号改成了新名字，这是改名后重测的现行输出）：</p>
+<pre><code>Hi dingmaolab! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
 <p>新手看到 <code>does not provide shell access</code> 容易心里一沉，以为哪里配砸了。恰恰相反——<strong>它认出了你的名字，这就是配对成功</strong>。GitHub 故意不给你命令行入口，只留 git 通道。这句话是好消息，不是坏消息。</p>
 <p>（如果你更习惯图形界面：VS Code 装好扩展后也能带你走一遍登录授权，殊途同归。下面继续按终端讲。）</p>
 <h3>Q4：怎么把代码真正推上去？</h3>
