@@ -391,19 +391,17 @@ def main():
     recents = "".join(f'<a class="item" href="a/{s}.html"><span class="no">{html.escape(m.get("series",""))}</span>'
                       f'<span class="t">{html.escape(m.get("title",s))}</span><span class="d">{m.get("date","")}</span></a>'
                       for _, m, s in sorted(posts, key=lambda x: x[1].get("date", ""), reverse=True)[:3])
-    idx_body = (f'<div class="meta" style="margin:0 0 22px">已发布 {n_course} 课 · 存档 {len(arts)} 篇 · 更新节奏以公众号为准</div>'
-                + hero
-                + '<div class="chapter-h"><h2>最新单篇</h2><span>NOTES</span></div>' + (recents or '<div class="hint">第一篇正在路上</div>')
-                + '<a class="cta" href="learn.html">从第 1 课开始 →</a><a class="cta g" href="about.html">这是谁建的站</a>')
-    idx_head = ('<div class="head" style="padding-bottom:8px"><div class="kicker">DINGDINGCAT LAB · 漫游数字世界</div>'
-                '<h1>把新工具、新模型<span style="color:var(--ember)">真的用一遍</span>，<br>写清楚能不能用、卡在哪、值不值。</h1>'
-                '<div class="meta">实验AI与互联网，同步新鲜动态与实践思考 · 只写实测的账</div></div>')
+    idx_body = (hero
+                + '<div class="chapter-h"><h2>最新单篇</h2><span>NOTES</span></div>' + (recents or '<div class="hint">这一栏还没有存货</div>')
+                + '<a class="cta" href="learn.html">从第 1 课开始 →</a><a class="cta g" href="about.html">关于这个站</a>')
+    idx_head = ('<div class="head" style="padding-bottom:8px"><div class="kicker">DINGDINGCAT LAB</div>'
+                '<h1>漫游数字世界，实验AI与互联网，<br>同步新鲜动态与实践思考。</h1>'
+                f'<div class="meta">正在连载《Vibe Coding 上手课》 · 已发布 {n_course} 课</div></div>')
     (ROOT / "index.html").write_text(page("首页", idx_body, "home", head=idx_head), encoding="utf-8")
 
     # ---------- about.html：拍板版（宣言原句 + 这个站 + 二维码直挂） ----------
     about_body = ('<div class="narrow"><article>'
         '<p style="font-size:20px;font-weight:700;border-left:3px solid var(--ember);padding-left:20px;line-height:1.8">漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</p>'
-        '<div class="meta" style="margin:-6px 0 18px 23px;font-size:12px">—— 与公众号简介一字不差</div>'
         '<p>这个站干的事很简单：<strong>公众号发过的每一篇，这里都在。</strong>课程按编号排好，想系统学就从第 1 课进来；'
         '散装按时间躺着，闲逛随意。文章永久存档，不随平台算法沉底。</p>'
         '<div class="follow"><img src="qrcode.jpg" alt="微信公众号二维码">'
