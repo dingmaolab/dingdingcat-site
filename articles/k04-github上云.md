@@ -46,7 +46,7 @@ tags: [vibe coding, 教程]
 
 两条路：HTTPS 加令牌，或者 SSH 密钥。我用 SSH，一次配好长期清净。
 
-过程两步。你电脑上生成一对钥匙（PowerShell 跑 `ssh-keygen -t ed25519`，一路回车）；然后把公钥的内容复制到 GitHub 网页 Settings → SSH keys 里。
+过程两步。你电脑上生成一对钥匙（Windows 在 PowerShell、Mac 在「终端」里跑同一句 `ssh-keygen -t ed25519`，一路回车）；然后把公钥的内容复制到 GitHub 网页 Settings → SSH keys 里。
 
 配好之后验证，跑：
 

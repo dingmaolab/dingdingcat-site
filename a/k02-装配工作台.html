@@ -106,9 +106,10 @@ article code{overflow-wrap:anywhere}
 <h2>装配过程</h2>
 <h3>第一步，把驾驶舱装上</h3>
 <p>电脑里没有 VS Code 的，浏览器打开 code.visualstudio.com，Download 按钮点下去，装的时候一路下一步。</p>
+<p>Mac 读者同一个下载页，它会按芯片分两项（Apple 芯片 / Intel），别选错；平时用 brew 的，<code>brew install --cask visual-studio-code</code> 也是正路。</p>
 <p>已经装了的，确认版本不低于 1.94——那是官方扩展要求的底线。帮助菜单里点&quot;关于&quot;就能看到，或者终端里跑 <code>code --version</code>。我本机是 1.121.0，达标。</p>
 <h3>第二步，装扩展。这里我先替你把一堵小墙撞上</h3>
-<p>图形做法是在 VS Code 左侧点扩展图标，搜 Claude Code，点 Install。终端做法更短，PowerShell 里跑：</p>
+<p>图形做法是在 VS Code 左侧点扩展图标，搜 Claude Code，点 Install——这步两系统完全一样。终端做法更短，Windows 在 PowerShell、Mac 在「终端」里跑：</p>
 <pre><code>code --install-extension anthropic.claude-code</code></pre>
 <p>我一开始敲的是 <code>anthropic.claude</code>，少了后面那截。报回来一行：</p>
 <pre><code>Extension &#x27;anthropic.claude&#x27; not found.</code></pre>
@@ -116,6 +117,7 @@ article code{overflow-wrap:anywhere}
 <p>装对了的输长这样（版本号可能比我的新）：</p>
 <pre><code>Extension &#x27;anthropic.claude-code&#x27; v2.1.330 was successfully installed.</code></pre>
 <p>想验一下，跑 <code>code --list-extensions</code>，列表里躺着这行就成了。</p>
+<p>Mac 读者有个一次性门槛：dmg 拖进应用程序后，终端默认不认 <code>code</code> 命令。开 VS Code 按 <code>Cmd+Shift+P</code> 调命令面板，输入 Shell Command，选 Install &quot;code&quot; command in PATH 回车——只做这一次。之后终端操作与 Windows 一字不差，包括内置终端快捷键：Ctrl+`（Mac 同样按 Control，这组键是 Control 系的）。作者机器是 Windows，Mac 段出自 VS Code 官方文档口径、未本机实测，踩坑请带现象回来。</p>
 <h3>第三步，开文件夹，开面板</h3>
 <p>这一步是 IDE 和普通记事本分水岭第一次显形：<strong>你打开的不是一个文件，是一个文件夹。</strong></p>
 <p>File 菜单，Open Folder，选你的项目目录。还没有项目的，新建一个空文件夹就行，以后这门课都会在里面干活。</p>

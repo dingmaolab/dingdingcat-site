@@ -108,6 +108,7 @@ article code{overflow-wrap:anywhere}
 <p>再认几个词，跟做时够用：</p>
 <ul><li><strong>仓库（repository）</strong>：装了 git 的文件夹，多一个隐藏的 <code>.git</code> 目录，快照都存那。</li><li><strong>工作区</strong>：你正在编辑的文件。</li><li><strong>暂存区</strong>：你挑出来、准备放进下一张快照的改动。<code>git add</code> 就是把改动放进暂存区。</li><li><strong>提交（commit）</strong>：把暂存区的内容拍成一张快照，定格成一版。</li></ul>
 <p>认识这些，就可以动手了。</p>
+<p>Mac 读者的装备线短一截：git 大概率已在你机器里——头一回在终端敲 <code>git --version</code>，macOS 会自己弹出安装命令行工具的提示，点安装等它跑完；用 brew 的 <code>brew install git</code> 也行。装完之后，本课文所有命令两系统同词同句。</p>
 <h2>实跑记录</h2>
 <p>我在自己的网站项目里，把这三个动作完整走了一遍。你在课 2 那个放了 hello.txt 的文件夹里练，是一回事。</p>
 <h3>存档</h3>
@@ -123,7 +124,7 @@ git commit -m &quot;第一个页面：个人主页&quot;</code></pre>
 <h3>撞墙</h3>
 <p>提交的时候，屏幕上刷出一行警告：</p>
 <pre><code>LF will be replaced by CRLF</code></pre>
-<p>我当时心里一紧，以为坏了。查完才放心：这是 Windows 换行符的警告，不是错误。Windows 和 Linux 的换行方式不同，git 转换时提醒一声，提交照常完成。这一课你会在 Windows 上跟做，多半也会撞见它，撞见就知道：它是来打招呼的，不是来报丧的。</p>
+<p>我当时心里一紧，以为坏了。查完才放心：这是 Windows 换行符的警告，不是错误。Windows 和 Linux 的换行方式不同，git 转换时提醒一声，提交照常完成。这一课你会在 Windows 上跟做，多半也会撞见它，撞见就知道：它是来打招呼的，不是来报丧的。（这条警告是 Windows 气质——Mac 读者一路跑完可能根本见不到它，那不是漏步骤，是换行符的戏通常在 Windows 那边上演。）</p>
 <h3>改崩</h3>
 <p>有了存档，就可以放心让 AI 下手。我故意让它把主页标题里&quot;亲手做一遍&quot;改成&quot;随便搞搞就行&quot;——模拟一次改崩。</p>
 <p>改完跑 <code>git diff</code>：</p>

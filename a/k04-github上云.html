@@ -112,7 +112,7 @@ article code{overflow-wrap:anywhere}
 <p>有一条红线不分 Public Private，先立在这里：<strong>密钥永远不进仓库。</strong> 你第 1 课那把 DeepSeek key，在任何情况下都不该出现在被 git 记录的文件里。这一课你还没碰它，后面的课会专门讲怎么防。</p>
 <h3>Q3：怎么让 GitHub 认识我这台电脑？</h3>
 <p>两条路：HTTPS 加令牌，或者 SSH 密钥。我用 SSH，一次配好长期清净。</p>
-<p>过程两步。你电脑上生成一对钥匙（PowerShell 跑 <code>ssh-keygen -t ed25519</code>，一路回车）；然后把公钥的内容复制到 GitHub 网页 Settings → SSH keys 里。</p>
+<p>过程两步。你电脑上生成一对钥匙（Windows 在 PowerShell、Mac 在「终端」里跑同一句 <code>ssh-keygen -t ed25519</code>，一路回车）；然后把公钥的内容复制到 GitHub 网页 Settings → SSH keys 里。</p>
 <p>配好之后验证，跑：</p>
 <pre><code>ssh -T git@github.com</code></pre>
 <p>我这台机器收到的回音是：</p>
