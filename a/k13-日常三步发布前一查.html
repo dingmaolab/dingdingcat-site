@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
+<title>第13课｜需求会变，规格不能断：日常三步，发布前一查 · 叮叮猫儿Lab</title>
+<link rel="icon" sizes="16x16" href="../favicon-16.png"><link rel="icon" sizes="32x32" href="../favicon-32.png">
+<style>
+:root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--cobalt:#1d4e89;--must:#e3c24b;--line:#e3e3df;--card:#ffffff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(20,20,20,.03) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 26px}
+nav{padding:22px 0;display:flex;align-items:center;gap:4px;border-bottom:1.5px solid var(--ink)}
+nav .b{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16.5px;margin-right:auto;letter-spacing:.02em}
+nav .lab{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:600}
+nav .links{display:flex;gap:2px}
+nav a.nl{color:var(--muted);text-decoration:none;font-size:14px;padding:7px 14px;border-radius:9px}
+nav a.nl:hover{color:var(--ink)}
+nav a.nl.on{color:var(--ink);font-weight:800;background:rgba(223,90,48,.10)}
+.burger{display:none}
+#navcb{display:none}
+.drawer{display:none}
+@media(max-width:700px){
+ nav .links{display:none}
+ .burger{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid var(--ink);border-radius:10px;font-size:17px;font-weight:800;cursor:pointer;background:var(--card)}
+ #navcb:checked ~ .drawer{display:flex}
+ .drawer{position:fixed;inset:0;z-index:60;background:rgba(20,20,20,.4)}
+ .drawer .ovl{flex:1}
+ .drawer .panel{width:76%;max-width:320px;background:#fff;height:100%;padding:26px;display:flex;flex-direction:column;box-shadow:24px 0 60px rgba(0,0,0,.25)}
+ .drawer a.dl{font-size:25px;font-weight:900;letter-spacing:-.02em;padding:13px 0;border-bottom:1px solid #f0efeb;color:var(--ink);text-decoration:none}
+ .drawer a.dl.on{color:var(--ember)}
+ .drawer .dfoot{margin-top:auto;font-size:11.5px;color:var(--muted);line-height:2}
+}
+.head{padding:54px 0 22px}
+.kicker{font-family:Consolas,monospace;font-size:11.5px;letter-spacing:4px;color:var(--ember);margin-bottom:14px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.32;font-weight:900;letter-spacing:-.025em}
+.meta{margin-top:14px;color:var(--muted);font-size:13.5px;font-family:Consolas,monospace}
+article{padding:8px 0 34px}
+article p{margin:0 0 20px;font-size:16.5px;color:#2f2c27}
+article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
+article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
+article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
+article strong{color:var(--ink)}
+.lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
+.marginal{position:sticky;top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.5px;color:#5a554b}
+.marginal h2{font-size:11.5px;letter-spacing:3px;color:var(--muted);margin:0 0 12px;font-weight:700}
+.marginal p{margin:0 0 10px;font-size:13.5px;color:#5a554b}
+.marginal ul{margin:0 0 6px 18px}.marginal li{margin:4px 0}
+.narrow{max-width:720px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding:6px 0 30px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--ink);transition:.18s;display:flex;flex-direction:column}
+.ccard:hover{border-color:var(--ember);transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,20,20,.08)}
+.ccard img{width:100%;aspect-ratio:1800/766;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.ccard .cb{padding:14px 18px 16px}
+.ccard .ck{font:700 11px Consolas,monospace;letter-spacing:2px;color:var(--ember)}
+.ccard .ct{font-size:15.5px;font-weight:800;margin-top:7px;letter-spacing:-.01em;line-height:1.5}
+.ccard .cd{font-size:12px;color:var(--muted);margin-top:6px;font-family:Consolas,monospace}
+.chapter-h{display:flex;align-items:baseline;gap:14px;margin:36px 0 4px}
+.chapter-h h2{font-size:19px;font-weight:900;letter-spacing:-.01em}
+.chapter-h span{font:700 10.5px Consolas,monospace;letter-spacing:2px;color:var(--ember);background:rgba(223,90,48,.1);padding:3px 10px;border-radius:999px}
+.search{width:100%;max-width:540px;padding:13px 17px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);font-size:15px;color:var(--ink);outline:none;margin:6px 0}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(223,90,48,.13)}
+.hint{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.empty{margin:16px 0 40px;padding:20px;border:1.5px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:14px;background:var(--card)}
+.empty a,.empty .go-try,.empty .go-clear{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+.chips{display:flex;gap:10px;margin:16px 0 8px;flex-wrap:wrap}
+.chip{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;background:var(--card);cursor:pointer;min-height:40px;display:inline-flex;align-items:center;color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px;transition:opacity .18s}
+.item:hover .t{color:var(--ember)}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:12.5px;flex:none;width:70px;padding-top:4px;letter-spacing:1px}
+.item .t{font-size:16px;font-weight:600}
+.item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.dim{opacity:.2}
+.cta{display:inline-block;padding:11px 22px;border-radius:11px;font-size:14px;font-weight:700;background:var(--ember);color:#fff;text-decoration:none;margin:14px 10px 0 0}
+.cta.g{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.pn{border-top:1.5px solid var(--ink);margin-top:26px;padding-top:18px}
+footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
+footer .no{font-family:Consolas,monospace;color:var(--ember)}
+.hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
+</style></head><body>
+<input type="checkbox" id="navcb">
+<div class="wrap">
+<nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
+<div class="head"><div class="kicker">上手课</div><h1>第13课｜需求会变，规格不能断：日常三步，发布前一查</h1><div class="meta">上手课 · 第 13 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>先交代这课的特殊性：下面那个&quot;我&quot;，是账号主人；写作用的是他和 AI 结对——谁的手敲的字不重要，<strong>谁拍的板才重要</strong>，这也是本课的内容之一。</p>
+<p>然后说件丢人的事。今天写这节课写到最后，派了一个毫不知情的 AI 通读全篇做发布前校对。它交回来的报告里，最重的一条是：</p>
+<blockquote>这篇教人&quot;承诺词零容忍、数字对实物&quot;的文章，自己把&quot;本课已通过全部检查&quot;写在了检查完成之前。</blockquote>
+<p>它说得对。我当时确实还没等校对跑完，就在正文里宣称四道检查全过了。这份报告现在整个躺在同目录 <code>校对13.md</code> 里，正文的这一节就是它的整改记录。<strong>这节课不是教程配案例，这节课本身就是被教程救下来的一次事故。</strong></p>
+<h2>本课目标</h2>
+<ul><li>把&quot;改需求&quot;从事故变成流水线：动代码之前，先动哪几页纸</li><li>让规矩带着&quot;案发现场&quot;活着：每条为什么存在，可查</li><li>抄走一张发布前检查单，包括那七个能让 AI 校对你的问题的原文</li></ul>
+<h2>概念卡</h2>
+<ul><li><strong>规格（specs）</strong>：这项目&quot;要什么、不要什么、怎么算好&quot;的全部书面决定。在这门课里就是三页纸：任务书（课 7 烤出来的需求）、方案（课 9 谈定的架构）、清单（课 9 拆出的施工包）。谁改了现实，谁就得回来改纸。</li><li><strong>活维护</strong>：规格跟着现实变，且每次变化留痕——追加、批注、commit，而不是重写、覆盖、散落。</li><li><strong>检查单</strong>：每次&quot;要发出去&quot;之前固定跑一遍的那几步。它的头号原则：<strong>单子上每样东西，跑没跑完，看证据，不看信心。</strong></li></ul>
+<h2>第一步：改需求，先改纸，再改码</h2>
+<p>今天下午的活例。文章写到一半，作者过来说：「文章是文章，微信的图文是独立的，2 个。」——网站要承载的内容，从四类变成五类（课程、单篇、图文、元信息，外加新分出来的&quot;文章/图文&quot;两兄弟各归各家）。</p>
+<p>本能是伸手改代码。停。今天的实际顺序：</p>
+<p>1. 方案文件<strong>追加</strong>一段&quot;定稿增量&quot;：物种清单、页面增减、导航扩到五项。原来的推导一个字不删——那是地层 2. 施工清单<strong>新增一包</strong>，验收写死：&quot;两页互不混排；空列表有兜底文案&quot; 3. 然后代码才动，一个 commit 收口</p>
+<p>任务书呢？它没被改——这次变更没动&quot;为什么做&quot;，只动了&quot;怎么归置&quot;。<strong>改哪页纸，取决于变的层级：想法变了改任务书，做法变了改方案，拆法变了改清单。三层纸，各管各的账。</strong></p>
+<p>顺序反过来的项目我也见过：代码先改完，纸&quot;回头再补&quot;。回头？没有回头。三个月后没人说得清图库页为什么单独一页——决定从&quot;规格&quot;降级成了&quot;古迹&quot;。</p>
+<p>（一句点破：这一步依赖 git 存在才成立。把它讲在头个位置是事故叙事的需要，实操顺序看&quot;跟做步骤&quot;。）</p>
+<h2>第二步：规矩会被质疑，被质疑说明它在岗</h2>
+<p>今天诞生了<strong>两条</strong>规矩，各带着自己的案发记录：</p>
+<p><strong>规矩一：门面不许许愿。</strong> 下午作者扫首页，眉头一皱：&quot;为什么要写双周一更之类的&quot;——查，那是建号那天的内部目标，被 AI 当事实抄上了台面。全站 24 个文件清扫，写进项目规矩文件（就是第 6 课那页 CLAUDE.md，给 AI 的厂规）：<strong>chrome 层零承诺词</strong>。chrome 指页面的&quot;门面件&quot;：导航、页脚、统计行——不是那个浏览器。傍晚死链脚本顺手复查，命中两篇课文正文，一查是课文在引用这句反面案例当教材——条款当天细化成&quot;禁的是门面许愿，不禁正文讨论&quot;。这条规矩的完整生命史，在 commit <code>c75b7f2</code>（立规）和今天下午的清单批注里。</p>
+<p><strong>规矩二：文案终稿权在人。</strong> 简介句被我&quot;顺手优化&quot;——加空格、拆词、缀了句口号。作者本人丢回一句原话，回滚。commit 消息里我自己记了自己一笔&quot;越权改写&quot;：<code>6201ef6</code>。</p>
+<p>一条规矩从质疑里生、在误伤里细；另一条从越权里生、在回滚里立。<strong>规矩文件的理想形态不是法律条文，是判例集</strong>——每条后面带着案发现场，后来的人才知道它为什么长这样，才不敢轻率改它。</p>
+<h2>第三步：版本纪律，从我盖掉的旧稿说起</h2>
+<p>两条铁律，都是学费：</p>
+<p><strong>头一条：改之前先有 git。</strong> 今天最丢人的发现：这个账号的内容目录（方案、清单、十三份讲义、品牌图）直到今天下午才 <code>git init</code>——写&quot;规格保养&quot;课当天，查&quot;版本纪律&quot;素材，敲出 <code>fatal: not a git repository</code>。更疼的是随即想起旧案：第 5 课换方向后，新稿直接压在旧稿上存盘，第一代正文盘上查无死无对证，只剩旁边一个冻结的旧项目目录当墓碑。方向作废就标冻结、不删除——这条今天补进规矩，代价是已经丢过一版。 顺带理清仓库关系：<strong>代码和内容的历史是两种历史，分两个仓库。</strong> 站点仓（第 3 课建）今天走了四发：P1P2 施工、分家、文案终稿、修死链；内容仓（今天下午才开天）此刻你正在读的这页纸，初稿和修订版就分别是它头几发 commit——<code>f179ddd</code> 存了被校对砸之前的原样。这课正文改了什么，翻 commit 便知，<strong>包括那句被砸的谎的原句</strong>。</p>
+<p><strong>第二条：commit 消息是写给三个月后的自己的证词。</strong> &quot;P3+P4 施工&quot;这种消息一文不值，&quot;首跑抓到 50 条断链，文章内点主页即 404&quot;这种才值钱——它就是案发现场。</p>
+<h2>第四步：发布前一查，以及它当场抓到的我</h2>
+<p>每个要发出去的成品，过四道闸。清单本身比流程重要，我把本课的完整跑法连证据摊开：</p>
+<p><strong>一查，机器闸。</strong> 写作工具自带的两个检查：一个查违规和编造嫌疑（错字、绝对化用语、无来源硬事实），一个查文字的&quot;机器味&quot;。本课初稿被逮两个 blocker——包括一处序数措辞被词表误伤，按系列口径换成「头」字族解决。</p>
+<p><strong>二查，链接活。</strong> 文末每条链接现场请求一遍，返回 200 才许上稿。死链不上稿，第 8 课立的规矩。</p>
+<p><strong>三查，数字对账。</strong> 正文里每一个 commit 号、文件数、耗时，对着实物念一遍。本课在这一查里改掉了&quot;全天五发一条链&quot;的错误说法——那是把两个仓库的历史缝成了一串。</p>
+<p><strong>四查，零背景读者。</strong> 派一个没参与过任何施工的 AI，只给这篇稿，问它七个问题。清单在这，可以抄：</p>
+<p>1. 哪些句子需要读者自带背景才读得通（具体到行） 2. 哪里逻辑断层、跳跃 3. 有没有把&quot;目标/愿望&quot;写成&quot;已发生事实&quot;的句子 4. 结构顺序合理吗，&quot;跟着做&quot;能照做吗，缺什么前置 5. 标题承诺和正文兑现对不对得上 6. 用一句话复述这篇在说什么 7. 只挑最重要的一个改进点</p>
+<p>本课的第四查交回 15 条发现，最重一条开头已引。裁决结果：采纳 13 条、部分驳回 1 条（叙事顺序问题，实操顺序已在跟做栏纠正）、整改全部落在你现在读的这版里。<strong>这一查为什么最不该跳：前三查都在问&quot;我按规矩做了吗&quot;，只有它在问&quot;我以为自己讲清楚了，真的吗&quot;。</strong> 作者是自己文章里眼神最差的人，这课写到最后一天，信更实了。</p>
+<h2>跟做步骤</h2>
+<p>1. 今天就把你的内容目录 <code>git init</code>（没有方案清单文件？现在各建一页，标题就叫&quot;方案&quot;&quot;清单&quot;，哪怕第一版只有五行——纸先存在，纪律才有宿主） 2. 下一次需求变更，按&quot;想法→任务书 / 做法→方案 / 拆法→清单&quot;找出该改的那页纸，<strong>追加不覆盖</strong>，然后才动东西 3. 规矩文件每加一条，后面半句为什么（&quot;双周一更：目标被当事实，门面禁承诺&quot;） 4. 抄走上面四查做成你自己的检查单，每次跑完在单子上标日期；用不了专业工具的，一查降级成&quot;念一遍找绝对化句式&quot;、三查降级成&quot;每个数字对着实物念&quot; 5. 发布前，把那七个问题原样发给一个全新会话的 AI，报告落盘，逐条裁决，裁决表跟稿同存</p>
+<h2>及格标准</h2>
+<p>你的内容目录里有 git 历史；方案文件里有&quot;追加的增量&quot;而不是&quot;重写的一版&quot;；最近一次发布留着带日期的检查单，和一份被采纳或被驳回的读者报告。三样齐了，你的规格就是活的——而且你已经有资格嘲笑今天下午的我。</p>
+<h2>卡住了</h2>
+<ul><li><strong>commit 觉得琐碎</strong>：消息按&quot;证词标准&quot;写——三个月后的你能不能只凭这行字想起当时为什么。写不出这种消息，说明这活本来不值得单独一发</li><li><strong>规矩越长越没人读</strong>：规矩也过四查。念每条判两句：能判真假吗？知道它为什么在吗？答不出的删掉</li><li><strong>读者报告太打击人</strong>：把它当第 4 查而不是期末考试。它挑得越狠，发布后被打脸的概率越低，这笔账怎么算都值</li></ul>
+<h2>轮到你了</h2>
+<p>规格会养了，检查单在手了，下一课只剩那一下：<strong>买域名，接 GitHub Pages，把这一切挂到公网</strong>——入住日，你的链接第一次能被任何人打开。那天用的，还是这四查。</p>
+<h2>深入读</h2>
+<ul><li>Pro Git 中文版（历史与回滚，今天满屏 LF/CRLF 的百科解释也在里面）：https://git-scm.com/book/zh/v2</li></ul></article><div class="pn"><a class="cta g" href="k12-跑通不等于做成.html">← 上一课：第12课｜跑通不等于做成：让网站自己交验收报告</a><a class="cta" href="k14-入住日.html">下一课：第14课｜入住日：买个域名，把网站挂上公网 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：四步保养 + 一次内容仓开荒 + 一场对自己文章的发布前四查，约两小时半</li><li>机器闸：初稿 2 个 blocker，整改后清零；机器味检测 99 分（&quot;干净&quot;）</li><li>零背景读者：1 次，2.6 万 token，15 条发现、13 条采纳；全部原始报告与裁决表见同目录 <code>校对13.md</code>，随发布包存档</li><li>版本：本课初稿存于内容仓 commit <code>f179ddd</code>——被砸的那句谎的原句，在里面，不用信我转述</li></ul></aside></div>
+<footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
+</div>
+<div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
+<script>
+function wire(searchId,itemSel,groupSel,emptyId){
+ var q=document.getElementById(searchId); if(!q) return;
+ var items=[].slice.call(document.querySelectorAll(itemSel));
+ var groups=groupSel?[].slice.call(document.querySelectorAll(groupSel)):[];
+ var empty=document.getElementById(emptyId);
+ function apply(){
+   var k=(q.value||'').trim().toLowerCase(),hit=0;
+   items.forEach(function(el){
+     var on=false;
+     if(k){on=el.getAttribute('data-t').split('|').some(function(pp){return pp.indexOf(k)>-1;});
+       el.classList.toggle('dim',!on); if(on)hit++;}
+     else el.classList.remove('dim');
+   });
+   if(groups.length)groups.forEach(function(g){
+     var vis=[].slice.call(g.querySelectorAll(itemSel)).some(function(l){return !k||!l.classList.contains('dim');});
+     g.classList.toggle('hide',!!k&&!vis);
+   });
+   if(empty){empty.classList.toggle('hide',!(k&&hit===0));
+     var e=empty.querySelector('#ekw'); if(e)e.textContent=q.value;}
+ }
+ q.addEventListener('input',apply);
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'&&document.activeElement===q){q.value='';apply();q.blur();}
+ });
+ document.querySelectorAll('.go-clear,.go-try').forEach(function(g){
+   g.addEventListener('click',function(){q.value=g.classList.contains('go-try')?(g.getAttribute('data-k')||''):'';apply();q.focus();});
+ });
+}
+</script>
+</body></html>

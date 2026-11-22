@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
+<title>第14课｜入住日：买个域名，把网站挂上公网 · 叮叮猫儿Lab</title>
+<link rel="icon" sizes="16x16" href="../favicon-16.png"><link rel="icon" sizes="32x32" href="../favicon-32.png">
+<style>
+:root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--cobalt:#1d4e89;--must:#e3c24b;--line:#e3e3df;--card:#ffffff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--paper);color:var(--ink);
+line-height:1.9;background-image:radial-gradient(rgba(20,20,20,.03) 1px,transparent 1.3px);background-size:26px 26px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 26px}
+nav{padding:22px 0;display:flex;align-items:center;gap:4px;border-bottom:1.5px solid var(--ink)}
+nav .b{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16.5px;margin-right:auto;letter-spacing:.02em}
+nav .lab{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:600}
+nav .links{display:flex;gap:2px}
+nav a.nl{color:var(--muted);text-decoration:none;font-size:14px;padding:7px 14px;border-radius:9px}
+nav a.nl:hover{color:var(--ink)}
+nav a.nl.on{color:var(--ink);font-weight:800;background:rgba(223,90,48,.10)}
+.burger{display:none}
+#navcb{display:none}
+.drawer{display:none}
+@media(max-width:700px){
+ nav .links{display:none}
+ .burger{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1.5px solid var(--ink);border-radius:10px;font-size:17px;font-weight:800;cursor:pointer;background:var(--card)}
+ #navcb:checked ~ .drawer{display:flex}
+ .drawer{position:fixed;inset:0;z-index:60;background:rgba(20,20,20,.4)}
+ .drawer .ovl{flex:1}
+ .drawer .panel{width:76%;max-width:320px;background:#fff;height:100%;padding:26px;display:flex;flex-direction:column;box-shadow:24px 0 60px rgba(0,0,0,.25)}
+ .drawer a.dl{font-size:25px;font-weight:900;letter-spacing:-.02em;padding:13px 0;border-bottom:1px solid #f0efeb;color:var(--ink);text-decoration:none}
+ .drawer a.dl.on{color:var(--ember)}
+ .drawer .dfoot{margin-top:auto;font-size:11.5px;color:var(--muted);line-height:2}
+}
+.head{padding:54px 0 22px}
+.kicker{font-family:Consolas,monospace;font-size:11.5px;letter-spacing:4px;color:var(--ember);margin-bottom:14px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.32;font-weight:900;letter-spacing:-.025em}
+.meta{margin-top:14px;color:var(--muted);font-size:13.5px;font-family:Consolas,monospace}
+article{padding:8px 0 34px}
+article p{margin:0 0 20px;font-size:16.5px;color:#2f2c27}
+article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
+article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
+article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
+article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
+article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
+article strong{color:var(--ink)}
+.lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
+.marginal{position:sticky;top:22px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.5px;color:#5a554b}
+.marginal h2{font-size:11.5px;letter-spacing:3px;color:var(--muted);margin:0 0 12px;font-weight:700}
+.marginal p{margin:0 0 10px;font-size:13.5px;color:#5a554b}
+.marginal ul{margin:0 0 6px 18px}.marginal li{margin:4px 0}
+.narrow{max-width:720px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding:6px 0 30px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--ink);transition:.18s;display:flex;flex-direction:column}
+.ccard:hover{border-color:var(--ember);transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,20,20,.08)}
+.ccard img{width:100%;aspect-ratio:1800/766;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.ccard .cb{padding:14px 18px 16px}
+.ccard .ck{font:700 11px Consolas,monospace;letter-spacing:2px;color:var(--ember)}
+.ccard .ct{font-size:15.5px;font-weight:800;margin-top:7px;letter-spacing:-.01em;line-height:1.5}
+.ccard .cd{font-size:12px;color:var(--muted);margin-top:6px;font-family:Consolas,monospace}
+.chapter-h{display:flex;align-items:baseline;gap:14px;margin:36px 0 4px}
+.chapter-h h2{font-size:19px;font-weight:900;letter-spacing:-.01em}
+.chapter-h span{font:700 10.5px Consolas,monospace;letter-spacing:2px;color:var(--ember);background:rgba(223,90,48,.1);padding:3px 10px;border-radius:999px}
+.search{width:100%;max-width:540px;padding:13px 17px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);font-size:15px;color:var(--ink);outline:none;margin:6px 0}
+.search:focus{border-color:var(--ember);box-shadow:0 0 0 3px rgba(223,90,48,.13)}
+.hint{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+.empty{margin:16px 0 40px;padding:20px;border:1.5px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:14px;background:var(--card)}
+.empty a,.empty .go-try,.empty .go-clear{color:var(--ember);font-weight:700;cursor:pointer;text-decoration:underline}
+.chips{display:flex;gap:10px;margin:16px 0 8px;flex-wrap:wrap}
+.chip{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;background:var(--card);cursor:pointer;min-height:40px;display:inline-flex;align-items:center;color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.item{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);text-decoration:none;color:var(--ink);min-height:44px;transition:opacity .18s}
+.item:hover .t{color:var(--ember)}
+.item .no{font-family:Consolas,monospace;color:var(--ember);font-size:12.5px;flex:none;width:70px;padding-top:4px;letter-spacing:1px}
+.item .t{font-size:16px;font-weight:600}
+.item .d{margin-left:auto;color:var(--muted);font-size:12px;font-family:Consolas,monospace;flex:none;padding-top:4px}
+.dim{opacity:.2}
+.cta{display:inline-block;padding:11px 22px;border-radius:11px;font-size:14px;font-weight:700;background:var(--ember);color:#fff;text-decoration:none;margin:14px 10px 0 0}
+.cta.g{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.pn{border-top:1.5px solid var(--ink);margin-top:26px;padding-top:18px}
+footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
+footer .no{font-family:Consolas,monospace;color:var(--ember)}
+.hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
+</style></head><body>
+<input type="checkbox" id="navcb">
+<div class="wrap">
+<nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
+<div class="head"><div class="kicker">上手课</div><h1>第14课｜入住日：买个域名，把网站挂上公网</h1><div class="meta">上手课 · 第 14 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>先把丑话说在最前：<strong>这一课的正文写完了，但入住还没发生。</strong> 域名没买，Pages 没开，四个关键位置在正文里明晃晃留着【待填】。</p>
+<p>为什么敢这么交？上节课刚学的：没发生的事不能写成发生了。入住日这种要花钱、要等审核的课，要是把攻略写成游记，那这门课讲了三遍的&quot;只写实测的账&quot;就成了笑话。所以今天你看到的是一篇<strong>带着施工孔的课文</strong>——事实面全部核完，体验面等真住进去补。这也是给读者的预告：跟到这一课的人，会看着我现场办入住。</p>
+<h2>本课目标</h2>
+<ul><li>想明白&quot;租的门牌&quot;和&quot;自己的门牌&quot;差在哪</li><li>拿到一份当天核实过价格的域名决策表（2026-11-21，阿里云）</li><li>抄走入住流水线：建仓、开 Pages、买域名、接 DNS，四件事的正确顺序</li></ul>
+<h2>概念卡</h2>
+<ul><li><strong>GitHub Pages</strong>：GitHub 白送的静态站托管。你仓库里的 html，它给你发布成网页，https 都包了。</li><li><strong>子域名（借门牌）</strong>：不花钱也有地址——<code>你的用户名.github.io/仓库名</code>。能用，但那是挂在别人名下的门牌，搬家就作废。</li></ul>
+<p>— <strong>正经域名（自己的门牌）</strong>：按年付费租下来的短地址，比如 <code>xxx.cn</code>、<code>xxx.com</code>。严格说域名都是&quot;租&quot;的（注册制），但续费在手，别人搬不走你。</p>
+<ul><li><strong>DNS 解析</strong>：把门牌号翻译成机器找路的地址。你买域名那一刻拿到的是&quot;改登记的权利&quot;，接 Pages 就是把登记指向它那四台服务器。</li></ul>
+<h2>门牌对比：为什么说入住是个仪式</h2>
+<p>借门牌的地址：<code>qiluluai.github.io/dingdingcat-site</code>——长，念不清，名片印不上，别人记&quot;github 后面那串&quot;。 自己的门牌：<code>xxx.cn</code> 六个字母，微信里发出去对方一眼读完。</p>
+<p>技术上两者内容一模一样，差的只有一件事：<strong>这是谁的房子。</strong> 网站做到这一步，值不值一个每年几十块的门牌钱，就是这一课要你拍板的。我的答案是值——一个能被记住的地址，是&quot;个人站点&quot;从玩具变成资产的临界点。</p>
+<h2>行情与选择（2026-11-21 当日核价）</h2>
+<p>先纠一笔旧账：这门课建号时写的&quot;域名一年 30-70 元&quot;，行情变了——阿里云 11 月 1 日起 .com 调价：<strong>注册 90、续费 99/年</strong>（双 11 活动价 76）。.cn 仍是老实的便宜档：<strong>注册约 38、续费约 42</strong>，活动能压到 30。</p>
+<p>三条路，账先摆平：</p>
+<p>1. <strong>.cn 一条腿</strong>（推荐入门）：一年四十来块，&quot;一顿饭零头&quot;的承诺照旧成立。缺点：部分老外设对 .cn 的输入联想不熟。 2. <strong>.com 一条腿</strong>：更通用，一年 90-99。名字短的话值。 3. <strong>两条腿</strong>：.cn 当主门牌，顺手 38 元把同名 .com 也攥手里重定向——防御性买法，一年 130 上下。</p>
+<p>命名口径（给读者的，也是给我自己的）：短、能口播、不带连字符、别蹭商标。我的候选已经列进素材账，定名 <code>dingmaolab.top</code>：whois 直查注册局确认无主才下的单。信息模板当天提交当天过，serverHold 解除只花了一顿晚饭的功夫。。</p>
+<p>还有个 7 月新规别踩：<strong>阿里云账号本身要先实名，才能新增域名</strong>——账号实名一次，域名实名走&quot;信息模板&quot;（身份证照片，审核 1-3 个工作日，常见当天过）。模板没过的域名是 serverHold 状态：买了，但解析不生效。<strong>&quot;我的域名打不开&quot;的头号原因就是这个，不是玄学。</strong></p>
+<h2>入住流水线（正确顺序，附我的施工孔）</h2>
+<p><strong>第 0 步，先有站点仓库。</strong> 域名是门牌，仓库才是房子——第 4 课那发 <code>git push</code> 还没落地的，先回去补。回执在案：用户在 github.com 亲手建 <code>dingdingcat-site</code>（先私有起步，见彩蛋反转），命名空间 <code>dingmaolab</code>；本地 <code>site</code> 仓把分支从 master 改名 main，<code>git remote add origin</code> 后 <code>git push -u origin main</code>，输出 <code>* [new branch] main -&gt; main</code>，复核 <code>ls-remote</code> 与本地 HEAD 一致——七发历史一夜上云。</p>
+<p><strong>第 1 步，开 Pages，住进临时门牌。</strong> 仓库 Settings → Pages → 选分支 → Save。几分钟内 <code>用户名.github.io/仓库名</code> 能打开。此刻你的网站已经在公网上了——买域名只是换门牌，不是从零开始。借门牌 <code>dingmaolab.github.io/dingdingcat-site</code> 亮起，几分钟后它光荣退休——GitHub 把借门牌的请求 301 去了新门牌，那是「网站有主了」的信号。</p>
+<p><strong>第 2 步，买域名，等实名。</strong> 万网查询 → 加购 → 建信息模板 → 付款。然后等审核，这期间干什么都行，就是别改解析。金额作者发话从略（续费 39/年 的零头，不值得细账）；审核当天过。</p>
+<p><strong>第 3 步，接上。</strong> 两条路按习惯选：</p>
+<ul><li>裸域名（<code>xxx.cn</code>）：加四条 A 记录，值依次是 <code>185.199.108.153 / 109.153 / 110.153 / 111.153</code></li><li>带 www：再加一条 CNAME，值 <code>用户名.github.io</code></li></ul>
+<p>仓库根目录放一个 <code>CNAME</code> 文件写上你的域名（或者在 Pages 设置里填），Pages 才认这块牌。五条记录（四 A + www CNAME）填完，十几分钟 <code>http://dingmaolab.top</code> 返回 200；证书比预告的快，回头复测时 https 已经通了，Enforce HTTPS 那个勾都显得多余。</p>
+<p><strong>第 4 步，锁 https，办暖房。</strong> DNS 生效后回 Pages 设置勾 Enforce HTTPS，用 https 打开一遍；再回微信里发给自己点开——这一条的实测结果留给第 15 课的可达性表，先如实挂账。</p>
+<p><strong>入住仪式：</strong> 把新链接发给第一个人。不用配文案，发出去那一刻这门课的前半段就算毕业了。仪式还没办。链接已经能打开，作者手里攥着它还没发给任何真人——按这门课自己的规矩，这一格就空着，留给晨审那天的头一声「你打开看看」。</p>
+<h2>备案的门，今天说清</h2>
+<p>国内服务器的规矩是&quot;先备案后开门&quot;，但 Pages 是境外托管——<strong>这条门牌不需要备案，也不归备案管</strong>。天下没有白住的房子，代价是另一张账单：境外服务在国内网络的可达性不保证，微信内打开时好时坏是常态。这门课的处理方式是第 15 课拿真数据说话，打不开搬家（第二季）就是预案，不算失败。到时候如实报。</p>
+<h2>跟做步骤</h2>
+<p>1. 站点先推上 GitHub、Pages 打开——用借门牌确认&quot;网站已经活着&quot; 2. 想三条备选域名（短/可口播/无连字符），查 .cn 和 .com 当日价，按预算拍一条 3. 账号实名+信息模板办好再付款，付款后等模板通过，<strong>别急着解析</strong> 4. 按上面第 3 步接 DNS，仓库放 CNAME 文件，等生效 5. 勾 Enforce HTTPS，手机浏览器、微信各打开一次，截图存进你的档案</p>
+<h2>及格标准</h2>
+<p>手机浏览器地址栏里手打你的域名，https 打开的是你的网站。到此即入住。加一条仪式性的：链接已经发给了至少一个真人。</p>
+<h2>卡住了</h2>
+<ul><li><strong>买了就打不开</strong>：九成是实名/serverHold，模板状态没显示&quot;成功&quot;之前，解析配了也白配</li><li><strong>配好 A 记录还是 404</strong>：仓库侧 CNAME 文件或 Pages 设置里的域名没填——门牌和收件地址两边都要写</li><li><strong>https 按钮是灰的</strong>：DNS 还没全球生效，等；生效判定可以用 <code>nslookup 你的域名</code> 看是不是那四个 IP</li><li><strong>微信里转圈</strong>：境外托管的现实，先记下现象和时间，这就是第 15 课的原始素材，别慌着自我怀疑</li></ul>
+<h2>轮到你了</h2>
+<p>入住完成，房子有了、门牌有了、钥匙在手。下一课把最后两块装上：谁来过、打不打得开——以及给整门课算一张三栏总账。</p>
+<h2>深入读</h2>
+<ul><li>GitHub Pages 自定义域名官方文档（当天核）：https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site</li><li>阿里云域名调价公告（当天核）：https://www.aliyun.com/notice/118229</li><li>域名实名认证指引（当天核）：https://help.aliyun.com/zh/dws/user-guide/</li></ul></article><div class="pn"><a class="cta g" href="k13-日常三步发布前一查.html">← 上一课：第13课｜需求会变，规格不能断：日常三步，发布前一查</a><a class="cta" href="k15-结课总账.html">下一课：第15课｜结课：一张总账，一封劝退信，一条你自己的路 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：课文加行情核价两小时；真入住预计再花一个下午，大头在等实名审核</li><li>费用：域名 dingmaolab.top，续费 39/年 档（首年金额从略）；托管与证书 0 元；入住总成本=一顿饭的零头，发刊词的牛这回收了现。</li></ul>
+<p>— 完成度：导出前最后一刻，六个孔关上五个——「发给第一个人」那格依然空着，空得理直气壮</p>
+<h2>入住日彩蛋：上线把三条陈账炸了出来</h2>
+<p>网站真上线的那一个多小时里，三件事接连找上门，都值得记进「发布日的真实模样」：</p>
+<p><strong>一，拍板稿没住在真站里。</strong> 作者点开刚上线的站：「UI 怎么不是我拍板的那个，logo 也是。」——对。此前几轮的视觉决策（月白底、红猫皮 D 之眼、Lab 斜体、侧抽屉）全落在<strong>原型文件</strong>里，真站的生成器还穿着建号那天的旧皮。刷颜色补不了架构的漂移，最后把整套模板从拍板稿移植进 build.py 才算数。课上刚讲「门面不许许愿」，转头发现整个站的外观本身就是一句许愿。<strong>判据从此加一条：每次设计拍板，问一句真站同步了吗。</strong></p>
+<p><strong>二，上午修的 bug 下午复发。</strong> 文章页里点导航 404——死链扫描上午刚抓过修过（<code>../</code> 基准路径），下午重写模板时把 base 参数弄丢了，同一个坑二次落地。修复之后，死链扫描升格为<strong>每次动模板必跑的回归项</strong>。回归回归，回的是自己种下的过去。</p>
+<p><strong>三，一个从未存在的系列下架了。</strong> 有人问「讲清第一课跟课 1 是不是重复」——查证：那个系列从未开课，架上那本 17 行的小册子是旧教案的边角。撤下、归档、不塞进任何栏目凑数；顺手给生成器加了孤儿清理，文章下架时残留页面自动扫掉。<strong>系列的存在以第一篇真货为前提</strong>，书架证明不了内容。</p>
+<p>这三条有个共同点：都是「上线」这个动作逼出来的。没上线前，漂移是感觉，回归是运气，虚设是设计——上线之后，它们统一变成 bug。</p></aside></div>
+<footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
+</div>
+<div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
+<script>
+function wire(searchId,itemSel,groupSel,emptyId){
+ var q=document.getElementById(searchId); if(!q) return;
+ var items=[].slice.call(document.querySelectorAll(itemSel));
+ var groups=groupSel?[].slice.call(document.querySelectorAll(groupSel)):[];
+ var empty=document.getElementById(emptyId);
+ function apply(){
+   var k=(q.value||'').trim().toLowerCase(),hit=0;
+   items.forEach(function(el){
+     var on=false;
+     if(k){on=el.getAttribute('data-t').split('|').some(function(pp){return pp.indexOf(k)>-1;});
+       el.classList.toggle('dim',!on); if(on)hit++;}
+     else el.classList.remove('dim');
+   });
+   if(groups.length)groups.forEach(function(g){
+     var vis=[].slice.call(g.querySelectorAll(itemSel)).some(function(l){return !k||!l.classList.contains('dim');});
+     g.classList.toggle('hide',!!k&&!vis);
+   });
+   if(empty){empty.classList.toggle('hide',!(k&&hit===0));
+     var e=empty.querySelector('#ekw'); if(e)e.textContent=q.value;}
+ }
+ q.addEventListener('input',apply);
+ document.addEventListener('keydown',function(e){
+   if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}
+   if(e.key==='Escape'&&document.activeElement===q){q.value='';apply();q.blur();}
+ });
+ document.querySelectorAll('.go-clear,.go-try').forEach(function(g){
+   g.addEventListener('click',function(){q.value=g.classList.contains('go-try')?(g.getAttribute('data-k')||''):'';apply();q.focus();});
+ });
+}
+</script>
+</body></html>
