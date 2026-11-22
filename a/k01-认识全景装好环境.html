@@ -138,6 +138,9 @@ article code{overflow-wrap:anywhere}
 <p>如果你更习惯 npm，也可以用它装（需要 Node.js 22 以上）：</p>
 <pre><code>npm install -g @anthropic-ai/claude-code@latest</code></pre>
 <p>两条路装的是同一个东西，选一条就行。Windows 上建议先装好 Git for Windows，Claude Code 的某些工具会用到它。</p>
+<p>用 Mac 的读者，同一步换成官方给的这行（打开「终端」App 粘贴）：</p>
+<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+<p>npm 那条路两个系统通用。丑话说在前面：<strong>作者的机器是 Windows，Mac 步骤按官方安装文档原样搬运（见文末链接），我本机没有跑过</strong>——跟读到这一步的 Mac 读者要一句实话，也要一句邀请：跑出问题带现象回来，我们就把它变成实测。</p>
 <p>装完别急着下一步，先验证。跑：</p>
 <pre><code>claude doctor</code></pre>
 <p>它会打印一份只读体检报告。翻到最后，看到这一句就成了：</p>
@@ -152,7 +155,7 @@ article code{overflow-wrap:anywhere}
 <img src="../assets/deepseek-api-keys.png" alt="DeepSeek API keys 页面，旧 key 已打码">
 <div class="imgcap">DeepSeek API keys 页面，旧 key 已打码</div>
 <p>列表里的旧 key 都是打码的——这就是&quot;创建后看不到全文&quot;的样子。</p>
-<p>第二步，告诉 Claude Code 去哪找 DeepSeek。编辑你用户目录下的 <code>.claude\settings.json</code>，完整路径是 <code>C:\Users\你的用户名\.claude\settings.json</code>，在 <code>env</code> 字段里写：</p>
+<p>第二步，告诉 Claude Code 去哪找 DeepSeek。编辑你用户目录下的 <code>.claude/settings.json</code>——Windows 的完整路径是 <code>C:\Users\你的用户名\.claude\settings.json</code>，Mac 是 <code>/Users/你的用户名/.claude/settings.json</code>（终端里敲 <code>open ~/.claude</code> 能直接打开那个文件夹）。在 <code>env</code> 字段里写：</p>
 <pre><code>{
   &quot;env&quot;: {
     &quot;ANTHROPIC_BASE_URL&quot;: &quot;https://api.deepseek.com/anthropic&quot;,
@@ -173,18 +176,18 @@ article code{overflow-wrap:anywhere}
 <p>这就是 vibe coding 的起点：一个听你说话的环境，加一个能思考的模型。</p>
 <h2>跟做步骤</h2>
 <p>把上面的实跑浓缩成五步，照着做：</p>
-<p>1. PowerShell 跑 <code>irm https://claude.ai/install.ps1 | iex</code>（或 npm 那条），装 Claude Code 2. 跑 <code>claude doctor</code>，看到 &quot;No installation issues found.&quot; 即装好 3. platform.deepseek.com → API keys → 创建 API key，<strong>立刻复制存到私密文件</strong> 4. 编辑 <code>C:\Users\你的用户名\.claude\settings.json</code> 的 env，填 base_url（带 /anthropic）、你的 key、模型名 5. 重开终端跑 <code>claude</code>，问它&quot;你是什么模型&quot;，看到它自报 DeepSeek 即接通</p>
+<p>1. 装 Claude Code：Windows 在 PowerShell 跑 <code>irm https://claude.ai/install.ps1 | iex</code>；Mac 在终端跑 <code>curl -fsSL https://claude.ai/install.sh | bash</code>（或两系统通用的 npm 那条） 2. 跑 <code>claude doctor</code>，看到 &quot;No installation issues found.&quot; 即装好 3. platform.deepseek.com → API keys → 创建 API key，<strong>立刻复制存到私密文件</strong> 4. 编辑 <code>C:\Users\你的用户名\.claude\settings.json</code> 的 env，填 base_url（带 /anthropic）、你的 key、模型名 5. 重开终端跑 <code>claude</code>，问它&quot;你是什么模型&quot;，看到它自报 DeepSeek 即接通</p>
 <h2>及格标准</h2>
 <p>打开终端跑 <code>claude</code>，问它底层是什么模型，它回答里出现 DeepSeek（或你配的那个国产模型），就算及格。</p>
 <h2>卡住了</h2>
-<ul><li><strong>install 报网络/权限错</strong>：多半是网络或执行策略。换 npm 那条路试试，或查官方安装文档的排查节。</li><li><strong>提示 unrecognized_model</strong>：Claude Code 不认识非 Claude 的模型名会打印这行警告。它不是错误，照样能用，别慌。</li><li><strong>key 填了还是连不上</strong>：先查 base_url 末尾有没有 <code>/anthropic</code>，再查 key 是不是创建时存的那把完整明文（不是打码的）。key 丢了只能重建。</li></ul>
+<ul><li><strong>install 报网络/权限错</strong>：多半是网络或执行策略。换 npm 那条路试试，或查官方安装文档的排查节。</li><li><strong>提示 unrecognized_model</strong>：Claude Code 不认识非 Claude 的模型名会打印这行警告。它不是错误，照样能用，别慌。</li><li><strong>key 填了还是连不上</strong>：先查 base_url 末尾有没有 <code>/anthropic</code>，再查 key 是不是创建时存的那把完整明文（不是打码的）。key 丢了只能重建。</li><li><strong>Mac 装完敲 <code>claude</code> 说找不到命令</strong>：官方 issue 区挂着的老坑——Homebrew 系 Node 用 npm 全局装容易把 PATH 走丢。最省事的解法不是修 PATH，是改用上面那行 curl 原生安装。实在要用 npm，装完重开终端窗口再试。</li></ul>
 <h2>轮到你了</h2>
 <p>如果你跟着装好了，不妨现在就问它一句，看它是不是真接上了 DeepSeek。它答出来，这一课你就拿到了。</p>
 <p>想再玩玩的，把模型名换成 deepseek-v4-pro 再问一次，对比两个模型的回答有什么不同。</p>
 <p>下节课先不急着写代码。工作台得先搭起来——装个 IDE，让 AI 改文件的时候，你能在旁边看着它动了哪几行。</p>
 <h2>深入读</h2>
 <p>概念卡每个词的一手出处，2026-11-21 当次点开验活：</p>
-<ul><li>Anthropic·Building effective agents（agent 与 workflow 的官方分界）：https://www.anthropic.com/research/building-effective-agents</li><li>Anthropic·Effective harnesses for long-running agents（harness 的官方用例）：https://www.anthropic.com/research/effective-harnesses-for-long-running-agents</li><li>Claude Code 官方·Plugins overview（插件的官方定义）：https://code.claude.com/docs/en/plugins/overview</li><li>Claude Code 官方安装文档（中文）：https://code.claude.com/docs/zh-CN/setup</li><li>Claude Code 官方快速入门：https://code.claude.com/docs/zh-CN/quickstart</li><li>DeepSeek 官方 Anthropic 兼容接口文档：https://api-docs.deepseek.com/zh-cn/guides/anthropic_api</li><li>阿里云百炼新人免费额度说明：https://help.aliyun.com/zh/model-studio/new-free-quota</li></ul></article><div class="pn"><a class="cta" href="k02-装配工作台.html">下一课：第2课｜装配工作台：装个 IDE，看着 AI 改你的文件 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：装机加配置，熟练后约二十分钟，新手预留一小时</li><li>费用：DeepSeek 头一句问答 token 极少，约几分钱以内（精确数字以平台用量页为准）；想零成本走阿里云百炼的免费额度</li></ul></aside></div>
+<ul><li>Anthropic·Building effective agents（agent 与 workflow 的官方分界）：https://www.anthropic.com/research/building-effective-agents</li><li>Anthropic·Effective harnesses for long-running agents（harness 的官方用例）：https://www.anthropic.com/research/effective-harnesses-for-long-running-agents</li><li>Claude Code 官方·Plugins overview（插件的官方定义）：https://code.claude.com/docs/en/plugins/overview</li><li>Claude Code 官方安装文档（中文，Mac/Linux 分支的出处）：https://code.claude.com/docs/zh-CN/setup</li><li>macOS npm 安装 PATH 老坑的官方 issue 记录：https://github.com/anthropics/claude-code/issues/3172</li><li>Claude Code 官方快速入门：https://code.claude.com/docs/zh-CN/quickstart</li><li>DeepSeek 官方 Anthropic 兼容接口文档：https://api-docs.deepseek.com/zh-cn/guides/anthropic_api</li><li>阿里云百炼新人免费额度说明：https://help.aliyun.com/zh/model-studio/new-free-quota</li></ul></article><div class="pn"><a class="cta" href="k02-装配工作台.html">下一课：第2课｜装配工作台：装个 IDE，看着 AI 改你的文件 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：装机加配置，熟练后约二十分钟，新手预留一小时</li><li>费用：DeepSeek 头一句问答 token 极少，约几分钱以内（精确数字以平台用量页为准）；想零成本走阿里云百炼的免费额度</li></ul></aside></div>
 <footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
 <div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
