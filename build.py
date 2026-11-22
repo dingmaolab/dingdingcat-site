@@ -107,6 +107,8 @@ article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(-
 .imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
 @media(max-width:900px){.lessonpage{grid-template-columns:minmax(0,1fr)}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 .lessonpage>div,article,pre{min-width:0}
+article,article p,article li,article code{overflow-wrap:break-word;word-break:normal}
+article code{overflow-wrap:anywhere}
 """
 
 JS = """
