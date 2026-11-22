@@ -2,7 +2,7 @@
 title: 第4课｜GitHub：代码头一次离开这台电脑
 kind: course
 series: 上手课
-chapter: 地基
+chapter: 打底
 number: 4
 date: 2026-11-21
 tags: [vibe coding, 教程]
