@@ -80,6 +80,14 @@ article strong{color:var(--ink)}
 footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 .hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 </style></head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
@@ -123,14 +131,14 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <h3>三、装好 Claude Code</h3>
 <p>打开你电脑的终端。Windows 上就是 PowerShell。</p>
 <p>官方现在推荐原生安装。在 PowerShell 里粘这一行，回车：</p>
-<p><code>`</code>powershell irm https://claude.ai/install.ps1 | iex <code>`</code></p>
+<pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
 <p>如果你更习惯 npm，也可以用它装（需要 Node.js 22 以上）：</p>
-<p><code>`</code>powershell npm install -g @anthropic-ai/claude-code@latest <code>`</code></p>
+<pre><code>npm install -g @anthropic-ai/claude-code@latest</code></pre>
 <p>两条路装的是同一个东西，选一条就行。Windows 上建议先装好 Git for Windows，Claude Code 的某些工具会用到它。</p>
 <p>装完别急着下一步，先验证。跑：</p>
-<p><code>`</code>powershell claude doctor <code>`</code></p>
+<pre><code>claude doctor</code></pre>
 <p>它会打印一份只读体检报告。翻到最后，看到这一句就成了：</p>
-<p><code>`</code> No installation issues found. <code>`</code></p>
+<pre><code>No installation issues found.</code></pre>
 <p>我本机跑出来的是 2.1.325 版，npm 方式装的，体检通过。你的版本号可能不同，没关系，看到&quot;没有安装问题&quot;就够了。</p>
 <h3>四、接上 DeepSeek</h3>
 <p>外壳有了，现在给它装大脑。</p>
@@ -138,15 +146,22 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <p>这里有个坑，必须先说：<strong>key 只在创建那一刻完整显示一次</strong>。页面一关，就再也看不到了，平台只存哈希，不存明文。</p>
 <p>所以顺序别反：先准备好一个保存的地方（密码管理器，或本机一个不会进 git 的私密文件），再点创建，弹出来立刻复制存好，确认存住了再关页面。</p>
 <p>我截了一张 API keys 页面：</p>
-<p>![DeepSeek API keys 页面，旧 key 已打码](deepseek-api-keys.png)</p>
+<img src="assets/deepseek-api-keys.png" alt="DeepSeek API keys 页面，旧 key 已打码">
+<div class="imgcap">DeepSeek API keys 页面，旧 key 已打码</div>
 <p>列表里的旧 key 都是打码的——这就是&quot;创建后看不到全文&quot;的样子。</p>
 <p>第二步，告诉 Claude Code 去哪找 DeepSeek。编辑你用户目录下的 <code>.claude\settings.json</code>，完整路径是 <code>C:\Users\你的用户名\.claude\settings.json</code>，在 <code>env</code> 字段里写：</p>
-<p><code>`</code>json {   &quot;env&quot;: {     &quot;ANTHROPIC_BASE_URL&quot;: &quot;https://api.deepseek.com/anthropic&quot;,     &quot;ANTHROPIC_AUTH_TOKEN&quot;: &quot;你刚存好的那把 key&quot;,     &quot;ANTHROPIC_MODEL&quot;: &quot;deepseek-flash&quot;   } } <code>`</code></p>
+<pre><code>{
+  &quot;env&quot;: {
+    &quot;ANTHROPIC_BASE_URL&quot;: &quot;https://api.deepseek.com/anthropic&quot;,
+    &quot;ANTHROPIC_AUTH_TOKEN&quot;: &quot;你刚存好的那把 key&quot;,
+    &quot;ANTHROPIC_MODEL&quot;: &quot;deepseek-flash&quot;
+  }
+}</code></pre>
 <p>三个地方注意。base_url 末尾的 <code>/anthropic</code> 不能省，那是 DeepSeek 官方的兼容端点。key 填你自己那把，别抄别人的。模型名用 deepseek-flash 就够日常用，想要更强可以换 deepseek-v4-pro。</p>
 <p>顺便说句实话：DeepSeek 的 API 不免费，但极便宜，几块钱能用很久。它的网页聊天免费，API 收费，别混了。想要真零成本，还有另一条路：阿里云有个叫百炼的大模型平台，通义千问这些模型就在上面跑，它给新用户每个模型一百万 token 的免费额度。课里后面会提。</p>
 <h3>五、开口一句</h3>
 <p>配置存好，重开一个终端，进到任意一个空文件夹，跑：</p>
-<p><code>`</code>powershell claude <code>`</code></p>
+<pre><code>claude</code></pre>
 <p>进去之后，问它一句：</p>
 <blockquote>你好，请用一句话介绍你自己，并告诉我你底层是什么模型。</blockquote>
 <p>我跑出来的回答，有意思的地方不在内容，在它自己把这一课的核心讲清楚了。它说：我是运行在 Claude Code 这个代理框架里的助手，环境声明我由 deepseek-flash 驱动，框架是 Anthropic 的，模型是 DeepSeek 的。</p>

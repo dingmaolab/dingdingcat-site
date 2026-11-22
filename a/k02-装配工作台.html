@@ -80,6 +80,14 @@ article strong{color:var(--ink)}
 footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 .hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 </style></head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
@@ -98,12 +106,12 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <p>已经装了的，确认版本不低于 1.94——那是官方扩展要求的底线。帮助菜单里点&quot;关于&quot;就能看到，或者终端里跑 <code>code --version</code>。我本机是 1.121.0，达标。</p>
 <h3>第二步，装扩展。这里我先替你把一堵小墙撞上</h3>
 <p>图形做法是在 VS Code 左侧点扩展图标，搜 Claude Code，点 Install。终端做法更短，PowerShell 里跑：</p>
-<p><code>`</code>powershell code --install-extension anthropic.claude-code <code>`</code></p>
+<pre><code>code --install-extension anthropic.claude-code</code></pre>
 <p>我一开始敲的是 <code>anthropic.claude</code>，少了后面那截。报回来一行：</p>
-<p><code>`</code> Extension &#x27;anthropic.claude&#x27; not found. <code>`</code></p>
+<pre><code>Extension &#x27;anthropic.claude&#x27; not found.</code></pre>
 <p>扩展 ID 是&quot;发布者.名字&quot;的格式，差一个字符都不认。所以以后遇到 not found，别急着怀疑&quot;这东西不存在吧&quot;，先查 ID。</p>
 <p>装对了的输长这样（版本号可能比我的新）：</p>
-<p><code>`</code> Extension &#x27;anthropic.claude-code&#x27; v2.1.330 was successfully installed. <code>`</code></p>
+<pre><code>Extension &#x27;anthropic.claude-code&#x27; v2.1.330 was successfully installed.</code></pre>
 <p>想验一下，跑 <code>code --list-extensions</code>，列表里躺着这行就成了。</p>
 <h3>第三步，开文件夹，开面板</h3>
 <p>这一步是 IDE 和普通记事本分水岭第一次显形：<strong>你打开的不是一个文件，是一个文件夹。</strong></p>

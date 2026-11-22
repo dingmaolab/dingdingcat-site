@@ -80,6 +80,14 @@ article strong{color:var(--ink)}
 footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 .hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 </style></head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
@@ -110,17 +118,26 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <p>第二件，有宪法那位头一句是&quot;做不了&quot;。救场的不是智商，是规矩。代码里读不出来的那几行字——为什么不做后端、AI 的权限边界到哪——就是 CLAUDE.md 的本职。</p>
 <p>第三件，两个答卷出自同一个脑子。一页文本的差距，就是失忆和失忆痊愈的差距。</p>
 <h2>我网站这份宪法，全文在这</h2>
-<p><code>`</code></p>
-<p># 网站项目规矩（叮叮猫儿Lab · 个人博客+教程站）</p>
-<h2>这是什么</h2>
-<p>一个纯静态的个人网站，跟着「Vibe Coding 上手课」一起长。</p>
-<h2>硬规矩</h2>
-<ul><li>纯静态：访客拿到的永远是 HTML 文件，无后端、无数据库、无运行时 AI 调用。</li><li>AI 只在生产过程帮忙（写代码、生成摘要），产物写死进页面。</li><li>文章用 Markdown 写在 articles/，顶部 frontmatter 必含 title/series/number/date。</li><li>series 字段决定归进哪个书架，不要写死系列。</li><li>风格：纸感底色 + 炉火暖色（#d8551f），改样式保持这套变量。</li></ul>
-<h2>命令</h2>
-<ul><li>生成全站：python build.py</li><li>改完文章重新跑 build.py 即可</li></ul>
-<h2>不要做</h2>
-<ul><li>不要引入框架/构建工具链（保持单文件可懂）</li><li>不要把密钥写进任何前端文件</li><li>不要加运行时后端</li></ul>
-<p><code>`</code></p>
+<pre><code># 网站项目规矩（叮叮猫儿Lab · 个人博客+教程站）
+
+## 这是什么
+一个纯静态的个人网站，跟着「Vibe Coding 上手课」一起长。
+
+## 硬规矩
+- 纯静态：访客拿到的永远是 HTML 文件，无后端、无数据库、无运行时 AI 调用。
+- AI 只在生产过程帮忙（写代码、生成摘要），产物写死进页面。
+- 文章用 Markdown 写在 articles/，顶部 frontmatter 必含 title/series/number/date。
+- series 字段决定归进哪个书架，不要写死系列。
+- 风格：纸感底色 + 炉火暖色（#d8551f），改样式保持这套变量。
+
+## 命令
+- 生成全站：python build.py
+- 改完文章重新跑 build.py 即可
+
+## 不要做
+- 不要引入框架/构建工具链（保持单文件可懂）
+- 不要把密钥写进任何前端文件
+- 不要加运行时后端</code></pre>
 <p>二十九行。注意它的写法：<strong>每条都是能判真假的句子</strong>，不是&quot;保持简单&quot;&quot;代码要干净&quot;这种没法执行的感想。&quot;不引入任何框架&quot;能拦住一次跑偏，&quot;简约一点&quot;什么都拦不住。</p>
 <h2>顺带认识 AGENTS.md：规矩文件还有个通用名</h2>
 <p>有人会发现市面上还有另一种文件名：AGENTS.md。简单交代——它是个<strong>开放标准</strong>，自称&quot;给 agent 看的 README&quot;，不隶属哪家工具，几万个开源项目在用，Codex、Cursor 这些 agent 都认它（官网 agents.md）。</p>

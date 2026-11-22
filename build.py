@@ -98,6 +98,14 @@ article strong{color:var(--ink)}
 footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 .hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 """
 
 JS = """
@@ -180,6 +188,34 @@ def md(body):
         ln = lines[i]
         if not ln.strip():
             i += 1; continue
+        if ln.startswith("```"):
+            lang = ln[3:].strip()
+            buf = []
+            i += 1
+            while i < n and not lines[i].startswith("```"):
+                buf.append(lines[i]); i += 1
+            i += 1  # 跳过闭合围栏
+            out.append("<pre><code>" + html.escape("\n".join(buf)) + "</code></pre>")
+            continue
+        if ln.startswith("|") and i + 1 < n and re.match(r"^[|\s:-]+$", lines[i+1]):
+            rows = []
+            while i < n and lines[i].startswith("|"):
+                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+                if not re.match(r"^[|\s:-]+$", lines[i]):
+                    rows.append(cells)
+                i += 1
+            if rows:
+                th = "".join(f"<th>{inline(c)}</th>" for c in rows[0])
+                trs = "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in rows[1:])
+                out.append(f"<table><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table>")
+            continue
+        im = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)$", ln)
+        if im:
+            alt, src = html.escape(im.group(1)), im.group(2)
+            out.append(f'<img src="assets/{Path(src).name}" alt="{alt}">')
+            if alt:
+                out.append(f'<div class="imgcap">{alt}</div>')
+            i += 1; continue
         hm = re.match(r"^(#{2,6}) (.+)$", ln)
         if hm:
             lvl = len(hm.group(1))
@@ -196,7 +232,7 @@ def md(body):
             out.append("<ul>" + "".join(buf) + "</ul>")
         else:
             buf, start = [], i
-            while i < n and lines[i].strip() and not re.match(r"^(#|> |- )", lines[i]):
+            while i < n and lines[i].strip() and not re.match(r"^(```|#|> |- |\|)", lines[i]):
                 buf.append(inline(lines[i])); i += 1
             if i == start:
                 buf = [inline(lines[i])]; i += 1

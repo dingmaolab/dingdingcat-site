@@ -80,6 +80,14 @@ article strong{color:var(--ink)}
 footer{padding:26px 0 56px;border-top:1.5px solid var(--ink);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:40px}
 footer .no{font-family:Consolas,monospace;color:var(--ember)}
 .hide{display:none}
+pre{background:#1d1b17;color:#f0ede4;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13.5px/1.7 Consolas,'Courier New',monospace;margin:0 0 20px}
+pre code{background:none;border:none;padding:0;color:inherit;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin:0 0 20px;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:var(--card)}
+th{font-weight:700;background:#efefec}
+article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
+.imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
+@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
 </style></head><body>
 <input type="checkbox" id="navcb">
 <div class="wrap">
@@ -101,25 +109,27 @@ footer .no{font-family:Consolas,monospace;color:var(--ember)}
 <p>我在自己的网站项目里，把这三个动作完整走了一遍。你在课 2 那个放了 hello.txt 的文件夹里练，是一回事。</p>
 <h3>存档</h3>
 <p>先给项目拍一张快照：</p>
-<p><code>`</code> git init git add index.html git commit -m &quot;第一个页面：个人主页&quot; <code>`</code></p>
+<pre><code>git init
+git add index.html
+git commit -m &quot;第一个页面：个人主页&quot;</code></pre>
 <p><code>git init</code> 把文件夹变成仓库，<code>git add</code> 把文件放进待存区，<code>git commit</code> 真正拍下快照。我跑出来的结果：</p>
-<p><code>`</code> [master (root-commit) 58a3f4b] 第一个页面：个人主页  1 file changed, 77 insertions(+) <code>`</code></p>
+<pre><code>[master (root-commit) 58a3f4b] 第一个页面：个人主页
+ 1 file changed, 77 insertions(+)</code></pre>
 <p>那串 <code>58a3f4b</code> 是这张快照的编号。从此这一版定格了，怎么改都不怕。</p>
 <p>想看存过哪些版本，跑 <code>git log --oneline</code>，一行一版，清清楚楚。</p>
 <h3>撞墙</h3>
 <p>提交的时候，屏幕上刷出一行警告：</p>
-<p><code>`</code> LF will be replaced by CRLF <code>`</code></p>
+<pre><code>LF will be replaced by CRLF</code></pre>
 <p>我当时心里一紧，以为坏了。查完才放心：这是 Windows 换行符的警告，不是错误。Windows 和 Linux 的换行方式不同，git 转换时提醒一声，提交照常完成。这一课你会在 Windows 上跟做，多半也会撞见它，撞见就知道：它是来打招呼的，不是来报丧的。</p>
 <h3>改崩</h3>
 <p>有了存档，就可以放心让 AI 下手。我故意让它把主页标题里&quot;亲手做一遍&quot;改成&quot;随便搞搞就行&quot;——模拟一次改崩。</p>
 <p>改完跑 <code>git diff</code>：</p>
-<p><code>`</code></p>
-<ul><li>   &lt;h1&gt;...&lt;em&gt;亲手做一遍&lt;/em&gt;。&lt;/h1&gt;</li></ul>
-<p>+    &lt;h1&gt;...&lt;em&gt;随便搞搞就行&lt;/em&gt;。&lt;/h1&gt; <code>`</code></p>
+<pre><code>-    &lt;h1&gt;...&lt;em&gt;亲手做一遍&lt;/em&gt;。&lt;/h1&gt;
++    &lt;h1&gt;...&lt;em&gt;随便搞搞就行&lt;/em&gt;。&lt;/h1&gt;</code></pre>
 <p>减号是原来的，加号是现在的。上一课的 diff 和这一课的 git diff 是同一个意思：改动摊开给你看。</p>
 <h3>读档</h3>
 <p>不满意？一行命令回到存档点：</p>
-<p><code>`</code> git restore index.html <code>`</code></p>
+<pre><code>git restore index.html</code></pre>
 <p>跑完再看 <code>git status</code>，干干净净。打开文件，标题回到了&quot;亲手做一遍&quot;。刚才那次改崩，像没发生过。</p>
 <p>顺带一句版本门槛：<code>git restore</code> 是 git 2.23 之后才有的命令。太老的版本跑不出来，用 <code>git checkout -- 文件名</code>，效果一样。不确定的话跑 <code>git --version</code> 看看。</p>
 <h3>三招归拢</h3>
