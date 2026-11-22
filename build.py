@@ -407,7 +407,6 @@ def main():
         '<div class="follow"><img src="qrcode.jpg" alt="微信公众号二维码">'
         '<div><strong>连载更新在公众号</strong><br>扫码关注，更新不错过。'
         '<br><span class="acc">微信公众号 · 叮叮猫儿Lab</span></div></div>'
-        '<p style="color:var(--muted);font-size:13.5px;line-height:2">找事：公众号后台留言即可。</p>'
         '</article></div>')
     about_css = ('<style>.follow{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);'
         'border-radius:14px;padding:18px 20px;margin:26px 0}.follow img{width:132px;height:132px;border-radius:8px;flex:none;border:1px solid var(--line)}'
