@@ -402,7 +402,8 @@ def main():
 
     # ---------- about.html：拍板版（宣言原句 + 这个站 + 二维码直挂） ----------
     about_body = ('<div class="narrow"><article>'
-        '<p style="font-size:19px;font-weight:700;border-left:3px solid var(--ember);padding-left:20px;line-height:1.8">「我决定用AI亲手建个人网站，让博客、教程随课程一起生长并留存。」</p>'
+        '<p style="font-size:20px;font-weight:700;border-left:3px solid var(--ember);padding-left:20px;line-height:1.8">漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</p>'
+        '<div class="meta" style="margin:-6px 0 18px 23px;font-size:12px">—— 与公众号简介一字不差</div>'
         '<p>这个站干的事很简单：<strong>公众号发过的每一篇，这里都在。</strong>课程按编号排好，想系统学就从第 1 课进来；'
         '散装按时间躺着，闲逛随意。文章永久存档，不随平台算法沉底。</p>'
         '<div class="follow"><img src="qrcode.jpg" alt="微信公众号二维码">'
