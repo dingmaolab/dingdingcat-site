@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -167,7 +169,7 @@ article code{overflow-wrap:anywhere}
 <p>这就是 vibe coding 的起点：一个听你说话的环境，加一个能思考的模型。</p>
 <h2>跟做步骤</h2>
 <p>把上面的实跑浓缩成五步，照着做：</p>
-<p>1. 装 Claude Code：Windows 在 PowerShell 跑 <code>irm https://claude.ai/install.ps1 | iex</code>；Mac 在终端跑 <code>curl -fsSL https://claude.ai/install.sh | bash</code>（或两系统通用的 npm 那条） 2. 跑 <code>claude doctor</code>，看到 &quot;No installation issues found.&quot; 即装好 3. platform.deepseek.com → API keys → 创建 API key，<strong>立刻复制存到私密文件</strong> 4. 编辑 <code>C:\Users\你的用户名\.claude\settings.json</code> 的 env，填 base_url（带 /anthropic）、你的 key、模型名 5. 重开终端跑 <code>claude</code>，问它&quot;你是什么模型&quot;，看到它自报 DeepSeek 即接通</p>
+<ol><li>装 Claude Code：Windows 在 PowerShell 跑 <code>irm https://claude.ai/install.ps1 | iex</code>；Mac 在终端跑 <code>curl -fsSL https://claude.ai/install.sh | bash</code>（或两系统通用的 npm 那条）</li><li>跑 <code>claude doctor</code>，看到 &quot;No installation issues found.&quot; 即装好</li><li>platform.deepseek.com → API keys → 创建 API key，<strong>立刻复制存到私密文件</strong></li><li>编辑 <code>C:\Users\你的用户名\.claude\settings.json</code> 的 env，填 base_url（带 /anthropic）、你的 key、模型名</li><li>重开终端跑 <code>claude</code>，问它&quot;你是什么模型&quot;，看到它自报 DeepSeek 即接通</li></ol>
 <h2>及格标准</h2>
 <p>打开终端跑 <code>claude</code>，问它底层是什么模型，它回答里出现 DeepSeek（或你配的那个国产模型），就算及格。</p>
 <h2>卡住了</h2>

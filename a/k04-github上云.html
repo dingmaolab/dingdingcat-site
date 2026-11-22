@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -132,7 +134,7 @@ article code{overflow-wrap:anywhere}
 <h3>Q5：推上去之后，我能拿它干什么？</h3>
 <p>三样马上能用的：把仓库链接发给任何人，对方能看到你的项目和历史；换电脑了，<code>git clone</code> 一条命令把全部家当带过去；以及，它给这门课后半段埋好了路——第 14 课我们把网页直接从这个仓库发布成一个真正的网站域名，今天推上去的东西，到时候就是网站的骨架。</p>
 <h2>跟做步骤</h2>
-<p>1. 注册/登录 GitHub，生成 SSH key 并在网页添加，<code>ssh -T git@github.com</code> 收到 Hi 你的用户名 即通 2. 网页 New repository：起名字、选 Private、初始化勾全选无 3. 在项目文件夹 <code>git remote add origin git@github.com:用户名/仓库名.git</code> 4. <code>git push -u origin master</code> 5. 浏览器刷新仓库，确认文件和提交历史都在</p>
+<ol><li>注册/登录 GitHub，生成 SSH key 并在网页添加，<code>ssh -T git@github.com</code> 收到 Hi 你的用户名 即通</li><li>网页 New repository：起名字、选 Private、初始化勾全选无</li><li>在项目文件夹 <code>git remote add origin git@github.com:用户名/仓库名.git</code></li><li><code>git push -u origin master</code></li><li>浏览器刷新仓库，确认文件和提交历史都在</li></ol>
 <h2>及格标准</h2>
 <p>你手里有一条能打开的仓库链接，里面的提交历史和 <code>git log</code> 对得上；而且 <code>ssh -T</code> 那句回音，你能说出它是好消息。</p>
 <h2>卡住了</h2>

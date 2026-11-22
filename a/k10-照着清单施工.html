@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -121,7 +123,7 @@ article code{overflow-wrap:anywhere}
 <h2>今天真正交付的东西</h2>
 <p>不是页面。页面只是影子，影子背后这条链才是这门课想让你拿走的：<strong>烤出来的任务书 → 写下的方案 → 执行崩出的四颗雷 → 每颗雷变成清单的新条款或代码的新兜底</strong>。课程路径页现在是真的：搜&quot;后悔药&quot;一发命中，第 3 课读完&quot;下一课&quot;直接是第 5 课（第 4 课还没定稿，序列如实跳号——清单外也不作假）。</p>
 <h2>跟做步骤</h2>
-<p>1. 把你的 tasks.md 拿出最高优那包，从头做到尾，中途不许&quot;顺手&quot;做清单外的事 2. 每完成一条，当场跑它的验收，跑完才许勾 3. 撞坑了，先记下&quot;坑想告诉我什么&quot;，再修；修的时候问一句：修的是这个，还是这类 4. 验收条款咬到自己时，改条款，别改事实 5. commit 前把消息读一遍：它说的，和你干的，是同一件事吗</p>
+<ol><li>把你的 tasks.md 拿出最高优那包，从头做到尾，中途不许&quot;顺手&quot;做清单外的事</li><li>每完成一条，当场跑它的验收，跑完才许勾</li><li>撞坑了，先记下&quot;坑想告诉我什么&quot;，再修；修的时候问一句：修的是这个，还是这类</li><li>验收条款咬到自己时，改条款，别改事实</li><li>commit 前把消息读一遍：它说的，和你干的，是同一件事吗</li></ol>
 <h2>及格标准</h2>
 <p>你的清单今天至少被现实修订过一次——新增一条、细化一条、或者推翻一条。一次都没有的话，要么清单早写透了（不太可能），要么你在绕着清单干活。</p>
 <h2>卡住了</h2>

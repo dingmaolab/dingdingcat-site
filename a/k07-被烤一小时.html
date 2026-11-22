@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -135,7 +137,7 @@ article code{overflow-wrap:anywhere}
 <p>二，<strong>掀桌是正当权利</strong>。你随时可以答&quot;题目里没有的话&quot;，只要好的拷问者在，它会把你新答案的连锁反应拉回桌面重算——这是机制，不是事故。</p>
 <p>三，也如实说争议：有人被烤三五轮就烦（grill-me 圈子里的老讨论）。烦了就对它说&quot;剩下的你定，写进摘要&quot;——它是你的工具，不是你的上司。够用即停，也是纪律。</p>
 <h2>跟做步骤</h2>
-<p>1. 项目目录开新会话，一句话开题：grill me，我想给我的站/工作/小项目加&quot;——&quot;（挑那个你念叨很久还没动手的） 2. 老实用弹窗答，想掀桌就掀；它把旧题拉回来对账时，别护短 3. 问完让它输出决定摘要，落成 <code>任务书.md</code>，存进仓库、commit 4. 下次开工，头一件事是让 AI 读这份任务书（下一课我们让它把需求画成界面）</p>
+<ol><li>项目目录开新会话，一句话开题：grill me，我想给我的站/工作/小项目加&quot;——&quot;（挑那个你念叨很久还没动手的）</li><li>老实用弹窗答，想掀桌就掀；它把旧题拉回来对账时，别护短</li><li>问完让它输出决定摘要，落成 <code>任务书.md</code>，存进仓库、commit</li><li>下次开工，头一件事是让 AI 读这份任务书（下一课我们让它把需求画成界面）</li></ol>
 <h2>及格标准</h2>
 <p>你手里有一份进了 git 的任务书，里面至少两个&quot;不做&quot;，并且每个决定都能说清&quot;它是哪道题逼出来的&quot;。</p>
 <h2>卡住了</h2>

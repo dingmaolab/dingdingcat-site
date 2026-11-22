@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -121,7 +123,7 @@ article code{overflow-wrap:anywhere}
 <p>commit 我单独补了一发，消息写的是实话：此前拆词加空格属越权改写。然后给 CLAUDE.md 加了一条早就该立的规矩——功能实现听方案的，<strong>门面文案的终稿权在人</strong>。AI 可以起草，不能定稿；尤其不能把定过的稿&quot;顺手优化&quot;。这跟编辑不改事实强度是同一件事的另一面：排版不改说话人的声音。</p>
 <p>这一条昨天崩坑没崩出来，今天顺利了才显形：坑是技术的边界，这条是关系的边界。</p>
 <h2>跟做步骤</h2>
-<p>1. 翻你的清单，找&quot;该有内容但还没有&quot;的那一页——空态文案先写，再写功能 2. 给散装内容加一排 chips：栏目列表从你的数据里现生，别手维护 3. 首页统计数字全部改成构建时点货（几篇就是几篇，零就写零） 4. 把&quot;chrome 不许许愿&quot;写进你的项目规矩，然后 grep 一次验收 5. 收尾前问一句：这一屏上哪句话是我替作者改口过的——有就回滚</p>
+<ol><li>翻你的清单，找&quot;该有内容但还没有&quot;的那一页——空态文案先写，再写功能</li><li>给散装内容加一排 chips：栏目列表从你的数据里现生，别手维护</li><li>首页统计数字全部改成构建时点货（几篇就是几篇，零就写零）</li><li>把&quot;chrome 不许许愿&quot;写进你的项目规矩，然后 grep 一次验收</li><li>收尾前问一句：这一屏上哪句话是我替作者改口过的——有就回滚</li></ol>
 <h2>及格标准</h2>
 <p>你项目里有一张空态页是带着去向的（不是&quot;暂无数据&quot;四个字打发人），并且有一处文案被你恢复成了作者原话。前者证明页面诚实，后者证明你知道页面上谁说了算。</p>
 <h2>卡住了</h2>

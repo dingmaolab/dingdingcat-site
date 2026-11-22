@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -144,7 +146,7 @@ git commit -m &quot;第一个页面：个人主页&quot;</code></pre>
 <p>这一课玩的都是<strong>本地</strong>存档——快照存在你自己电脑的 <code>.git</code> 里。你这台电脑要是硬盘坏了，存档跟着一起没了。把存档托到网上去，是下一课的事。</p>
 <p>还有个新手常见的混淆，先说清：<strong>git 和 GitHub 不是一回事</strong>。git 是你电脑上管版本的工具；GitHub 是把仓库托管到云端的平台，相当于给 git 存档安了个网上的家。一个管版本，一个管托管。下一课，我们就去把家安上。</p>
 <h2>跟做步骤</h2>
-<p>1. 在项目文件夹打开 Claude Code（就是你放 hello.txt 的那个），跑 <code>git init</code> 2. <code>git add .</code>，再 <code>git commit -m &quot;工作台装好了&quot;</code>（头一次提交让你设名字邮箱，按提示设一下就行） 3. 对 AI 说一句故意改坏的话，比如&quot;把第三句改成一句瞎话&quot; 4. 跑 <code>git diff</code>，看清它改哪了 5. 跑 <code>git restore hello.txt</code>，确认改动消失 6. 跑 <code>git log --oneline</code>，看到你存的档</p>
+<ol><li>在项目文件夹打开 Claude Code（就是你放 hello.txt 的那个），跑 <code>git init</code></li><li><code>git add .</code>，再 <code>git commit -m &quot;工作台装好了&quot;</code>（头一次提交让你设名字邮箱，按提示设一下就行）</li><li>对 AI 说一句故意改坏的话，比如&quot;把第三句改成一句瞎话&quot;</li><li>跑 <code>git diff</code>，看清它改哪了</li><li>跑 <code>git restore hello.txt</code>，确认改动消失</li><li>跑 <code>git log --oneline</code>，看到你存的档</li></ol>
 <h2>及格标准</h2>
 <p>你亲手把文件改崩过一次，用 <code>git restore</code> 救回来了，并且 <code>git log</code> 里至少有一版提交。做到这个，git 的门你就进了。</p>
 <h2>卡住了</h2>

@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -124,7 +126,7 @@ article code{overflow-wrap:anywhere}
 <p>结论不伤人反而清醒：<strong>同一篇文章、同样的指令、同样没背景的两个 AI，报告不是复印机。</strong> 内容验收的本性是抽样检验，不是流水线检测。抽样要可信，靠三样：取交集当硬证据、并集当线索池、裁决权留在人。高风险内容，抽两次。</p>
 <p>素材账说谎被抓这件事本身，也是这课的一部分。写进清单时那句&quot;报告已存档&quot;，和网站里那句&quot;已发布 7 课&quot;，是同一种病：<strong>把&quot;我知道&quot;当成了&quot;有凭证&quot;。</strong> 机器侧的六技为什么硬？因为它们每一条都先有输出再有结论。</p>
 <h2>跟做步骤</h2>
-<p>1. 给你的站写一个十五行的死链脚本（正则抠 href，逐个查存在性）——今天先跑，今天就有 bug 修 2. 给生成器做一次负向测试：塞一份故意坏的数据，要求它报错停下而不是跳过去 3. 把清单里每条验收念一遍：念完你能当场执行出真或假的才算过，执行不了的改写到能执行为止 4. 内容侧：发一篇出去之前，开一个零背景 AI 问六件事；报告落盘，逐条采纳或驳回，驳回的写理由 5. 每次重要发布前，390/768/1280 三张截图扫一眼，比读 CSS 快</p>
+<ol><li>给你的站写一个十五行的死链脚本（正则抠 href，逐个查存在性）——今天先跑，今天就有 bug 修</li><li>给生成器做一次负向测试：塞一份故意坏的数据，要求它报错停下而不是跳过去</li><li>把清单里每条验收念一遍：念完你能当场执行出真或假的才算过，执行不了的改写到能执行为止</li><li>内容侧：发一篇出去之前，开一个零背景 AI 问六件事；报告落盘，逐条采纳或驳回，驳回的写理由</li><li>每次重要发布前，390/768/1280 三张截图扫一眼，比读 CSS 快</li></ol>
 <h2>及格标准</h2>
 <p>你今天抓到过一个东西——bug、假阳性、或者自己素材账里的一句谎，三样里任意一样，并且它最后变成了清单里的新条款或仓库里的新文件。验收这门手艺，入门标志不是全绿，是<strong>第一次被绿里的假象骗到之后，加了道闸</strong>。</p>
 <h2>卡住了</h2>

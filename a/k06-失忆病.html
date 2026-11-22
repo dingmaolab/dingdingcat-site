@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -152,7 +154,7 @@ article code{overflow-wrap:anywhere}
 <p>从零开始的话，头五条规矩往往是你已经撞过或想过的事：不收费买字体、页脚署谁的名、要不要 Analytics、能不能上框架。写下来，哪怕只有四行。</p>
 <p>规矩会越来越多，别把 CLAUDE.md 撑肿——它得短到一屏看得完才管用。厚的部分拆出去，主文件一行 <code>@docs/design.md</code> 就能把那页拽进来，AI 用得到才深入，这就是渐进式加载。我自己的内容系统整个就是这个结构：进门一页纸，上面一张表写着&quot;做什么读什么、什么不许读&quot;，你以后会撞见同款。</p>
 <h2>跟做步骤</h2>
-<p>1. 在项目文件夹开新会话，先问：&quot;如果我想加一个功能，这个项目的规矩和限制是什么？&quot;——存下这份含糊的答案 2. 在项目根写 <code>CLAUDE.md</code>，四段格式，先 5-8 行 3. 关掉，再开一个全新会话，问一模一样的问题 4. 对比两次答案：第二次应该开始引用你写的原话 5. 以后每撞一次它越界，回来给宪法补一条——这文件是养出来的，不是供出来的</p>
+<ol><li>在项目文件夹开新会话，先问：&quot;如果我想加一个功能，这个项目的规矩和限制是什么？&quot;——存下这份含糊的答案</li><li>在项目根写 <code>CLAUDE.md</code>，四段格式，先 5-8 行</li><li>关掉，再开一个全新会话，问一模一样的问题</li><li>对比两次答案：第二次应该开始引用你写的原话</li><li>以后每撞一次它越界，回来给宪法补一条——这文件是养出来的，不是供出来的</li></ol>
 <h2>及格标准</h2>
 <p>新会话里问&quot;这个项目有什么规矩&quot;，它答出来的内容能对上你 CLAUDE.md 里的硬规矩原句。从&quot;它猜&quot;变成&quot;它有出处&quot;，就及格。</p>
 <h2>卡住了</h2>

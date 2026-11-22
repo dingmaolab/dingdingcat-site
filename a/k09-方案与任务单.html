@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -112,13 +114,13 @@ article code{overflow-wrap:anywhere}
 <p>注意每一条验收都能<strong>当场判真假</strong>。写清单的时候我顺手下过一条&quot;页头导航要和皮肤视觉统一&quot;——落笔就发现它判不了真假，等于没写，回炉成&quot;三锚点引用、不许散色硬编码&quot;。一条任务没有可判真假的验收，它就是张空头支票，施工那天一定会以吵架的形式兑现。</p>
 <h2>论点三：AI 出方案，你签——问题就问那一句</h2>
 <p>今天这张方案挨过的真实追问，三次：</p>
-<p>1. &quot;移动端兼容吗，平板呢&quot; → 首版没写断点设计，补 2. &quot;移动菜单还有别的方式吗&quot; → 方案默认底部 Tab，对比三样后改判抽屉 3. &quot;为什么要写双周一更&quot; → 方案里把旧规划的目标当成了事实文案，全站点清扫，并从此把&quot;不许出现更新承诺词&quot;写进验收</p>
+<ol><li>&quot;移动端兼容吗，平板呢&quot; → 首版没写断点设计，补</li><li>&quot;移动菜单还有别的方式吗&quot; → 方案默认底部 Tab，对比三样后改判抽屉</li><li>&quot;为什么要写双周一更&quot; → 方案里把旧规划的目标当成了事实文案，全站点清扫，并从此把&quot;不许出现更新承诺词&quot;写进验收</li></ol>
 <p>发现规律没有？<strong>审方案不用考文笔，只需预演变更。</strong> 你的那一句永远是一样的：&quot;要是我想改 X，要动多少地方？&quot;问得越多，方案会被改得越便宜。三个追问，换来断点条款、导航定稿、承诺词禁令——每一个都在后来省下了不止一次返工。</p>
 <h2>为什么我们的方案就两个 md，不上一套流程</h2>
 <p>第 5 课那张地图上，OpenSpec 把方案做成 change 文件夹（每个功能一套 proposal+specs+design+tasks），spec-kit 把流程做成四道命令。它们好在有历史、能协作、防口说无凭。代价是要你先皈依一套目录宗教。</p>
 <p>盘一下家底：CLAUDE.md 已经在（那就是 spec-kit 说的 constitution），任务书是烤出来的（那就是 spec），方案正本一个 md、施工单一个 md，全进 git——<strong>四样凑齐了，只差没换皮</strong>。所以选最薄的那条路：不换流程框架，只补缺的那几页。等哪天真的多人协作、需求历史要审计了，那两家的东西随时接得住——方案文件结构本来就是按它们的零件排的。轻，不是偷工，是账算过。</p>
 <h2>跟做步骤</h2>
-<p>1. 把你烤出来的任务书（课 7 产物）甩给 AI，说：&quot;据此写技术方案：页面清单、数据怎么流、明确不做什么，每个大决策旁边标注——想改它要动多少地方&quot; 2. 方案回来，别点头。先问三个&quot;如果我想改 X&quot;（挑你真想改的：配色、入口、加一类内容），让它改到你能预算代价为止 3. 说：&quot;把方案拆成施工包，每包两三小时内能完，每条带一句能当场判真假的验收&quot; 4. 通读 tasks：凡是验收读成&quot;美观/统一/良好&quot;的，打回重写 5. plan.md 和 tasks.md 存进仓库、commit；从此铁律：<strong>先改方案文件，再改代码</strong>，顺序反了就是失忆（第 6 课的药，这里吃第二次）</p>
+<ol><li>把你烤出来的任务书（课 7 产物）甩给 AI，说：&quot;据此写技术方案：页面清单、数据怎么流、明确不做什么，每个大决策旁边标注——想改它要动多少地方&quot;</li><li>方案回来，别点头。先问三个&quot;如果我想改 X&quot;（挑你真想改的：配色、入口、加一类内容），让它改到你能预算代价为止</li><li>说：&quot;把方案拆成施工包，每包两三小时内能完，每条带一句能当场判真假的验收&quot;</li><li>通读 tasks：凡是验收读成&quot;美观/统一/良好&quot;的，打回重写</li><li>plan.md 和 tasks.md 存进仓库、commit；从此铁律：<strong>先改方案文件，再改代码</strong>，顺序反了就是失忆（第 6 课的药，这里吃第二次）</li></ol>
 <h2>及格标准</h2>
 <p>你的项目里躺着进了 git 的 plan 和 tasks，tasks 里每条验收你能当场执行出真或假；并且你能说出方案里哪一条，是被你自己的追问逼出来的。</p>
 <h2>卡住了</h2>

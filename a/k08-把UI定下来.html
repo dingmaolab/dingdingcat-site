@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -118,10 +120,10 @@ article code{overflow-wrap:anywhere}
 <ul><li>&quot;感觉不可爱&quot;——可爱派整支淘汰，不用纠结</li><li>&quot;科技未来一点呢&quot;——试完，确认自己不要</li><li>烧完一圈四十多张之后，最后指着<strong>最早那张最简单的 D 字标</strong>说：&quot;这个感觉还简单一点。&quot;</li></ul>
 <p>四十张图的旅程，终点是出发的地方。但这一圈不是白烧的——它把&quot;简单是你的根判据&quot;这条信息，从我的直觉变成了写进规范的账。现在这个站的规矩：主标=D 之眼，三套皮肤（月白/金墨/红猫），换装=改三个锚点值；头像用夜皮，页头用红猫皮，全部进了 git。</p>
 <h2>三个问题，抄走</h2>
-<p>1. <strong>&quot;是不是只在主题下变排版？&quot;</strong>——AI 出 N 版但你觉得都差点意思时，八成不是它画得差，是内容盘点和架构没做。回纸上。 2. <strong>&quot;这句话是事实，还是目标？&quot;</strong>——页面上每个数字、每个频率、每个&quot;首发&quot;都过这一刀。文案即承诺。 3. <strong>&quot;在所有尝试里，哪一个最简单？&quot;</strong>——绕一大圈之后敢回到最初那个，不叫白忙，叫交学费买了判据。</p>
+<ol><li><strong>&quot;是不是只在主题下变排版？&quot;</strong>——AI 出 N 版但你觉得都差点意思时，八成不是它画得差，是内容盘点和架构没做。回纸上。</li><li><strong>&quot;这句话是事实，还是目标？&quot;</strong>——页面上每个数字、每个频率、每个&quot;首发&quot;都过这一刀。文案即承诺。</li><li><strong>&quot;在所有尝试里，哪一个最简单？&quot;</strong>——绕一大圈之后敢回到最初那个，不叫白忙，叫交学费买了判据。</li></ol>
 <p>你不需要会设计。你只需要在这些时刻，敢对自己的不满意说出原话。AI 出量，你出判据——这就是 UI 环节里人干的活。</p>
 <h2>跟做步骤</h2>
-<p>1. 动手前先盘点：把你的内容按物种数一遍（连载/单篇/图集/关于），每个物种一句&quot;读者对它做什么&quot; 2. 给每个物种定一页职责，每页找一个你真心觉得好看的具名网站当参照，贴链接进方案文件 3. 让 AI 按方案出高保真，你的反馈只许说具体感受（&quot;不可爱&quot;&quot;信息太密&quot;），不许硬憋专业词 4. 定皮肤锚点：让 AI 把颜色字体收成变量写进规范，以后换皮=改变量 5. 审文案：全文搜&quot;更&quot;&quot;首发&quot;&quot;已发布&quot;这类词，逐条问是不是事实，不是就删 6. 定稿方案+清单进 git——第 9 课的药，这课先吃一半</p>
+<ol><li>动手前先盘点：把你的内容按物种数一遍（连载/单篇/图集/关于），每个物种一句&quot;读者对它做什么&quot;</li><li>给每个物种定一页职责，每页找一个你真心觉得好看的具名网站当参照，贴链接进方案文件</li><li>让 AI 按方案出高保真，你的反馈只许说具体感受（&quot;不可爱&quot;&quot;信息太密&quot;），不许硬憋专业词</li><li>定皮肤锚点：让 AI 把颜色字体收成变量写进规范，以后换皮=改变量</li><li>审文案：全文搜&quot;更&quot;&quot;首发&quot;&quot;已发布&quot;这类词，逐条问是不是事实，不是就删</li><li>定稿方案+清单进 git——第 9 课的药，这课先吃一半</li></ol>
 <h2>及格标准</h2>
 <p>你的项目里有：一份内容盘点、一个每页挂着具名参照物的方案、至少一处&quot;被你说破后修正的文案&quot;。三条都有，UI 这关你就真过了——过没过跟好不好看无关，跟账有没有理清有关。</p>
 <h2>卡住了</h2>

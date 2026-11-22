@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -109,7 +111,7 @@ article code{overflow-wrap:anywhere}
 <h2>行情与选择（2026-11-21 当日核价）</h2>
 <p>先纠一笔旧账：这门课建号时写的&quot;域名一年 30-70 元&quot;，行情变了——阿里云 11 月 1 日起 .com 调价：<strong>注册 90、续费 99/年</strong>（双 11 活动价 76）。.cn 仍是老实的便宜档：<strong>注册约 38、续费约 42</strong>，活动能压到 30。</p>
 <p>三条路，账先摆平：</p>
-<p>1. <strong>.cn 一条腿</strong>（推荐入门）：一年四十来块，&quot;一顿饭零头&quot;的承诺照旧成立。缺点：部分老外设对 .cn 的输入联想不熟。 2. <strong>.com 一条腿</strong>：更通用，一年 90-99。名字短的话值。 3. <strong>两条腿</strong>：.cn 当主门牌，顺手 38 元把同名 .com 也攥手里重定向——防御性买法，一年 130 上下。</p>
+<ol><li><strong>.cn 一条腿</strong>（推荐入门）：一年四十来块，&quot;一顿饭零头&quot;的承诺照旧成立。缺点：部分老外设对 .cn 的输入联想不熟。</li><li><strong>.com 一条腿</strong>：更通用，一年 90-99。名字短的话值。</li><li><strong>两条腿</strong>：.cn 当主门牌，顺手 38 元把同名 .com 也攥手里重定向——防御性买法，一年 130 上下。</li></ol>
 <p>命名口径（给读者的，也是给我自己的）：短、能口播、不带连字符、别蹭商标。我的候选已经列进素材账，定名 <code>dingmaolab.top</code>：whois 直查注册局确认无主才下的单。信息模板当天提交当天过，serverHold 解除只花了一顿晚饭的功夫。。</p>
 <p>还有个 7 月新规别踩：<strong>阿里云账号本身要先实名，才能新增域名</strong>——账号实名一次，域名实名走&quot;信息模板&quot;（身份证照片，审核 1-3 个工作日，常见当天过）。模板没过的域名是 serverHold 状态：买了，但解析不生效。<strong>&quot;我的域名打不开&quot;的头号原因就是这个，不是玄学。</strong></p>
 <h2>入住流水线（正确顺序，附我的施工孔）</h2>
@@ -124,7 +126,7 @@ article code{overflow-wrap:anywhere}
 <h2>备案的门，今天说清</h2>
 <p>国内服务器的规矩是&quot;先备案后开门&quot;，但 Pages 是境外托管——<strong>这条门牌不需要备案，也不归备案管</strong>。天下没有白住的房子，代价是另一张账单：境外服务在国内网络的可达性不保证，微信内打开时好时坏是常态。这门课的处理方式是第 15 课拿真数据说话，打不开搬家（第二季）就是预案，不算失败。到时候如实报。</p>
 <h2>跟做步骤</h2>
-<p>1. 站点先推上 GitHub、Pages 打开——用借门牌确认&quot;网站已经活着&quot; 2. 想三条备选域名（短/可口播/无连字符），查 .cn 和 .com 当日价，按预算拍一条 3. 账号实名+信息模板办好再付款，付款后等模板通过，<strong>别急着解析</strong> 4. 按上面第 3 步接 DNS，仓库放 CNAME 文件，等生效 5. 勾 Enforce HTTPS，手机浏览器、微信各打开一次，截图存进你的档案</p>
+<ol><li>站点先推上 GitHub、Pages 打开——用借门牌确认&quot;网站已经活着&quot;</li><li>想三条备选域名（短/可口播/无连字符），查 .cn 和 .com 当日价，按预算拍一条</li><li>账号实名+信息模板办好再付款，付款后等模板通过，<strong>别急着解析</strong></li><li>按上面第 3 步接 DNS，仓库放 CNAME 文件，等生效</li><li>勾 Enforce HTTPS，手机浏览器、微信各打开一次，截图存进你的档案</li></ol>
 <h2>及格标准</h2>
 <p>手机浏览器地址栏里手打你的域名，https 打开的是你的网站。到此即入住。加一条仪式性的：链接已经发给了至少一个真人。</p>
 <h2>卡住了</h2>

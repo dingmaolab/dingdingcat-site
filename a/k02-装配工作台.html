@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -131,7 +133,7 @@ article code{overflow-wrap:anywhere}
 <p>把这个画面记住。以后所有课里的验收，&quot;看、验、驳回&quot;里的看，落点都是这一屏。官方 README 里写着它能&quot;在你的编辑器窗口里直接提议改动&quot;、&quot;接受前先审它的计划&quot;——话是它说的，账要你自己看。</p>
 <p>AI 改文件不稀奇。稀奇的是你看得清它改在哪、有没有多手。这一眼，就是你和&quot;盲信 AI&quot;的人之间头一道分水岭。</p>
 <h2>跟做步骤</h2>
-<p>1. 装 VS Code，或确认版本 ≥ 1.94 2. <code>code --install-extension anthropic.claude-code</code>，用 <code>code --list-extensions</code> 验证 3. File → Open Folder 打开你的项目文件夹 4. 侧边栏点开 Claude 面板，或 Ctrl+<code> 开内置终端跑 </code>claude` 5. 让它建一个文件、再改同一个文件，两次都打开 diff 看完</p>
+<ol><li>装 VS Code，或确认版本 ≥ 1.94</li><li><code>code --install-extension anthropic.claude-code</code>，用 <code>code --list-extensions</code> 验证</li><li>File → Open Folder 打开你的项目文件夹</li><li>侧边栏点开 Claude 面板，或 Ctrl+<code> 开内置终端跑 </code>claude`</li><li>让它建一个文件、再改同一个文件，两次都打开 diff 看完</li></ol>
 <h2>及格标准</h2>
 <p>你亲眼看过两次 diff 画面——一次新建，一次修改——并且知道以后任何改动，去哪个图标下面找。不要求看懂代码，只要求看过。</p>
 <h2>卡住了</h2>

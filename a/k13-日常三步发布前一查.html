@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -106,7 +108,7 @@ article code{overflow-wrap:anywhere}
 <h2>第一步：改需求，先改纸，再改码</h2>
 <p>今天下午的活例。文章写到一半，作者过来说：「文章是文章，微信的图文是独立的，2 个。」——网站要承载的内容，从四类变成五类（课程、单篇、图文、元信息，外加新分出来的&quot;文章/图文&quot;两兄弟各归各家）。</p>
 <p>本能是伸手改代码。停。今天的实际顺序：</p>
-<p>1. 方案文件<strong>追加</strong>一段&quot;定稿增量&quot;：物种清单、页面增减、导航扩到五项。原来的推导一个字不删——那是地层 2. 施工清单<strong>新增一包</strong>，验收写死：&quot;两页互不混排；空列表有兜底文案&quot; 3. 然后代码才动，一个 commit 收口</p>
+<ol><li>方案文件<strong>追加</strong>一段&quot;定稿增量&quot;：物种清单、页面增减、导航扩到五项。原来的推导一个字不删——那是地层</li><li>施工清单<strong>新增一包</strong>，验收写死：&quot;两页互不混排；空列表有兜底文案&quot;</li><li>然后代码才动，一个 commit 收口</li></ol>
 <p>任务书呢？它没被改——这次变更没动&quot;为什么做&quot;，只动了&quot;怎么归置&quot;。<strong>改哪页纸，取决于变的层级：想法变了改任务书，做法变了改方案，拆法变了改清单。三层纸，各管各的账。</strong></p>
 <p>顺序反过来的项目我也见过：代码先改完，纸&quot;回头再补&quot;。回头？没有回头。三个月后没人说得清图库页为什么单独一页——决定从&quot;规格&quot;降级成了&quot;古迹&quot;。</p>
 <p>（一句点破：这一步依赖 git 存在才成立。把它讲在头个位置是事故叙事的需要，实操顺序看&quot;跟做步骤&quot;。）</p>
@@ -125,10 +127,10 @@ article code{overflow-wrap:anywhere}
 <p><strong>二查，链接活。</strong> 文末每条链接现场请求一遍，返回 200 才许上稿。死链不上稿，第 8 课立的规矩。</p>
 <p><strong>三查，数字对账。</strong> 正文里每一个 commit 号、文件数、耗时，对着实物念一遍。本课在这一查里改掉了&quot;全天五发一条链&quot;的错误说法——那是把两个仓库的历史缝成了一串。</p>
 <p><strong>四查，零背景读者。</strong> 派一个没参与过任何施工的 AI，只给这篇稿，问它七个问题。清单在这，可以抄：</p>
-<p>1. 哪些句子需要读者自带背景才读得通（具体到行） 2. 哪里逻辑断层、跳跃 3. 有没有把&quot;目标/愿望&quot;写成&quot;已发生事实&quot;的句子 4. 结构顺序合理吗，&quot;跟着做&quot;能照做吗，缺什么前置 5. 标题承诺和正文兑现对不对得上 6. 用一句话复述这篇在说什么 7. 只挑最重要的一个改进点</p>
+<ol><li>哪些句子需要读者自带背景才读得通（具体到行）</li><li>哪里逻辑断层、跳跃</li><li>有没有把&quot;目标/愿望&quot;写成&quot;已发生事实&quot;的句子</li><li>结构顺序合理吗，&quot;跟着做&quot;能照做吗，缺什么前置</li><li>标题承诺和正文兑现对不对得上</li><li>用一句话复述这篇在说什么</li><li>只挑最重要的一个改进点</li></ol>
 <p>本课的第四查交回 15 条发现，最重一条开头已引。裁决结果：采纳 13 条、部分驳回 1 条（叙事顺序问题，实操顺序已在跟做栏纠正）、整改全部落在你现在读的这版里。<strong>这一查为什么最不该跳：前三查都在问&quot;我按规矩做了吗&quot;，只有它在问&quot;我以为自己讲清楚了，真的吗&quot;。</strong> 作者是自己文章里眼神最差的人，这课写到最后一天，信更实了。</p>
 <h2>跟做步骤</h2>
-<p>1. 今天就把你的内容目录 <code>git init</code>（没有方案清单文件？现在各建一页，标题就叫&quot;方案&quot;&quot;清单&quot;，哪怕第一版只有五行——纸先存在，纪律才有宿主） 2. 下一次需求变更，按&quot;想法→任务书 / 做法→方案 / 拆法→清单&quot;找出该改的那页纸，<strong>追加不覆盖</strong>，然后才动东西 3. 规矩文件每加一条，后面半句为什么（&quot;双周一更：目标被当事实，门面禁承诺&quot;） 4. 抄走上面四查做成你自己的检查单，每次跑完在单子上标日期；用不了专业工具的，一查降级成&quot;念一遍找绝对化句式&quot;、三查降级成&quot;每个数字对着实物念&quot; 5. 发布前，把那七个问题原样发给一个全新会话的 AI，报告落盘，逐条裁决，裁决表跟稿同存</p>
+<ol><li>今天就把你的内容目录 <code>git init</code>（没有方案清单文件？现在各建一页，标题就叫&quot;方案&quot;&quot;清单&quot;，哪怕第一版只有五行——纸先存在，纪律才有宿主）</li><li>下一次需求变更，按&quot;想法→任务书 / 做法→方案 / 拆法→清单&quot;找出该改的那页纸，<strong>追加不覆盖</strong>，然后才动东西</li><li>规矩文件每加一条，后面半句为什么（&quot;双周一更：目标被当事实，门面禁承诺&quot;）</li><li>抄走上面四查做成你自己的检查单，每次跑完在单子上标日期；用不了专业工具的，一查降级成&quot;念一遍找绝对化句式&quot;、三查降级成&quot;每个数字对着实物念&quot;</li><li>发布前，把那七个问题原样发给一个全新会话的 AI，报告落盘，逐条裁决，裁决表跟稿同存</li></ol>
 <h2>及格标准</h2>
 <p>你的内容目录里有 git 历史；方案文件里有&quot;追加的增量&quot;而不是&quot;重写的一版&quot;；最近一次发布留着带日期的检查单，和一份被采纳或被驳回的读者报告。三样齐了，你的规格就是活的——而且你已经有资格嘲笑今天下午的我。</p>
 <h2>卡住了</h2>

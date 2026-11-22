@@ -58,7 +58,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -228,14 +230,16 @@ def md(body):
             while i < n and lines[i].startswith("> "):
                 buf.append(inline(lines[i][2:])); i += 1
             out.append("<blockquote>" + "<br>".join(buf) + "</blockquote>")
-        elif ln.startswith("- "):
+        elif ln.startswith("- ") or re.match(r"^\d+\. ", ln):
+            ordered = bool(re.match(r"^\d+\. ", ln))
             buf = []
-            while i < n and lines[i].startswith("- "):
-                buf.append("<li>" + inline(lines[i][2:]) + "</li>"); i += 1
-            out.append("<ul>" + "".join(buf) + "</ul>")
+            while i < n and (re.match(r"^\d+\. ", lines[i]) if ordered else lines[i].startswith("- ")):
+                buf.append("<li>" + inline(re.sub(r"^(\d+\. |- )", "", lines[i])) + "</li>"); i += 1
+            tag = "ol" if ordered else "ul"
+            out.append(f"<{tag}>" + "".join(buf) + f"</{tag}>")
         else:
             buf, start = [], i
-            while i < n and lines[i].strip() and not re.match(r"^(```|#|> |- |\|)", lines[i]):
+            while i < n and lines[i].strip() and not re.match(r"^(```|#|> |- |\||\d+\. )", lines[i]):
                 buf.append(inline(lines[i])); i += 1
             if i == start:
                 buf = [inline(lines[i])]; i += 1

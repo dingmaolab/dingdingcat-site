@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -104,7 +106,7 @@ article code{overflow-wrap:anywhere}
 <p>意外栏没有一条是花钱买的，全是上线送的。<strong>这就是为什么这封信把账算在最后：学费大头不在钱上，在翻车上——而翻车可以互相转赠，你现在读到的每条，都是替你自己踩过了。</strong></p>
 <h2>第二段：交钥匙（把这座站换成你的，六步）</h2>
 <p>这站没有任何锁。照着改六个地方，四十分钟后跑的是你的东西：</p>
-<p>1. <strong>换脑子</strong>：<code>assets/series.yaml</code> 和各账号目录里的定位文件，把&quot;漫游数字世界&quot;换成你的那句话 2. <strong>换规矩</strong>：项目根 CLAUDE.md——先删光我踩坑换来的条款（它们是我的伤疤不是你的），只留结构，然后去撞你自己的 3. <strong>换皮肤</strong>：<code>build.py</code> 顶部三锚点——主色、辅色、字标规则，三个值改完全站换装（这是课 13 教&quot;皮肤锚点&quot;的理由） 4. <strong>换内容</strong>：<code>articles/</code> 清空，你的文章带 frontmatter 放进来，kind/series/number 各归各家 5. <strong>换门牌</strong>：<code>CNAME</code> 一行，换成你的域名；DNS 那张五行表照课 14 抄 6. <strong>跑起来</strong>：<code>python build.py</code>，开 Pages，push</p>
+<ol><li><strong>换脑子</strong>：<code>assets/series.yaml</code> 和各账号目录里的定位文件，把&quot;漫游数字世界&quot;换成你的那句话</li><li><strong>换规矩</strong>：项目根 CLAUDE.md——先删光我踩坑换来的条款（它们是我的伤疤不是你的），只留结构，然后去撞你自己的</li><li><strong>换皮肤</strong>：<code>build.py</code> 顶部三锚点——主色、辅色、字标规则，三个值改完全站换装（这是课 13 教&quot;皮肤锚点&quot;的理由）</li><li><strong>换内容</strong>：<code>articles/</code> 清空，你的文章带 frontmatter 放进来，kind/series/number 各归各家</li><li><strong>换门牌</strong>：<code>CNAME</code> 一行，换成你的域名；DNS 那张五行表照课 14 抄</li><li><strong>跑起来</strong>：<code>python build.py</code>，开 Pages，push</li></ol>
 <p>一条判据送给你验收这六步：<strong>任何一个改动要动超过一个文件的地方，都欠一次抽象</strong>——我们这套是撞出来才改的，你照抄成品可以少撞三次。</p>
 <h2>第三段：丑话（这门课不适合谁）</h2>
 <p>每条后面都标着它在本系列的血案出处，不是客套的劝退，是账本背面的名单：</p>
@@ -115,7 +117,7 @@ article code{overflow-wrap:anywhere}
 <p>账算完了。路是你的了。</p>
 <p>—— 叮叮猫儿Lab，第 15 课，全系列完</p>
 <h2>跟做步骤</h2>
-<p>1. 打开你的 <code>dingmaolab.top</code>（或你自己的域名），四种环境各测一次首屏，数字进表 2. 拿第二节六步，在电脑上把一座站换成你自己的内容——40 分钟起步，卡住的每个点都是你该写进自己 CLAUDE.md 的条款 3. 给你的三个月后写一封信：翻出你项目的&quot;意外栏&quot;，现在没空位就腾一个出来 4. 把链接发给一位真人。观察他打开时说的头句话——那就是你的第 16 课选题</p>
+<ol><li>打开你的 <code>dingmaolab.top</code>（或你自己的域名），四种环境各测一次首屏，数字进表</li><li>拿第二节六步，在电脑上把一座站换成你自己的内容——40 分钟起步，卡住的每个点都是你该写进自己 CLAUDE.md 的条款</li><li>给你的三个月后写一封信：翻出你项目的&quot;意外栏&quot;，现在没空位就腾一个出来</li><li>把链接发给一位真人。观察他打开时说的头句话——那就是你的第 16 课选题</li></ol>
 <h2>及格标准</h2>
 <p>你能背出这课的三栏各一条，并说出你自己项目里对应的一条。三栏齐了，你就不只是学完了这门课，而是开始持有它。</p>
 <h2>卡住了</h2>

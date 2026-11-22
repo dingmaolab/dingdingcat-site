@@ -40,7 +40,9 @@ article h2{font-size:22px;margin:36px 0 16px;font-weight:800}
 article h3{font-size:18px;margin:28px 0 12px;font-weight:700}
 article h4{font-size:16px;margin:20px 0 8px;font-weight:700}
 article blockquote{border-left:3px solid var(--ember);background:var(--card);padding:12px 18px;margin:0 0 20px;color:#5a554b;border-radius:0 8px 8px 0}
-article ul{margin:0 0 20px 22px}article li{margin:6px 0}
+article ul,article ol{margin:0 0 20px 22px}article li{margin:6px 0}article ol{list-style:none;counter-reset:li}
+article ol li{counter-increment:li;position:relative;padding-left:6px}
+article ol li::before{content:counter(li) ". ";font-family:Consolas,monospace;color:var(--ember);font-weight:700;position:absolute;left:-24px}
 article code{background:#efefec;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:14px}
 article strong{color:var(--ink)}
 .lessonpage{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:48px;align-items:start;padding-top:8px}
@@ -131,7 +133,7 @@ article code{overflow-wrap:anywhere}
 <h3>三，先不烤</h3>
 <p>你可以现在就说 grill me，它当场开始问。但我建议你留到下一课——被烤不是看演示，是要你带着一个真的想法来答题的，糊弄它会连问二十轮。今天你的任务清单里只有：装上、点亮、读过。</p>
 <h2>跟做步骤</h2>
-<p>1. <code>claude plugin install mattpocock-skills@claude-plugins-official</code> 2. <code>claude plugin list</code>，看到 enabled 3. 新开会话，说一句 grill me，随便接它两三个弹窗，感受节奏（不用认真答完） 4. 打开插件目录里的 grill-me 和 grilling 两个 SKILL.md，读一遍</p>
+<ol><li><code>claude plugin install mattpocock-skills@claude-plugins-official</code></li><li><code>claude plugin list</code>，看到 enabled</li><li>新开会话，说一句 grill me，随便接它两三个弹窗，感受节奏（不用认真答完）</li><li>打开插件目录里的 grill-me 和 grilling 两个 SKILL.md，读一遍</li></ol>
 <h2>及格标准</h2>
 <p>你能说出三家的共同点和分工（一句话版本：都是&quot;先对齐再动手&quot;，重量分别是一张嘴、一叠文件、一套流程），并且你的 grill-me 至少弹出过一个像样的问题。</p>
 <h2>卡住了</h2>
