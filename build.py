@@ -105,7 +105,8 @@ th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;background:v
 th{font-weight:700;background:#efefec}
 article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;margin:0 0 8px}
 .imgcap{font-size:12.5px;color:var(--muted);margin:0 0 22px}
-@media(max-width:900px){.lessonpage{grid-template-columns:1fr}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
+@media(max-width:900px){.lessonpage{grid-template-columns:minmax(0,1fr)}.marginal{position:static;order:-1}table{font-size:12.5px}th,td{padding:6px 8px}}
+.lessonpage>div,article,pre{min-width:0}
 """
 
 JS = """
