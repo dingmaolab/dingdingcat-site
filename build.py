@@ -212,7 +212,7 @@ def md(body):
         im = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)$", ln)
         if im:
             alt, src = html.escape(im.group(1)), im.group(2)
-            out.append(f'<img src="assets/{Path(src).name}" alt="{alt}">')
+            out.append(f'<img src="../assets/{Path(src).name}" alt="{alt}">')
             if alt:
                 out.append(f'<div class="imgcap">{alt}</div>')
             i += 1; continue

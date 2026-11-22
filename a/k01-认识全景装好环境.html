@@ -146,7 +146,7 @@ article img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(-
 <p>这里有个坑，必须先说：<strong>key 只在创建那一刻完整显示一次</strong>。页面一关，就再也看不到了，平台只存哈希，不存明文。</p>
 <p>所以顺序别反：先准备好一个保存的地方（密码管理器，或本机一个不会进 git 的私密文件），再点创建，弹出来立刻复制存好，确认存住了再关页面。</p>
 <p>我截了一张 API keys 页面：</p>
-<img src="assets/deepseek-api-keys.png" alt="DeepSeek API keys 页面，旧 key 已打码">
+<img src="../assets/deepseek-api-keys.png" alt="DeepSeek API keys 页面，旧 key 已打码">
 <div class="imgcap">DeepSeek API keys 页面，旧 key 已打码</div>
 <p>列表里的旧 key 都是打码的——这就是&quot;创建后看不到全文&quot;的样子。</p>
 <p>第二步，告诉 Claude Code 去哪找 DeepSeek。编辑你用户目录下的 <code>.claude\settings.json</code>，完整路径是 <code>C:\Users\你的用户名\.claude\settings.json</code>，在 <code>env</code> 字段里写：</p>
