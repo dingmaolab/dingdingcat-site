@@ -148,7 +148,7 @@ article code{overflow-wrap:anywhere}
 <p>二十九行。注意它的写法：<strong>每条都是能判真假的句子</strong>，不是&quot;保持简单&quot;&quot;代码要干净&quot;这种没法执行的感想。&quot;不引入任何框架&quot;能拦住一次跑偏，&quot;简约一点&quot;什么都拦不住。</p>
 <h2>顺带认识 AGENTS.md：规矩文件还有个通用名</h2>
 <p>有人会发现市面上还有另一种文件名：AGENTS.md。简单交代——它是个<strong>开放标准</strong>，自称&quot;给 agent 看的 README&quot;，不隶属哪家工具，几万个开源项目在用，Codex、Cursor 这些 agent 都认它（官网 agents.md）。</p>
-<p>Claude Code 怎么待见它？我这台 2.1.330 实测有效：从 2.1.277 起，目录链里<strong>没有</strong> CLAUDE.md 时，它会去找 AGENTS.md。但有个坑要记住——链子里只要存在任何 CLAUDE.md，AGENTS.md 就被整个忽略。所以跨工具的标准做法不是玄学，是两行字的事：规矩正文全写在 AGENTS.md 里，CLAUDE.md 就留一行 <code>@AGENTS.md</code>。</p>
+<p>Claude Code 怎么待见它？我这台 11-21 当时是 2.1.330，实测有效（今天这机器是 2.1.331，回退机制照官方说明没动）：从 2.1.277 起，目录链里<strong>没有</strong> CLAUDE.md 时，它会去找 AGENTS.md。但有个坑要记住——链子里只要存在任何 CLAUDE.md，AGENTS.md 就被整个忽略。所以跨工具的标准做法不是玄学，是两行字的事：规矩正文全写在 AGENTS.md 里，CLAUDE.md 就留一行 <code>@AGENTS.md</code>。</p>
 <p>我自己的内容系统账号就是这么配的：CLAUDE.md 打开只有那一行，AGENTS.md 才是正本。一份规矩，多种工具共读，不用抄两遍。</p>
 <p>对你现阶段的意思：只用 Claude Code，一份 CLAUDE.md 干净利落；项目可能被别的 agent 碰、或者你就是不想维护两份，就上面这个两文件套路。</p>
 <h2>写你自己的</h2>

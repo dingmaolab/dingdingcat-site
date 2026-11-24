@@ -122,7 +122,7 @@ article code{overflow-wrap:anywhere}
 <p>Windows 读者建议先装好 Git for Windows，Claude Code 的某些工具会用到它。丑话说在前面：<strong>作者的机器是 Windows，Mac 那行按官方安装文档原样搬运（见文末链接），我本机没有跑过</strong>——Mac 读者跑出问题，带着现象回来，我们就把它变成实测。</p>
 <p>装完先验证，跑 <code>claude doctor</code>——它打印一份只读体检报告，翻到最后：</p>
 <pre><code>No installation issues found.</code></pre>
-<p>我本机跑出来的是 2.1.325 版（npm 方式装的），体检通过。你的版本号可能不同，没关系，看到&quot;没有安装问题&quot;就够了。</p>
+<p>我本机 11-15 当时跑出来的是 2.1.325 版（npm 方式装的），体检通过；11-24 复核，这台机器已经自己升到 2.1.331。你的版本号可能不同，没关系，看到&quot;没有安装问题&quot;就够了。</p>
 <h2>④ 接上 DeepSeek</h2>
 <p>外壳有了，给它装大脑。</p>
 <table><thead><tr><th>步骤</th><th>操作</th><th>应看到</th></tr></thead><tbody><tr><td>拿钥匙</td><td>platform.deepseek.com 登录 → 左侧「API keys」→ 创建 API key</td><td>一串以 sk- 开头的完整密钥，<strong>只显示这一次</strong></td></tr><tr><td>存钥匙</td><td>先备好保存的地方（密码管理器，或本机一个不进 git 的私密文件），复制，确认存住了再关页面</td><td>打开你存的地方能看到全文；网页上列表里的旧 key 全是打码的</td></tr><tr><td>配地址</td><td>编辑 <code>C:\Users\你的用户名\.claude\settings.json</code>（Mac 是 <code>~/.claude/settings.json</code>），在 <code>env</code> 字段里填下面三行</td><td>保存无报错</td></tr></tbody></table>

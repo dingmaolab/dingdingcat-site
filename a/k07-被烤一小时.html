@@ -99,6 +99,9 @@ article code{overflow-wrap:anywhere}
 <nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
 <div class="head"><div class="kicker">上手课</div><h1>第7课｜被 AI 烤了一个钟头，我的需求少了两个文件</h1><div class="meta">上手课 · 第 7 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>上一课 grill-me 装好了，只读过说明书没上过手。今天动真格：我的网站要做&quot;教程路径&quot;这个功能，本来打算下周写任务书，我决定提前——把它叫来，烤我。</p>
 <p>九轮问答，全记录在下面。你看完会发现，被烤这件事真正值钱的不是&quot;问清楚了&quot;，是<strong>烤的过程中有两个东西被烤化消失了</strong>。</p>
+<p>先看十条决定的总账（和下面正文对得上；第 3-7 问的细节没逐题展开，但它们的落点全在这张表里）：</p>
+<table><thead><tr><th>#</th><th>定的是什么</th><th>结果</th><th>备注</th></tr></thead><tbody><tr><td>1</td><td>功能锚</td><td>按顺序学完一门课</td><td>后续所有取舍的裁判</td></tr><tr><td>2</td><td>搜索范围</td><td>只搜标题+课号，正文不进索引</td><td>几十行原生 JS 实时过滤</td></tr><tr><td>3</td><td>进度形态</td><td>无分母，&quot;已发布 N 课&quot;</td><td>由第 4 问塌缩而来</td></tr><tr><td>4</td><td>未发布课</td><td>完全隐藏</td><td>不做预告承诺</td></tr><tr><td>5</td><td>数据源</td><td>不建 curriculum.json</td><td>第 3+4 问连锁：数据层归零</td></tr><tr><td>6</td><td>页面</td><td>新建 learn.html；list.html 保留</td><td>职责分开</td></tr><tr><td>7</td><td>翻页闭环</td><td>文章页底部上一课/下一课</td><td>本期范围 +1（动模板）</td></tr><tr><td>8</td><td>排序</td><td>系列按首篇发布时间自动排</td><td>&quot;手工排&quot;被宪法否决</td></tr><tr><td>9</td><td>入口</td><td>导航加&quot;课程&quot;项</td><td>置&quot;关于&quot;前</td></tr><tr><td>10</td><td>验收</td><td>五条硬指标清单自测</td><td>正文第 9 问</td></tr></tbody></table>
+<p>（账目归因说一句：这场实录当时是一题一题问、弹窗作答，前后弹出 9 次——这是亲历，不改。11-24 勘误一笔：插件里的 grilling，官方文档的默认打法是&quot;一轮把当轮能问的题连推荐答案一起端出来&quot;；本文的弹窗逐题与课 5 的轮次，是同一棵决策树的两种走法。别把本文的题目当成插件的规矩去复述，要复述规矩，看课 5。）</p>
 <h2>本课目标</h2>
 <ul><li>看一场完整的 grilling 现场：题怎么出、为什么出这道、答案怎么变</li><li>搞懂任务书的六个格子，回去能套</li><li>学会一个动作：掀桌。答到自己不舒服处，当场改口是流程的一部分</li></ul>
 <h2>概念卡</h2>
@@ -116,6 +119,7 @@ article code{overflow-wrap:anywhere}
 <p>选项里甚至摆着&quot;本期砍搜索&quot;。我选了折中：只搜标题和课号，正文不进索引。</p>
 <p>看见没有——<strong>上一题的答案，就是下一题的裁判。</strong> 这种&quot;你自己说的话反过来管你&quot;的问法，自己闷头写需求时是问不出来的。</p>
 <h3>第 5、6 问，我掀了桌</h3>
+<p>（先交代账目顺序：这节讲的是总表第 3-5 条那一串——决定编号和我们问答的轮次不是一回事，掀桌塌缩后重新入账的才有编号。别被数字绕晕，看事。）</p>
 <p>走到数据架构：进度条要显示&quot;第 7/15 课&quot;，分母 15 从哪来？它给了四个选项，我选了&quot;站点建一份 curriculum.json&quot;。</p>
 <p>下一题问未发布的八课露不露脸。选项摆着&quot;亮标题灰显&quot;的瞬间，我忽然不舒服——亮标题等于向访客承诺十五课，凭什么呢？于是我答了个题目里都没有的话：</p>
 <blockquote>是不是 15 都不要显示。</blockquote>
