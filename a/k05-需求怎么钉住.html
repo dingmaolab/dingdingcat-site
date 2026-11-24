@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="description" content="叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。">
-<title>第5课｜需求怎么钉住：三家工具一张图，我选最轻的那家 · 叮叮猫儿Lab</title>
+<title>第5课｜需求怎么钉住：让 AI 先把你问明白的三家工具 · 叮叮猫儿Lab</title>
 <link rel="icon" sizes="16x16" href="../favicon-16.png"><link rel="icon" sizes="32x32" href="../favicon-32.png">
 <style>
 :root{--paper:#f6f6f4;--ink:#141414;--muted:#8a8a86;--ember:#df5a30;--cobalt:#1d4e89;--must:#e3c24b;--line:#e3e3df;--card:#ffffff}
@@ -97,46 +97,51 @@ article code{overflow-wrap:anywhere}
 <input type="checkbox" id="navcb">
 <div class="wrap">
 <nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
-<div class="head"><div class="kicker">上手课</div><h1>第5课｜需求怎么钉住：三家工具一张图，我选最轻的那家</h1><div class="meta">上手课 · 第 5 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>这节课讲三家帮你想清楚需求的工具。先花 10 分钟把 grill-me 装上、跑一遍，再回头看三家怎么选。先会做，再讲道理。</p>
+<div class="head"><div class="kicker">上手课</div><h1>第5课｜需求怎么钉住：让 AI 先把你问明白的三家工具</h1><div class="meta">上手课 · 第 5 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>这节课讲三家工具，它们治的是同一种病：你脑子里想法还是糊的，AI 已经急着开工了，做完你一看——不是我要的。三家的办法是一个方向的：<strong>开工前，让 AI 先把你的问题问透。</strong></p>
+<p>先交代本文的顺序，方便各取所需：第①节说为什么三家先学最轻的那家；第②节一行命令装好；第③节十分钟跑完你第一轮被追问；第④节讲三家分别什么场合用、什么场合别用；第⑤节是进阶经验加一张速查表。急着上手的，现在就可以跳去②③。</p>
 <h2>本课目标</h2>
-<ul><li>装上第一个第三方工具包，并确认装成功了</li><li>跑通一次 grill-me 的提问，知道它是怎么一轮一轮问的</li><li>分清 grill-me / OpenSpec / spec-kit 三家各自的安装、用法和适用面</li></ul>
+<ul><li>装上第一个第三方工具包，并确认装成功了</li><li>跑通一次 grill-me 的追问，知道它是怎么一轮一轮问的</li><li>说得出 grill-me / OpenSpec / spec-kit 各自什么时候用</li></ul>
 <h2>概念卡</h2>
-<ul><li><strong>skill / 插件</strong>：skill 是给 AI 的一页做事规矩（SKILL.md），插件把一批 skill 打包成可整体安装的组件（官方定义：a directory of components）。装插件等于一次装一族本事。</li><li><strong>frontier（前沿）</strong>：grilling 的术语——当前所有&quot;前提已定、马上能问&quot;的问题集合。它决定了这一轮该问什么、什么必须等下一轮。</li></ul>
-<h2>① 这节课干什么，为什么先学最轻的一家</h2>
-<p>三家干的是同一件事——开工前把想法定下来。区别只在于：<strong>用完之后，你机器里多了什么</strong>：</p>
+<ul><li><strong>skill（技能包）</strong>：一页写给 AI 看的做事规矩，放在一个 SKILL.md 文件里，AI 遇到对应的事就照它办。第 1 课那张因果链里的&quot;规矩&quot;，说的就是它。</li><li><strong>插件（plugin）</strong>：Claude Code 官方的分发打包方式——把一批 skill 捆在一起一次装好，之后自动更新。</li></ul>
+<h2>① 为什么先学最轻的一家</h2>
+<p>先认一下这三家，各用一句话：</p>
+<ul><li><strong>grill-me</strong>：什么文件都不写，就是按着一棵决策树（把你的想法拆成&quot;需要一件件定下来的问题&quot;清单）不停问你，问到你自己想清楚为止。</li><li><strong>OpenSpec</strong>：你们聊清楚的东西会变成一叠文件——每个功能开一个文件夹，里面放着&quot;为什么做、要求是什么、打算怎么做、分几步做&quot;四份文档。</li><li><strong>spec-kit</strong>：更彻底，把&quot;给项目立原则、定需求、出方案、拆任务、执行&quot;整条流程做成了一套命令。</li></ul>
 <img src="../assets/课5三家定位图.png" alt="课5三家定位图：用完之后各留下什么——grill-me 什么都不留，OpenSpec 留一批文档，spec-kit 留一整套流程">
 <div class="imgcap">课5三家定位图：用完之后各留下什么——grill-me 什么都不留，OpenSpec 留一批文档，spec-kit 留一整套流程</div>
-<p>星数当天气温（一手仓库实测）：grill-me 所在合集 32.9 万、OpenSpec 7.5 万、spec-kit 15.1 万。这门课先教 grill-me，理由两条：<strong>它对新手的全部要求是回答问题</strong>（零新文件结构），而且它是另外两家的前置——proposal 和 specify 都得先有人把想法想清楚。</p>
-<h2>② 装上（Claude Code，一行）</h2>
+<p>（星数只当人气看，都是一手仓库实测：合集 32.9 万 / OpenSpec 7.5 万 / spec-kit 15.1 万——三家都不是小众玩具。）</p>
+<p>为什么从 grill-me 开始？因为它最轻——不用你先学任何新东西：不装新目录规矩、不建文件夹、问完不留一地文件，你对它的全部操作就是回答问题。还有个实际原因：另外两家其实都把&quot;想清楚&quot;当前提——OpenSpec 的 proposal、spec-kit 的 specify，写之前你总得先知道自己要什么。先问，永远是第一步。</p>
+<h2>② 装上：一行命令</h2>
+<p>在终端里跑：</p>
 <pre><code>claude plugin install mattpocock-skills@claude-plugins-official</code></pre>
-<p><strong>装没装上，怎么确认</strong>：跑一下 <code>claude plugin list</code>，应该能看到 <code>mattpocock-skills@claude-plugins-official</code> 这一行，后面跟着 <code>Status: ✔ enabled</code>。（我 11-21 实测，当时是 v1.3.1。）</p>
-<p>两条官方提醒别当耳旁风：插件默认自动更新；如果你同时想用 skills.sh 那条路线——<strong>二选一</strong>，两边都装会让每个 skill 出现两遍。</p>
-<h2>③ 第一次成功：跑一轮拷问</h2>
-<p><strong>新开一个会话</strong>再开始问（官方提醒：别在已经聊了一堆方案的旧会话里问），输入：</p>
+<p><strong>装没装上，怎么确认</strong>：跑一下 <code>claude plugin list</code>，应该能看到 <code>mattpocock-skills@claude-plugins-official</code> 这一行，后面跟着 <code>Status: ✔ enabled</code>。我 11-21 实测到的版本是 v1.3.1，你的可能更新了，正常——插件默认自动更新。</p>
+<p>一个官方提醒值得当回事：这套 skills 还有一条走 skills.sh 的安装路线，<strong>两条选一条就行</strong>，都装会让每个技能出现两遍。</p>
+<h2>③ 第一次被追问：十分钟版</h2>
+<p><strong>新开一个会话</strong>再开始（官方建议：别在已经聊了很多方案的旧会话里问，它会顺着旧思路问你）。输入：</p>
 <pre><code>/grill-me 我想给网站加一个教程路径页</code></pre>
-<p><strong>你会看到</strong>：它不是随口问两句。它把你的想法拆成一棵决策树，每一轮把所有&quot;现在就能问&quot;的问题一起端出来——每题带编号，还带一条它的建议答案；问题故意这么写：你回&quot;行&quot;，就等于采纳了它的建议。</p>
-<img src="../assets/课5轮次frontier图.png" alt="课5轮次frontier图：Round1 三个问题各带推荐答案；Round2 两个新问题；Q6 因依赖未决留到后轮">
-<div class="imgcap">课5轮次frontier图：Round1 三个问题各带推荐答案；Round2 两个新问题；Q6 因依赖未决留到后轮</div>
-<p><strong>什么时候算问完</strong>：该问的都问完了，没有哪个问题是悄悄跳过的。问完之后有一条规矩：<strong>你没说&quot;我们想清楚了&quot;，AI 就不会动手写代码。</strong></p>
-<p>（小说明：第 7 课那场拷问实录里，我是一题一题问的——跟整轮问都属于同一棵决策树的走法，逻辑不变。哪种节奏舒服，你自己选。）</p>
-<h2>④ 何时用它</h2>
-<table><thead><tr><th>用它</th><th>别用它</th></tr></thead><tbody><tr><td>要做新功能，开工前钉目标</td><td>已经能写出精确规格——不用烤，直接干（官方原话）</td></tr><tr><td>商业方向、定价、选题的拍板</td><td>&quot;它该什么感觉&quot;这类问题——问不出来，先用 prototype 做个一次性的看，回来一行就能答（官方称为 ungrillable）</td></tr><tr><td>一篇拿不准角度的文章（不限代码，官方明说）</td><td>别开着 plan mode 烤——它会让 AI 急着交计划，而你要它继续问（原文提醒）</td></tr></tbody></table>
-<p>这族有三兄弟，按场合挑：<strong>grill-me</strong>——任何事任何地，不读写你的仓库；<strong>grill-with-docs</strong>——需要对齐代码库时，它会读码并把学到的沉淀成 GLOSSARY.md 和 ADR（那才是会写文件的）；<strong>wayfinder</strong>——大到一个会话装不下的工程，先画地图，地图里逐个烤。</p>
+<p>接下来发生的事，和&quot;AI 随口问两句&quot;完全不一样。它把你的想法拆成一棵决策树，然后<strong>一轮一轮地问</strong>：每一轮，把所有&quot;现在就有条件问&quot;的问题一起端出来——每个问题编着号，底下跟着一条它建议的答案（问题故意这么措辞：你回答&quot;行&quot;，就等于采纳了它的建议）。</p>
+<img src="../assets/课5轮次frontier图.png" alt="课5示意图：第一轮同时问出三个问题，每个都带一条推荐答案；你答完，又解锁了第二轮两个新问题；还有一个问题要等前面的答案，被留到了后面">
+<div class="imgcap">课5示意图：第一轮同时问出三个问题，每个都带一条推荐答案；你答完，又解锁了第二轮两个新问题；还有一个问题要等前面的答案，被留到了后面</div>
+<p>你答完这一轮，你的答案又解锁了下一轮的问题。它有条讲究的原则：<strong>依赖你还没给出的答案的问题，绝不提前问</strong>——所以每一轮你答的都是&quot;现在真能定的&quot;。</p>
+<p>什么时候算问完？该问的都问完了，没有哪个要紧的问题被悄悄跳过。问完还有一条很讨喜的规矩：<strong>你没说&quot;我们想清楚了&quot;，AI 不会动手写一行代码。</strong></p>
+<p>（顺带交代：第 7 课那场实录里我是一题一题问的——同一棵树的另一种走法，节奏舒服就行，逻辑没变。）</p>
+<h2>④ 什么时候用它，什么时候别用</h2>
+<table><thead><tr><th>用它</th><th>别用</th></tr></thead><tbody><tr><td>做一个新功能，动手前想钉目标</td><td>你已经能写出精确的规格——官方文档的意思：写得清，就不用问了</td></tr><tr><td>方向、定价、选题这类要人拍板的事</td><td>有些问题嘴上答不出来，比如&quot;这个页面该什么感觉&quot;——先做个一次性的小样看看，回来一行就能答（官方给这类问题起了名：ungrillable，答不了就去做，别硬聊）</td></tr><tr><td>一篇拿不准角度的文章——官方明说它不限代码</td><td>用 grill-me 之前先把 plan mode 关了。官方理由很实在：plan mode 会让 AI 急着交出一份计划，而这一刻你要它继续问</td></tr></tbody></table>
+<p>这族其实有三兄弟，按场合挑：<strong>grill-me</strong>，任何事任何地，不碰你的仓库；<strong>grill-with-docs</strong>，需要跟代码库对齐时用——它会读码，还把学到的东西写成术语表（GLOSSARY.md）和决策记录（ADR），这兄弟是会写文件的；<strong>wayfinder</strong>，一件事大到一个会话装不下时，先画一张地图——把要定下来的小事一件件列上去，再逐个问清楚。</p>
 <h2>⑤ 进阶与参考</h2>
-<p><strong>最大的失败模式是被动产出</strong>。官方文档点名了一种假高效：四十个问题全答&quot;同意&quot;，出门时手里攥着 AI 写的计划——你什么都没决定，产出却显得比实际确定。正确姿势是掌舵：问题太浅就驳回，方向漂了就喊停，不知道就答&quot;不知道&quot;，且是认真的。结果的质量取决于你答案的质量，不是问题数量。</p>
-<p>想留下书面结果怎么办：grill-me 本身 stateless——官方原文 &quot;It writes no files and leaves no workspace behind. The only result is a clearer version of the idea, in your own head.&quot;——不落地任何东西，成品是你脑子里那版想清楚的想法。要落纸，这族后头接了 <strong>to-spec</strong>：它不再提问，直接把当前对话合成为 spec 并投递到 issue 跟踪器。顺序故意如此：先达成共识，再谈文档。</p>
-<p><strong>三家速查表</strong>（安装/用法全为一手原文）：</p>
-<table><thead><tr><th></th><th>grill-me</th><th>OpenSpec</th><th>spec-kit</th></tr></thead><tbody><tr><td>装</td><td>claude plugin install …（官方插件市场）</td><td>curl 官方脚本 / npm / brew，进项目后 <code>openspec init</code></td><td><code>uv tool install specify-cli</code> → <code>specify init 项目名 --integration 你的agent</code></td></tr><tr><td>用</td><td><code>/grill-me</code> + 一句话想法，按轮烤到 frontier 空</td><td><code>/openspec-explore</code> 想清楚，或 <code>/openspec-propose</code> 直接开 change 文件夹（proposal/specs/design/tasks 四件套）</td><td><code>/speckit-constitution</code> 立宪一次，之后每个功能走 specify 起步的命令链（官方口径）</td></tr><tr><td>用完留下</td><td>零文件</td><td>一叠可追溯的文件</td><td>项目宪法 + 逐功能文档</td></tr><tr><td>适合</td><td>想清楚再动</td><td>单人也要留档</td><td>要整套流程仪式</td></tr></tbody></table>
+<p><strong>最常见的失败是被动。</strong> 官方文档专门点名了一种假高效：四十个问题你一路答&quot;同意&quot;，结束时手里拿着一份 AI 写的计划，你只是一路点头——你没做任何决定，产出却显得比实际笃定。正确的姿势是掌舵：问得太浅就顶回去，范围漂了就喊停，不知道就答&quot;不知道&quot;，而且是认真的。<strong>结果的质量取决于你答案的质量，不是问题的数量。</strong></p>
+<p><strong>聊完了想留个书面结果怎么办</strong>：grill-me 自己是不写任何文件的（官方原文 &quot;It writes no files and leaves no workspace behind&quot;），它的产出就是你脑子里那版想清楚的想法。想要文档，同族里接好了手——<strong>to-spec</strong>：它不再提问，直接把这段对话综合成一份 spec，投到项目的 issue 里。顺序故意是反的：<strong>先共识，再文档</strong>——先想明白，再落笔。</p>
+<p><strong>三家速查</strong>（安装和用法全部出自各家官方文档）：</p>
+<table><thead><tr><th></th><th>grill-me</th><th>OpenSpec</th><th>spec-kit</th></tr></thead><tbody><tr><td>装</td><td>claude plugin install …（Claude Code 官方插件市场）</td><td>官方 curl 脚本 / npm / brew，装完进项目跑 <code>openspec init</code></td><td><code>uv tool install specify-cli</code>，然后 <code>specify init 项目名 --integration 你的agent</code></td></tr><tr><td>用</td><td><code>/grill-me</code> + 一句想法，一轮轮答到问完</td><td><code>/openspec-explore</code> 边聊边想；或 <code>/openspec-propose</code> 直接开 change 文件夹</td><td><code>/speckit-constitution</code> 给项目立一次原则，之后每个功能从 <code>/speckit-specify</code> 起步走命令链</td></tr><tr><td>用完留下</td><td>零文件</td><td>一叠可追溯的文件</td><td>项目原则 + 逐功能的文档</td></tr><tr><td>适合</td><td>想清楚再说</td><td>单人也要留档</td><td>要整套流程仪式</td></tr></tbody></table>
 <h2>跟做步骤</h2>
-<ol><li>跑 ② 的安装命令，<code>claude plugin list</code> 看到 enabled 才往下</li><li>新开会话，<code>/grill-me</code> + 一件你真要做的事，答完第一轮再决定继不继续</li><li>对照 ④ 的表，判断你那件事该用哪兄弟（多数情况 grill-me 就够）</li><li>问完之后，把你听到的那些决定用自己的话说一遍，让 AI 核对有没有理解偏。对了，就算达成共识——第 7 课开工材料就是它</li><li>想留纸：试试同插件的 to-spec</li></ol>
+<ol><li>跑 ② 的命令，<code>claude plugin list</code> 看到 <code>enabled</code> 再往下</li><li>新开会话，<code>/grill-me</code> 加一件你真要做的事，老实答完第一轮</li><li>对照 ④ 的表，想清楚你那件事该用三兄弟里哪个（多半就是 grill-me）</li><li>问完后把那些决定用自己的话复述一遍，让 AI 核对有没有理解偏——对了就算达成共识，这份共识就是第 7 课的开工材料</li><li>想要纸面结果的，试试同插件里的 to-spec</li></ol>
 <h2>及格标准</h2>
-<p><code>claude plugin list</code> 里 enabled 那一行你亲眼见过，并且你回答过至少一轮带推荐答案的编号问题——答&quot;行&quot;时你知道自己点头接受的是什么。</p>
+<p><code>claude plugin list</code> 里那行 enabled 你亲眼见过；并且你回答过至少一轮&quot;带推荐答案的编号问题&quot;——你说&quot;行&quot;的时候，清楚自己点头接住的是什么。</p>
 <h2>卡住了</h2>
-<ul><li><strong>/grill-me 没反应</strong>：先确认 ② 的 enabled；还不成就新开一个会话（技能清单在会话启动时读）</li><li><strong>它问得太顺，你全在说&quot;同意&quot;</strong>：停。翻回 ⑤ 第一段，那就是你正在踩的坑</li><li><strong>想要的是文件不是对话</strong>：你其实需要 OpenSpec——对照 ⑤ 表直接换家，不用内疚</li></ul>
+<ul><li><strong>/grill-me 没反应</strong>：先回头确认 enabled；确认了就换个新会话再试，技能清单是会话启动时读的</li><li><strong>它问得太顺，你一路在答&quot;同意&quot;</strong>：停——你正在踩 ⑤ 说的那个坑</li><li><strong>你要的其实是文件不是对话</strong>：那该用 OpenSpec，照 ⑤ 的表换家，不用恋战</li></ul>
 <h2>轮到你了</h2>
-<p>下节课网站要长出一个新物种：把需求画成界面。届时你会看到同一套&quot;先烤后做&quot;在 UI 环节的原样运转——而 grill-me 今晚已经在你的机器上，别让它吃灰。</p>
+<p>下节课网站要添一个新物种：把需求画成界面。你会看到同一套&quot;先问清楚再动手&quot;在 UI 环节原样运转——而 grill-me 今晚已经在你机器里，别让它吃灰。</p>
 <h2>深入读</h2>
-<ul><li>grill-me 所在合集（README 即三家安装原文，当天验活）：https://github.com/mattpocock/skills</li><li>grilling 官方文档页（rounds/frontier/passivity 的出处，当天验活）：https://github.com/mattpocock/skills/blob/main/docs/productivity/grill-me.md</li><li>OpenSpec（当天验活）：https://github.com/Fission-AI/OpenSpec</li><li>spec-kit（当天验活）：https://github.com/github/spec-kit</li></ul></article><div class="pn"><a class="cta g" href="k04-github上云.html">← 上一课：第4课｜GitHub：代码头一次离开这台电脑</a><a class="cta" href="k06-失忆病.html">下一课：第6课｜AI 的失忆病：写一页规矩，治好它 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：工具五节读完 15 分钟，安装到跑完第一轮约 10 分钟</li><li>费用：插件免费；一轮拷问的 token 与几轮普通对话同量级，几分钱以内（精确以平台用量页为准）</li><li>图两张为课内自制示意（三家定位 / 轮次机制），插件安装实拍位留给作者晨间截图补链</li></ul></aside></div>
+<ul><li>grill-me 所在合集（README 就是安装命令的原文）：https://github.com/mattpocock/skills</li><li>grilling 官方文档页（轮次、frontier、被动产出那段都出自它）：https://github.com/mattpocock/skills/blob/main/docs/productivity/grill-me.md</li><li>OpenSpec（当天验活）：https://github.com/Fission-AI/OpenSpec</li><li>spec-kit（当天验活）：https://github.com/github/spec-kit</li></ul></article><div class="pn"><a class="cta g" href="k04-github上云.html">← 上一课：第4课｜GitHub：代码头一次离开这台电脑</a><a class="cta" href="k06-失忆病.html">下一课：第6课｜AI 的失忆病：写一页规矩，治好它 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：通读 15 分钟，从安装到跑完第一轮约 10 分钟</li><li>费用：插件免费；一轮追问的 token 和几轮普通对话同量级，几分钱以内（精确以平台用量页为准）</li><li>图两张为课内自制示意；插件安装的终端实拍图，留给作者晨间截图补链</li></ul></aside></div>
 <footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
 <div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
