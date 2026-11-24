@@ -97,38 +97,38 @@ article code{overflow-wrap:anywhere}
 <input type="checkbox" id="navcb">
 <div class="wrap">
 <nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
-<div class="head"><div class="kicker">上手课</div><h1>第5课｜需求怎么钉住：三家工具一张图，我选最轻的那家</h1><div class="meta">上手课 · 第 5 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>这节课结束时你手里有三样东西：装好的 grill-me 插件、跑过的第一轮拷问、以及一张&quot;什么时候用哪家&quot;的判断表。工具部分读完约 15 分钟，动手 10 分钟。先做成，再懂原理——对比和进阶都排在后面，别中途分心。</p>
+<div class="head"><div class="kicker">上手课</div><h1>第5课｜需求怎么钉住：三家工具一张图，我选最轻的那家</h1><div class="meta">上手课 · 第 5 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>这节课讲三家帮你想清楚需求的工具。先花 10 分钟把 grill-me 装上、跑一遍，再回头看三家怎么选。先会做，再讲道理。</p>
 <h2>本课目标</h2>
-<ul><li>装上第一个第三方 skill 插件，并用验证命令确认它真的在</li><li>跑通一次 grill-me 拷问，看懂它&quot;按轮出题&quot;的机制</li><li>分清 grill-me / OpenSpec / spec-kit 三家各自的安装、用法和适用面</li></ul>
+<ul><li>装上第一个第三方工具包，并确认装成功了</li><li>跑通一次 grill-me 的提问，知道它是怎么一轮一轮问的</li><li>分清 grill-me / OpenSpec / spec-kit 三家各自的安装、用法和适用面</li></ul>
 <h2>概念卡</h2>
 <ul><li><strong>skill / 插件</strong>：skill 是给 AI 的一页做事规矩（SKILL.md），插件把一批 skill 打包成可整体安装的组件（官方定义：a directory of components）。装插件等于一次装一族本事。</li><li><strong>frontier（前沿）</strong>：grilling 的术语——当前所有&quot;前提已定、马上能问&quot;的问题集合。它决定了这一轮该问什么、什么必须等下一轮。</li></ul>
-<h2>① 立约与选型：为什么先学最轻的</h2>
-<p>把想法钉死有三家，一根轴看差别是<strong>落成多少纸</strong>：</p>
+<h2>① 这节课干什么，为什么先学最轻的一家</h2>
+<p>三家干的是同一件事——开工前把想法定下来。区别只在于：<strong>用完之后，你机器里多了什么</strong>：</p>
 <img src="../assets/课5三家定位图.png" alt="课5三家定位图：嘴（grill-me 零文件）· 纸（OpenSpec change 文件夹）· 流水线（spec-kit 全流程）">
 <div class="imgcap">课5三家定位图：嘴（grill-me 零文件）· 纸（OpenSpec change 文件夹）· 流水线（spec-kit 全流程）</div>
 <p>星数当天气温（一手仓库实测）：grill-me 所在合集 32.9 万、OpenSpec 7.5 万、spec-kit 15.1 万。这门课先教 grill-me，理由两条：<strong>它对新手的全部要求是回答问题</strong>（零新文件结构），而且它是另外两家的前置——proposal 和 specify 都得先有人把想法想清楚。</p>
 <h2>② 装上（Claude Code，一行）</h2>
 <pre><code>claude plugin install mattpocock-skills@claude-plugins-official</code></pre>
-<p><strong>应该看到</strong>：<code>claude plugin list</code> 里出现 <code>mattpocock-skills@claude-plugins-official</code>，<code>Status: ✔ enabled</code>（我本机 11-21 实测，v1.3.1）。</p>
+<p><strong>装没装上，怎么确认</strong>：跑一下 <code>claude plugin list</code>，应该能看到 <code>mattpocock-skills@claude-plugins-official</code> 这一行，后面跟着 <code>Status: ✔ enabled</code>。（我 11-21 实测，当时是 v1.3.1。）</p>
 <p>两条官方提醒别当耳旁风：插件默认自动更新；如果你同时想用 skills.sh 那条路线——<strong>二选一</strong>，两边都装会让每个 skill 出现两遍。</p>
 <h2>③ 第一次成功：跑一轮拷问</h2>
-<p>开一个<strong>新会话</strong>（官方建议：别在已经写满计划的会话里烤），输入：</p>
+<p><strong>新开一个会话</strong>再开始问（官方提醒：别在已经聊了一堆方案的旧会话里问），输入：</p>
 <pre><code>/grill-me 我想给网站加一个教程路径页</code></pre>
-<p><strong>应该看到</strong>：它不是随便问两句，而是按设计树<strong>整轮出题</strong>——一轮里把 frontier（能问的全问完），每题编号、每问附一条推荐答案，提问的措辞让&quot;回答行就等于接受推荐&quot;：</p>
+<p><strong>你会看到</strong>：它不是随口问两句。它把你的想法拆成一棵决策树，每一轮把所有&quot;现在就能问&quot;的问题一起端出来——每题带编号，还带一条它的建议答案；问题故意这么写：你回&quot;行&quot;，就等于采纳了它的建议。</p>
 <img src="../assets/课5轮次frontier图.png" alt="课5轮次frontier图：Round1 三个问题各带推荐答案；Round2 两个新问题；Q6 因依赖未决留到后轮">
 <div class="imgcap">课5轮次frontier图：Round1 三个问题各带推荐答案；Round2 两个新问题；Q6 因依赖未决留到后轮</div>
-<p><strong>什么算完</strong>：frontier 清空——每个分支都问过，没有哪个假设被默默跳过。还有一条原文规矩值得记住：<strong>你没确认达成共识之前，AI 不许动手实现。</strong></p>
-<p>（注：本课第 7 课我实拍了一场烤问，我当时执行的节奏是一题一题弹窗推进——和整轮出题同属这棵树的走法，树逻辑不变。跑熟了你可以选自己喜欢的节奏。）</p>
+<p><strong>什么时候算问完</strong>：该问的都问完了，没有哪个问题是悄悄跳过的。问完之后有一条规矩：<strong>你没说&quot;我们想清楚了&quot;，AI 就不会动手写代码。</strong></p>
+<p>（小说明：第 7 课那场拷问实录里，我是一题一题问的——跟整轮问都属于同一棵决策树的走法，逻辑不变。哪种节奏舒服，你自己选。）</p>
 <h2>④ 何时用它</h2>
 <table><thead><tr><th>用它</th><th>别用它</th></tr></thead><tbody><tr><td>要做新功能，开工前钉目标</td><td>已经能写出精确规格——不用烤，直接干（官方原话）</td></tr><tr><td>商业方向、定价、选题的拍板</td><td>&quot;它该什么感觉&quot;这类问题——问不出来，先用 prototype 做个一次性的看，回来一行就能答（官方称为 ungrillable）</td></tr><tr><td>一篇拿不准角度的文章（不限代码，官方明说）</td><td>别开着 plan mode 烤——它会让 AI 急着交计划，而你要它继续问（原文提醒）</td></tr></tbody></table>
 <p>这族有三兄弟，按场合挑：<strong>grill-me</strong>——任何事任何地，不读写你的仓库；<strong>grill-with-docs</strong>——需要对齐代码库时，它会读码并把学到的沉淀成 GLOSSARY.md 和 ADR（那才是会写文件的）；<strong>wayfinder</strong>——大到一个会话装不下的工程，先画地图，地图里逐个烤。</p>
 <h2>⑤ 进阶与参考</h2>
 <p><strong>最大的失败模式是被动产出</strong>。官方文档点名了一种假高效：四十个问题全答&quot;同意&quot;，出门时手里攥着 AI 写的计划——你什么都没决定，产出却显得比实际确定。正确姿势是掌舵：问题太浅就驳回，方向漂了就喊停，不知道就答&quot;不知道&quot;，且是认真的。结果的质量取决于你答案的质量，不是问题数量。</p>
-<p><strong>想留纸怎么办</strong>：grill-me 本身 stateless——官方原文 &quot;It writes no files and leaves no workspace behind. The only result is a clearer version of the idea, in your own head.&quot;——不落地任何东西，成品是你脑子里那版想清楚的想法。要落纸，这族后头接了 <strong>to-spec</strong>：它不再提问，直接把当前对话合成为 spec 并投递到 issue 跟踪器。先共识、后文档，顺序故意如此。</p>
+<p>想留下书面结果怎么办：grill-me 本身 stateless——官方原文 &quot;It writes no files and leaves no workspace behind. The only result is a clearer version of the idea, in your own head.&quot;——不落地任何东西，成品是你脑子里那版想清楚的想法。要落纸，这族后头接了 <strong>to-spec</strong>：它不再提问，直接把当前对话合成为 spec 并投递到 issue 跟踪器。顺序故意如此：先达成共识，再谈文档。</p>
 <p><strong>三家速查表</strong>（安装/用法全为一手原文）：</p>
-<table><thead><tr><th></th><th>grill-me</th><th>OpenSpec</th><th>spec-kit</th></tr></thead><tbody><tr><td>装</td><td>claude plugin install …（官方插件市场）</td><td>curl 官方脚本 / npm / brew，进项目后 <code>openspec init</code></td><td><code>uv tool install specify-cli</code> → <code>specify init 项目名 --integration 你的agent</code></td></tr><tr><td>用</td><td><code>/grill-me</code> + 一句话想法，按轮烤到 frontier 空</td><td><code>/openspec-explore</code> 想清楚，或 <code>/openspec-propose</code> 直接开 change 文件夹（proposal/specs/design/tasks 四件套）</td><td><code>/speckit-constitution</code> 立宪一次，之后每个功能走 specify 起步的命令链（官方口径）</td></tr><tr><td>留下</td><td>零文件</td><td>一叠可追溯的文件</td><td>宪法 + 逐功能文档</td></tr><tr><td>适合</td><td>想清楚再动</td><td>单人也要留档</td><td>要整套流程仪式</td></tr></tbody></table>
+<table><thead><tr><th></th><th>grill-me</th><th>OpenSpec</th><th>spec-kit</th></tr></thead><tbody><tr><td>装</td><td>claude plugin install …（官方插件市场）</td><td>curl 官方脚本 / npm / brew，进项目后 <code>openspec init</code></td><td><code>uv tool install specify-cli</code> → <code>specify init 项目名 --integration 你的agent</code></td></tr><tr><td>用</td><td><code>/grill-me</code> + 一句话想法，按轮烤到 frontier 空</td><td><code>/openspec-explore</code> 想清楚，或 <code>/openspec-propose</code> 直接开 change 文件夹（proposal/specs/design/tasks 四件套）</td><td><code>/speckit-constitution</code> 立宪一次，之后每个功能走 specify 起步的命令链（官方口径）</td></tr><tr><td>用完留下</td><td>零文件</td><td>一叠可追溯的文件</td><td>项目宪法 + 逐功能文档</td></tr><tr><td>适合</td><td>想清楚再动</td><td>单人也要留档</td><td>要整套流程仪式</td></tr></tbody></table>
 <h2>跟做步骤</h2>
-<ol><li>跑 ② 的安装命令，<code>claude plugin list</code> 看到 enabled 才往下</li><li>新开会话，<code>/grill-me</code> + 一件你真要做的事，答完第一轮再决定继不继续</li><li>对照 ④ 的表，判断你那件事该用哪兄弟（多数情况 grill-me 就够）</li><li>烤完把它的决定清单口述一遍给 AI 让它复述——共识确认，第 7 课开工材料就绪</li><li>想留纸：试试同插件的 to-spec</li></ol>
+<ol><li>跑 ② 的安装命令，<code>claude plugin list</code> 看到 enabled 才往下</li><li>新开会话，<code>/grill-me</code> + 一件你真要做的事，答完第一轮再决定继不继续</li><li>对照 ④ 的表，判断你那件事该用哪兄弟（多数情况 grill-me 就够）</li><li>问完之后，把你听到的那些决定用自己的话说一遍，让 AI 核对有没有理解偏。对了，就算达成共识——第 7 课开工材料就是它</li><li>想留纸：试试同插件的 to-spec</li></ol>
 <h2>及格标准</h2>
 <p><code>claude plugin list</code> 里 enabled 那一行你亲眼见过，并且你回答过至少一轮带推荐答案的编号问题——答&quot;行&quot;时你知道自己点头接受的是什么。</p>
 <h2>卡住了</h2>
