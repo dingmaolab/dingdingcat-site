@@ -205,7 +205,9 @@ def md(body):
         if ln.startswith("|") and i + 1 < n and re.match(r"^[|\s:-]+$", lines[i+1]):
             rows = []
             while i < n and lines[i].startswith("|"):
-                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+                # 转义竖线 \| 是内容不是列分隔：先占位，切完列再还原
+                safe = lines[i].strip().replace("\\|", "\x00")
+                cells = [c.strip().replace("\x00", "|") for c in safe.strip("|").split("|")]
                 if not re.match(r"^[|\s:-]+$", lines[i]):
                     rows.append(cells)
                 i += 1

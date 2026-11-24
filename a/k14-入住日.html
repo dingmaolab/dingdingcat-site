@@ -97,51 +97,50 @@ article code{overflow-wrap:anywhere}
 <input type="checkbox" id="navcb">
 <div class="wrap">
 <nav><span class="b"><svg viewBox="0 0 100 100" style="width:26px;height:26px;border-radius:7px"><rect width="100" height="100" rx="22" fill="#e3c24b"/><path d="M18 14 H48 Q82 14 82 50 Q82 86 48 86 H18 Z M40 34 H46 Q62 34 62 50 Q62 66 46 66 H40 Z" fill="#df5a30" fill-rule="evenodd"/><path d="M50 40 Q54 45 54 50 Q54 55 50 60 Q46 55 46 50 Q46 45 50 40 Z" fill="#1d4e89"/></svg>叮叮猫儿<i class="lab">Lab</i></span><span class="links"><a class="nl" href="../index.html">首页</a><a class="nl on" href="../learn.html">课程</a><a class="nl" href="../list.html">文章</a><a class="nl" href="../gallery.html">图文</a><a class="nl" href="../about.html">关于</a></span><label class="burger" for="navcb">&#9776;</label></nav>
-<div class="head"><div class="kicker">上手课</div><h1>第14课｜入住日：买个域名，把网站挂上公网</h1><div class="meta">上手课 · 第 14 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>先把丑话说在最前：<strong>这一课的正文写完了，但入住还没发生。</strong> 域名没买，Pages 没开，四个关键位置在正文里明晃晃留着【待填】。</p>
-<p>为什么敢这么交？上节课刚学的：没发生的事不能写成发生了。入住日这种要花钱、要等审核的课，要是把攻略写成游记，那这门课讲了三遍的&quot;只写实测的账&quot;就成了笑话。所以今天你看到的是一篇<strong>带着施工孔的课文</strong>——事实面全部核完，体验面等真住进去补。这也是给读者的预告：跟到这一课的人，会看着我现场办入住。</p>
+<div class="head"><div class="kicker">上手课</div><h1>第14课｜入住日：买个域名，把网站挂上公网</h1><div class="meta">上手课 · 第 14 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>先交代一件真事：2026-11-21 这天，这节课的正文写完了，但入住还没发生——域名没买，Pages 没开，正文里留着四个【待填】。不是忘了写，是不能写：上节课刚立的规矩，没发生的事不能写成发生了。第二天，11-22，我把域名买了、住进去了，每关一个孔就回填一格。到今天还开着一个孔：&quot;把新链接发给第一个人&quot;——链接攥在手里，还没发给任何真人。这一格按这门课自己的规矩空着，等晨审那天的头一声&quot;你打开看看&quot;。</p>
+<p>本文按入住的先后走：① 认清借门牌和自己的门牌差在哪；② 当日行情和三条路的账；③ 五步流水线，DNS 记录照表填；④ 装完的验收单；⑤ 备案的门。第 14 课也是最容易写出&quot;攻略冒充游记&quot;的一课，所以每一步都标了实测状态。</p>
 <h2>本课目标</h2>
-<ul><li>想明白&quot;租的门牌&quot;和&quot;自己的门牌&quot;差在哪</li><li>拿到一份当天核实过价格的域名决策表（2026-11-21，阿里云）</li><li>抄走入住流水线：建仓、开 Pages、买域名、接 DNS，四件事的正确顺序</li></ul>
+<ul><li>想明白&quot;租的门牌&quot;和&quot;自己的门牌&quot;差在哪</li><li>拿到一份当天核实过价格的域名决策表（2026-11-21，阿里云）</li><li>抄走入住流水线：建仓、开 Pages、买域名、接 DNS，五件事的正确顺序</li></ul>
 <h2>概念卡</h2>
-<ul><li><strong>GitHub Pages</strong>：GitHub 白送的静态站托管。你仓库里的 html，它给你发布成网页，https 都包了。</li><li><strong>子域名（借门牌）</strong>：不花钱也有地址——<code>你的用户名.github.io/仓库名</code>。能用，但那是挂在别人名下的门牌，搬家就作废。</li></ul>
-<p>— <strong>正经域名（自己的门牌）</strong>：按年付费租下来的短地址，比如 <code>xxx.cn</code>、<code>xxx.com</code>。严格说域名都是&quot;租&quot;的（注册制），但续费在手，别人搬不走你。</p>
-<ul><li><strong>DNS 解析</strong>：把门牌号翻译成机器找路的地址。你买域名那一刻拿到的是&quot;改登记的权利&quot;，接 Pages 就是把登记指向它那四台服务器。</li></ul>
-<h2>门牌对比：为什么说入住是个仪式</h2>
-<p>借门牌的地址：<code>dingmaolab.github.io/dingdingcat-site</code>——长，念不清，名片印不上，别人记&quot;github 后面那串&quot;。 自己的门牌：<code>xxx.cn</code> 六个字母，微信里发出去对方一眼读完。</p>
+<ul><li><strong>GitHub Pages</strong>：GitHub 白送的静态站托管。你仓库里的 html，它给你发布成网页，https 都包了。</li><li><strong>子域名（借门牌）</strong>：不花钱也有地址——<code>你的用户名.github.io/仓库名</code>。能用，但那是挂在别人名下的门牌，搬家就作废。</li><li><strong>正经域名（自己的门牌）</strong>：按年付费租下来的短地址，比如 <code>xxx.cn</code>、<code>xxx.top</code>。严格说域名都是&quot;租&quot;的（注册制），但续费在手，别人搬不走你。</li><li><strong>DNS 解析</strong>：把门牌号翻译成机器找路的地址。你买域名那一刻拿到的是&quot;改登记的权利&quot;，接 Pages 就是把登记指向它那四台服务器。</li></ul>
+<h2>① 入住到底是个什么仪式</h2>
+<p>借门牌的地址：<code>dingmaolab.github.io/dingdingcat-site</code>——长，念不清，名片印不上，别人记&quot;github 后面那串&quot;。自己的门牌：<code>dingmaolab.top</code>，微信里发出去对方一眼读完。</p>
 <p>技术上两者内容一模一样，差的只有一件事：<strong>这是谁的房子。</strong> 网站做到这一步，值不值一个每年几十块的门牌钱，就是这一课要你拍板的。我的答案是值——一个能被记住的地址，是&quot;个人站点&quot;从玩具变成资产的临界点。</p>
-<h2>行情与选择（2026-11-21 当日核价）</h2>
-<p>先纠一笔旧账：这门课建号时写的&quot;域名一年 30-70 元&quot;，行情变了——阿里云 11 月 1 日起 .com 调价：<strong>注册 90、续费 99/年</strong>（双 11 活动价 76）。.cn 仍是老实的便宜档：<strong>注册约 38、续费约 42</strong>，活动能压到 30。</p>
-<p>三条路，账先摆平：</p>
-<ol><li><strong>.cn 一条腿</strong>（推荐入门）：一年四十来块，&quot;一顿饭零头&quot;的承诺照旧成立。缺点：部分老外设对 .cn 的输入联想不熟。</li><li><strong>.com 一条腿</strong>：更通用，一年 90-99。名字短的话值。</li><li><strong>两条腿</strong>：.cn 当主门牌，顺手 38 元把同名 .com 也攥手里重定向——防御性买法，一年 130 上下。</li></ol>
-<p>命名口径（给读者的，也是给我自己的）：短、能口播、不带连字符、别蹭商标。我的候选已经列进素材账，定名 <code>dingmaolab.top</code>：whois 直查注册局确认无主才下的单。信息模板当天提交当天过，serverHold 解除只花了一顿晚饭的功夫。。</p>
-<p>还有个 7 月新规别踩：<strong>阿里云账号本身要先实名，才能新增域名</strong>——账号实名一次，域名实名走&quot;信息模板&quot;（身份证照片，审核 1-3 个工作日，常见当天过）。模板没过的域名是 serverHold 状态：买了，但解析不生效。<strong>&quot;我的域名打不开&quot;的头号原因就是这个，不是玄学。</strong></p>
-<h2>入住流水线（正确顺序，附我的施工孔）</h2>
-<p><strong>第 0 步，先有站点仓库。</strong> 域名是门牌，仓库才是房子——第 4 课那发 <code>git push</code> 还没落地的，先回去补。回执在案：用户在 github.com 亲手建 <code>dingdingcat-site</code>（先私有起步，见彩蛋反转），命名空间 <code>dingmaolab</code>；本地 <code>site</code> 仓把分支从 master 改名 main，<code>git remote add origin</code> 后 <code>git push -u origin main</code>，输出 <code>* [new branch] main -&gt; main</code>，复核 <code>ls-remote</code> 与本地 HEAD 一致——七发历史一夜上云。</p>
-<p><strong>第 1 步，开 Pages，住进临时门牌。</strong> 仓库 Settings → Pages → 选分支 → Save。几分钟内 <code>用户名.github.io/仓库名</code> 能打开。此刻你的网站已经在公网上了——买域名只是换门牌，不是从零开始。借门牌 <code>dingmaolab.github.io/dingdingcat-site</code> 亮起，几分钟后它光荣退休——GitHub 把借门牌的请求 301 去了新门牌，那是「网站有主了」的信号。</p>
-<p><strong>第 2 步，买域名，等实名。</strong> 万网查询 → 加购 → 建信息模板 → 付款。然后等审核，这期间干什么都行，就是别改解析。金额作者发话从略（续费 39/年 的零头，不值得细账）；审核当天过。</p>
-<p><strong>第 3 步，接上。</strong> 两条路按习惯选：</p>
-<ul><li>裸域名（<code>xxx.cn</code>）：加四条 A 记录，值依次是 <code>185.199.108.153 / 109.153 / 110.153 / 111.153</code></li><li>带 www：再加一条 CNAME，值 <code>用户名.github.io</code></li></ul>
-<p>仓库根目录放一个 <code>CNAME</code> 文件写上你的域名（或者在 Pages 设置里填），Pages 才认这块牌。五条记录（四 A + www CNAME）填完，十几分钟 <code>http://dingmaolab.top</code> 返回 200；证书比预告的快，回头复测时 https 已经通了，Enforce HTTPS 那个勾都显得多余。</p>
-<p><strong>第 4 步，锁 https，办暖房。</strong> DNS 生效后回 Pages 设置勾 Enforce HTTPS，用 https 打开一遍；再回微信里发给自己点开——这一条的实测结果留给第 15 课的可达性表，先如实挂账。</p>
-<p><strong>入住仪式：</strong> 把新链接发给第一个人。不用配文案，发出去那一刻这门课的前半段就算毕业了。仪式还没办。链接已经能打开，作者手里攥着它还没发给任何真人——按这门课自己的规矩，这一格就空着，留给晨审那天的头一声「你打开看看」。</p>
-<h2>备案的门，今天说清</h2>
-<p>国内服务器的规矩是&quot;先备案后开门&quot;，但 Pages 是境外托管——<strong>这条门牌不需要备案，也不归备案管</strong>。天下没有白住的房子，代价是另一张账单：境外服务在国内网络的可达性不保证，微信内打开时好时坏是常态。这门课的处理方式是第 15 课拿真数据说话，打不开搬家（第二季）就是预案，不算失败。到时候如实报。</p>
+<h2>② 行情与选择（2026-11-21 当日核价）</h2>
+<p>先纠一笔旧账：这门课建号时写的&quot;域名一年 30-70 元&quot;，行情变了——阿里云 11 月 1 日起 .com 调价。<strong>价格只当行情看，下单当天以万网当页为准：</strong></p>
+<table><thead><tr><th>路线</th><th>注册</th><th>续费/年</th><th>备注</th></tr></thead><tbody><tr><td>.cn</td><td>约 38</td><td>约 42</td><td>老实的便宜档，活动能压到 30；部分老外设输入联想不熟</td></tr><tr><td>.com</td><td>90</td><td>99</td><td>双 11 活动新购/转入 76；名字短的话值</td></tr><tr><td>.top（我的选择）</td><td>首年从略</td><td>39</td><td>比 .cn 还低；whois 直查注册局确认无主才下单</td></tr></tbody></table>
+<p>三条思路：入门走 .cn 一条腿；求通用走 .com；或者两条腿——主门牌之外，顺手把同名 .com 攥手里做重定向，防御性买法。命名口径（给读者的，也是给我自己的）：短、能口播、不带连字符、别蹭商标。</p>
+<p>还有个 7 月新规别踩：<strong>阿里云账号本身要先实名，才能新增域名。</strong> 账号实名一次，域名实名走&quot;信息模板&quot;（身份证照片，审核 1-3 个工作日，常见当天过）。模板没过的域名是 serverHold 状态：买了，但解析不生效。<strong>&quot;我的域名打不开&quot;的头号原因就是这个，不是玄学。</strong> 我这次信息模板当天提交当天过，serverHold 解除只花了一顿晚饭的功夫。</p>
+<h2>③ 入住流水线：五步，顺序错了会白等</h2>
+<img src="../assets/课14入住流水线图.png" alt="课14入住流水线图：盖房→住进临时门牌→买门牌等审核→接DNS→亮灯，五步一张单">
+<div class="imgcap">课14入住流水线图：盖房→住进临时门牌→买门牌等审核→接DNS→亮灯，五步一张单</div>
+<p><strong>第 0 步，先有站点仓库。</strong> 域名是门牌，仓库才是房子——第 4 课那发 <code>git push</code> 还没落地的，先回去补。我的回执在案：<code>dingdingcat-site</code> 建仓（先私有起步，见文末彩蛋反转），分支从 master 改名 main，<code>git push -u origin main</code> 出去，七发历史一夜上云，<code>ls-remote</code> 与本地 HEAD 一致。</p>
+<p><strong>第 1 步，开 Pages，住进临时门牌。</strong> 仓库 Settings → Pages → 选分支 → Save。几分钟内 <code>用户名.github.io/仓库名</code> 能打开。此刻你的网站已经在公网上了——买域名只是换门牌，不是从零开始。</p>
+<p><strong>第 2 步，买域名，等实名。</strong> 万网查询 → 加购 → 建信息模板 → 付款。然后等审核，这期间干什么都行，就是别改解析。</p>
+<p><strong>第 3 步，接上。</strong> 记录照这张表填，一次填完：</p>
+<table><thead><tr><th>记录类型</th><th>主机记录</th><th>记录值</th></tr></thead><tbody><tr><td>A</td><td>@</td><td>185.199.108.153</td></tr><tr><td>A</td><td>@</td><td>185.199.109.153</td></tr><tr><td>A</td><td>@</td><td>185.199.110.153</td></tr><tr><td>A</td><td>@</td><td>185.199.111.153</td></tr><tr><td>CNAME（要 www 才加）</td><td>www</td><td>用户名.github.io</td></tr></tbody></table>
+<p>仓库侧还要登记一次：根目录放一个 <code>CNAME</code> 文件写上你的域名（或者在 Pages 设置里填）。<strong>门牌和收件地址，两边都要写，只写一边必 404。</strong> 我填完十几分钟，<code>http://dingmaolab.top</code> 返回 200；借门牌那边，GitHub 把旧地址的请求 301 去了新门牌——那是&quot;网站有主了&quot;的信号。</p>
+<p><strong>第 4 步，锁 https，办暖房。</strong> DNS 生效后回 Pages 设置勾 Enforce HTTPS，用 https 打开一遍。证书比预告的快，我回头复测时 https 已经通了，那个勾都显得多余。</p>
+<h2>④ 装完的验收单：哪些是实测，哪些还挂着账</h2>
+<table><thead><tr><th>环境</th><th>动作</th><th>应看到</th><th>我这边的状态</th></tr></thead><tbody><tr><td>电脑浏览器</td><td>手打域名回车</td><td>http 返回 200，随后 https 锁标</td><td>✅ 11-22 当天实测</td></tr><tr><td>借门牌</td><td>打开旧的 github.io 地址</td><td>自动 301 到新域名</td><td>✅ 当天见到</td></tr><tr><td>微信内</td><td>把链接发给自己点开</td><td>打开或转圈，记下现象和时间</td><td>⏳ 未测，留给第 15 课的可达性表</td></tr><tr><td>手机浏览器</td><td>手打域名</td><td>截图存进你的档案</td><td>⏳ 实拍留给作者补</td></tr><tr><td>发给第一个人</td><td>&quot;你打开看看&quot;</td><td>对方的回复</td><td>⬜ 孔还开着，没办不写办</td></tr></tbody></table>
+<h2>⑤ 备案的门，今天说清</h2>
+<p>国内服务器的规矩是&quot;先备案后开门&quot;，但 Pages 是境外托管——<strong>这块门牌不需要备案，也不归备案管</strong>。天下没有白住的房子，代价是另一张账单：境外服务在国内网络的可达性不保证，微信内打开时好时坏是常态。这门课的处理方式是第 15 课拿真数据说话；打不开就搬家（第二季预案），那是待选项，不算失败。到时候如实报。</p>
+<h2>上线本身炸出三条陈账</h2>
+<p>网站真上线的那一个多小时里，三件事接连找上门，都值得记进&quot;发布日的真实模样&quot;：</p>
+<p><strong>一，拍板稿没住在真站里。</strong> 作者点开刚上线的站：&quot;UI 怎么不是我拍板的那个，logo 也是。&quot;——对。此前几轮的视觉决策（月白底、红猫皮 D 之眼、Lab 斜体、侧抽屉）全落在<strong>原型文件</strong>里，真站的生成器还穿着建号那天的旧皮。刷颜色补不了架构的漂移，最后把整套模板从拍板稿移植进 build.py 才算数。课上刚讲&quot;门面不许许愿&quot;，转头发现整个站的外观本身就是一句许愿。<strong>判据从此加一条：每次设计拍板，问一句真站同步了吗。</strong></p>
+<p><strong>二，上午修的 bug 下午复发。</strong> 文章页里点导航 404——死链扫描上午刚抓过修过（<code>../</code> 基准路径），下午重写模板时把 base 参数弄丢了，同一个坑二次落地。修复之后，死链扫描升格为<strong>每次动模板必跑的回归项</strong>。回归回归，回的是自己种下的过去。</p>
+<p><strong>三，一个从未存在的系列下架了。</strong> 有人问&quot;讲清第一课跟课 1 是不是重复&quot;——查证：那个系列从未开课，架上那本 17 行的小册子是旧教案的边角。撤下、归档、不塞进任何栏目凑数；顺手给生成器加了孤儿清理，文章下架时残留页面自动扫掉。<strong>系列的存在以第一篇真货为前提</strong>，书架证明不了内容。</p>
+<p>这三条有个共同点：都是&quot;上线&quot;这个动作逼出来的。没上线前，漂移是感觉，回归是运气，虚设是设计——上线之后，它们统一变成 bug。</p>
 <h2>跟做步骤</h2>
-<ol><li>站点先推上 GitHub、Pages 打开——用借门牌确认&quot;网站已经活着&quot;</li><li>想三条备选域名（短/可口播/无连字符），查 .cn 和 .com 当日价，按预算拍一条</li><li>账号实名+信息模板办好再付款，付款后等模板通过，<strong>别急着解析</strong></li><li>按上面第 3 步接 DNS，仓库放 CNAME 文件，等生效</li><li>勾 Enforce HTTPS，手机浏览器、微信各打开一次，截图存进你的档案</li></ol>
+<ol><li>站点先推上 GitHub、Pages 打开——用借门牌确认&quot;网站已经活着&quot;</li><li>想三条备选域名（短/可口播/无连字符），按 ② 的表比价，看当页实价再拍</li><li>账号实名+信息模板办好再付款，付款后等模板通过，<strong>别急着解析</strong></li><li>按 ③ 的表接 DNS，仓库放 CNAME 文件，等生效</li><li>勾 Enforce HTTPS，按 ④ 的验收单逐行过，截图存进你的档案</li></ol>
 <h2>及格标准</h2>
-<p>手机浏览器地址栏里手打你的域名，https 打开的是你的网站。到此即入住。加一条仪式性的：链接已经发给了至少一个真人。</p>
+<p>电脑浏览器地址栏里手打你的域名，https 打开的是你的网站。到此即入住。加一条仪式性的：链接发给了至少一个真人——这条我还没勾，你可以比我快。</p>
 <h2>卡住了</h2>
 <ul><li><strong>买了就打不开</strong>：九成是实名/serverHold，模板状态没显示&quot;成功&quot;之前，解析配了也白配</li><li><strong>配好 A 记录还是 404</strong>：仓库侧 CNAME 文件或 Pages 设置里的域名没填——门牌和收件地址两边都要写</li><li><strong>https 按钮是灰的</strong>：DNS 还没全球生效，等；生效判定可以用 <code>nslookup 你的域名</code> 看是不是那四个 IP</li><li><strong>微信里转圈</strong>：境外托管的现实，先记下现象和时间，这就是第 15 课的原始素材，别慌着自我怀疑</li></ul>
 <h2>轮到你了</h2>
 <p>入住完成，房子有了、门牌有了、钥匙在手。下一课把最后两块装上：谁来过、打不打得开——以及给整门课算一张三栏总账。</p>
 <h2>深入读</h2>
-<ul><li>GitHub Pages 自定义域名官方文档（当天核）：https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site</li><li>阿里云域名调价公告（当天核）：https://www.aliyun.com/notice/118229</li><li>域名实名认证指引（当天核）：https://help.aliyun.com/zh/dws/user-guide/</li></ul></article><div class="pn"><a class="cta g" href="k13-日常三步发布前一查.html">← 上一课：第13课｜需求会变，规格不能断：日常三步，发布前一查</a><a class="cta" href="k15-结课总账.html">下一课：第15课｜结课：一张总账，一封劝退信，一条你自己的路 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：课文加行情核价两小时；真入住预计再花一个下午，大头在等实名审核</li><li>费用：域名 dingmaolab.top，续费 39/年 档（首年金额从略）；托管与证书 0 元；入住总成本=一顿饭的零头，发刊词的牛这回收了现。</li></ul>
-<p>— 完成度：导出前最后一刻，六个孔关上五个——「发给第一个人」那格依然空着，空得理直气壮</p>
-<h2>入住日彩蛋：上线把三条陈账炸了出来</h2>
-<p>网站真上线的那一个多小时里，三件事接连找上门，都值得记进「发布日的真实模样」：</p>
-<p><strong>一，拍板稿没住在真站里。</strong> 作者点开刚上线的站：「UI 怎么不是我拍板的那个，logo 也是。」——对。此前几轮的视觉决策（月白底、红猫皮 D 之眼、Lab 斜体、侧抽屉）全落在<strong>原型文件</strong>里，真站的生成器还穿着建号那天的旧皮。刷颜色补不了架构的漂移，最后把整套模板从拍板稿移植进 build.py 才算数。课上刚讲「门面不许许愿」，转头发现整个站的外观本身就是一句许愿。<strong>判据从此加一条：每次设计拍板，问一句真站同步了吗。</strong></p>
-<p><strong>二，上午修的 bug 下午复发。</strong> 文章页里点导航 404——死链扫描上午刚抓过修过（<code>../</code> 基准路径），下午重写模板时把 base 参数弄丢了，同一个坑二次落地。修复之后，死链扫描升格为<strong>每次动模板必跑的回归项</strong>。回归回归，回的是自己种下的过去。</p>
-<p><strong>三，一个从未存在的系列下架了。</strong> 有人问「讲清第一课跟课 1 是不是重复」——查证：那个系列从未开课，架上那本 17 行的小册子是旧教案的边角。撤下、归档、不塞进任何栏目凑数；顺手给生成器加了孤儿清理，文章下架时残留页面自动扫掉。<strong>系列的存在以第一篇真货为前提</strong>，书架证明不了内容。</p>
-<p>这三条有个共同点：都是「上线」这个动作逼出来的。没上线前，漂移是感觉，回归是运气，虚设是设计——上线之后，它们统一变成 bug。</p></aside></div>
+<ul><li>GitHub Pages 自定义域名官方文档（当天核）：https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site</li><li>阿里云域名调价公告（当天核）：https://www.aliyun.com/notice/118229</li><li>域名实名认证指引（当天核）：https://help.aliyun.com/zh/dws/user-guide/</li><li>7 月新规：新增域名前账号须实名（当天核）：https://www.aliyun.com/notice/118485</li></ul></article><div class="pn"><a class="cta g" href="k13-日常三步发布前一查.html">← 上一课：第13课｜需求会变，规格不能断：日常三步，发布前一查</a><a class="cta" href="k15-结课总账.html">下一课：第15课｜结课：一张总账，一封劝退信，一条你自己的路 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：课文加行情核价两小时；真入住花了一个下午，大头在等实名审核（当天过，比预告快）</li><li>费用：域名 dingmaolab.top，续费 39/年 档（首年实付金额作者发话从略）；托管与证书 0 元；入住总成本=一顿饭的零头，发刊词的牛这回收了现</li><li>图一张为课内自制示意；手机首屏实拍留给作者</li><li>完成度：导出前最后一刻，六个孔关上五个——&quot;发给第一个人&quot;那格依然空着，空得理直气壮</li></ul></aside></div>
 <footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
 <div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>

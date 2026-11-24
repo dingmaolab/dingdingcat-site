@@ -100,20 +100,22 @@ article code{overflow-wrap:anywhere}
 <div class="head"><div class="kicker">上手课</div><h1>第3课｜后悔药：git 的三个救命动作</h1><div class="meta">上手课 · 第 3 课 · 2026-11-21</div></div><div class="lessonpage"><div><article><p>上一课你在 diff 里看清了 AI 改了什么。看清是一回事，下一个问题更实际：看清了，觉得改坏了，怎么办。</p>
 <p>你大概率会想按 Ctrl+Z。没用。那是编辑器里的撤销，AI 在它自己的会话里做的改动，根本不进你的撤销历史。你把文件存了、把编辑器关了，刚才那一按就再也按不回来了。</p>
 <p>真正的后悔药不是撤销键，是 git。</p>
+<p>正文按这个顺序走：① 先认识 git 是什么、词先认齐；② 存档，第一次 commit；③ 故意改崩一次，看 diff；④ 读档救回来；⑤ 三招归拢成一张速查表；⑥ 顺带分清 git 和 GitHub 两个名字。</p>
 <h2>本课目标</h2>
 <ul><li>学会 git 的三个动作：存、看、退</li><li>把你的项目文件夹从&quot;不敢让 AI 改&quot;变成&quot;随便改、改不坏&quot;</li><li>亲手改崩一次，再亲手救回来</li></ul>
-<h2>先认识 git</h2>
+<h2>① 先认识 git</h2>
 <p>说专业点，git 是一个<strong>分布式版本控制系统</strong>。它追踪文件内容的每一次变化，把每个版本完整记下来。它不存&quot;改了哪几行&quot;的差异，而是直接给整个项目拍快照，再用一串叫 SHA-1 的校验和给每张快照编号，确保内容没被悄悄改坏。&quot;分布式&quot;是说，每台机器上的仓库都藏着完整历史，不依赖哪台中央服务器。</p>
 <p>这东西的来历有点意思。2005 年，Linux 之父 Linus Torvalds 亲手写了它。起因是 Linux 内核社区原本用一个叫 BitKeeper 的商业工具管代码，那年授权闹掰了，没得用。Linus 干脆自己造一个，要求快、能管几千人的大项目，没多久就写出了能用的雏形。</p>
 <p>如今它已是软件开发的事实标准。几乎所有项目都用它管代码，GitHub、GitLab 这些平台整个建在它上面。程序员日常离不开它——不是因为要背命令，是因为它给了人&quot;随便改、改不坏&quot;的底气。</p>
 <p>落到我们这一课，你只需记住一个比喻：<strong>commit 是存档，restore 是读档</strong>。玩游戏的人都懂。git 就是给代码做存档读档的工具。</p>
 <p>再认几个词，跟做时够用：</p>
 <ul><li><strong>仓库（repository）</strong>：装了 git 的文件夹，多一个隐藏的 <code>.git</code> 目录，快照都存那。</li><li><strong>工作区</strong>：你正在编辑的文件。</li><li><strong>暂存区</strong>：你挑出来、准备放进下一张快照的改动。<code>git add</code> 就是把改动放进暂存区。</li><li><strong>提交（commit）</strong>：把暂存区的内容拍成一张快照，定格成一版。</li></ul>
+<img src="../assets/课3三区流转图.png" alt="课3三区流转图：工作区 → 暂存区 → 仓库；add 往里挑，commit 定格成快照，restore 走回程把没存的改动冲掉">
+<div class="imgcap">课3三区流转图：工作区 → 暂存区 → 仓库；add 往里挑，commit 定格成快照，restore 走回程把没存的改动冲掉</div>
 <p>认识这些，就可以动手了。</p>
 <p>Mac 读者的装备线短一截：git 大概率已在你机器里——头一回在终端敲 <code>git --version</code>，macOS 会自己弹出安装命令行工具的提示，点安装等它跑完；用 brew 的 <code>brew install git</code> 也行。装完之后，本课文所有命令两系统同词同句。</p>
-<h2>实跑记录</h2>
+<h2>② 存档：给项目拍第一张快照</h2>
 <p>我在自己的网站项目里，把这三个动作完整走了一遍。你在课 2 那个放了 hello.txt 的文件夹里练，是一回事。</p>
-<h3>存档</h3>
 <p>先给项目拍一张快照：</p>
 <pre><code>git init
 git add index.html
@@ -123,26 +125,27 @@ git commit -m &quot;第一个页面：个人主页&quot;</code></pre>
  1 file changed, 77 insertions(+)</code></pre>
 <p>那串 <code>58a3f4b</code> 是这张快照的编号。从此这一版定格了，怎么改都不怕。</p>
 <p>想看存过哪些版本，跑 <code>git log --oneline</code>，一行一版，清清楚楚。</p>
-<h3>撞墙</h3>
+<h3>撞了一下墙：那行警告不是坏事</h3>
 <p>提交的时候，屏幕上刷出一行警告：</p>
 <pre><code>LF will be replaced by CRLF</code></pre>
 <p>我当时心里一紧，以为坏了。查完才放心：这是 Windows 换行符的警告，不是错误。Windows 和 Linux 的换行方式不同，git 转换时提醒一声，提交照常完成。这一课你会在 Windows 上跟做，多半也会撞见它，撞见就知道：它是来打招呼的，不是来报丧的。（这条警告是 Windows 气质——Mac 读者一路跑完可能根本见不到它，那不是漏步骤，是换行符的戏通常在 Windows 那边上演。）</p>
-<h3>改崩</h3>
+<h2>③ 改崩：diff 摊开给你看</h2>
 <p>有了存档，就可以放心让 AI 下手。我故意让它把主页标题里&quot;亲手做一遍&quot;改成&quot;随便搞搞就行&quot;——模拟一次改崩。</p>
 <p>改完跑 <code>git diff</code>：</p>
 <pre><code>-    &lt;h1&gt;...&lt;em&gt;亲手做一遍&lt;/em&gt;。&lt;/h1&gt;
 +    &lt;h1&gt;...&lt;em&gt;随便搞搞就行&lt;/em&gt;。&lt;/h1&gt;</code></pre>
 <p>减号是原来的，加号是现在的。上一课的 diff 和这一课的 git diff 是同一个意思：改动摊开给你看。</p>
-<h3>读档</h3>
+<h2>④ 读档：一行命令回到存档点</h2>
 <p>不满意？一行命令回到存档点：</p>
 <pre><code>git restore index.html</code></pre>
 <p>跑完再看 <code>git status</code>，干干净净。打开文件，标题回到了&quot;亲手做一遍&quot;。刚才那次改崩，像没发生过。</p>
 <p>顺带一句版本门槛：<code>git restore</code> 是 git 2.23 之后才有的命令。太老的版本跑不出来，用 <code>git checkout -- 文件名</code>，效果一样。不确定的话跑 <code>git --version</code> 看看。</p>
-<h3>三招归拢</h3>
-<p>回头看，这一课就三招：</p>
-<ul><li><strong>存</strong>：<code>git commit</code>。满意了，拍一张快照。</li><li><strong>看</strong>：<code>git diff</code> 看改了什么，<code>git log</code> 看过哪些版。</li><li><strong>退</strong>：<code>git restore</code>。改崩了，回到上一版。</li></ul>
+<h2>⑤ 三招归拢：一张速查表</h2>
+<p>回头看，这一课就三招，按危险度从低到高排：</p>
+<table><thead><tr><th>动作</th><th>命令</th><th>干什么</th><th>危险度</th></tr></thead><tbody><tr><td>看</td><td><code>git diff</code> / <code>git log</code></td><td>看改了什么、存过哪些版</td><td>零——纯读，翻不出事</td></tr><tr><td>存</td><td><code>git add</code> + <code>git commit</code></td><td>满意了，拍一张快照定格</td><td>低——存错了还能再存</td></tr><tr><td>退</td><td><code>git restore 文件名</code></td><td>改崩了，回到定格的那版</td><td>中——动手前想清楚</td></tr></tbody></table>
+<p>&quot;退&quot;的危险度那条不是吓唬：<code>restore</code> 冲掉的是<strong>没存档的改动</strong>，冲掉的这部分哪里都找不回来。所以读档前先问一句——被改掉的东西里，有没有你想留下的？想留下就先 commit 再退。</p>
 <p>会了这三招，你就敢放手让 AI 改了。反正随时能读档。</p>
-<h2>本地和远程，先把两个名字分清</h2>
+<h2>⑥ 先把两个名字分清：git 和 GitHub</h2>
 <p>这一课玩的都是<strong>本地</strong>存档——快照存在你自己电脑的 <code>.git</code> 里。你这台电脑要是硬盘坏了，存档跟着一起没了。把存档托到网上去，是下一课的事。</p>
 <p>还有个新手常见的混淆，先说清：<strong>git 和 GitHub 不是一回事</strong>。git 是你电脑上管版本的工具；GitHub 是把仓库托管到云端的平台，相当于给 git 存档安了个网上的家。一个管版本，一个管托管。下一课，我们就去把家安上。</p>
 <h2>跟做步骤</h2>
@@ -155,7 +158,7 @@ git commit -m &quot;第一个页面：个人主页&quot;</code></pre>
 <p>再故意让 AI 改崩一次，这次别急着读档——先用 <code>git log</code> 找到更早的存档点，试试回到那一版。体会一下&quot;有存档&quot;和&quot;没存档&quot;的差别，那种敢放手的感觉就是 git 给的。</p>
 <p>你的存档现在只躺在这台电脑里。硬盘坏了呢？想给别人看呢？下一课，GitHub，给存档安一个网上的家。</p>
 <h2>深入读</h2>
-<ul><li>Git 官方·git restore 手册（中文）：https://git-scm.com/docs/git-restore/zh_HANS-CN</li><li>Git 官方·Pro Git 中文版：https://git-scm.com/book/zh/v2</li><li>廖雪峰 Git 教程（小白入门）：https://liaoxuefeng.com/books/git/index.html</li></ul></article><div class="pn"><a class="cta g" href="k02-装配工作台.html">← 上一课：第2课｜装配工作台：装个 IDE，看着 AI 改你的文件</a><a class="cta" href="k04-github上云.html">下一课：第4课｜GitHub：代码头一次离开这台电脑 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：三招走一遍加一次真改崩，新手预留四十分钟</li><li>费用：git 免费；跟做消耗的 token 几分钱量级（精确以平台用量页为准）</li></ul></aside></div>
+<ul><li>Git 官方·git restore 手册（中文）：https://git-scm.com/docs/git-restore/zh_HANS-CN</li><li>Git 官方·Pro Git 中文版：https://git-scm.com/book/zh/v2</li><li>廖雪峰 Git 教程（小白入门）：https://liaoxuefeng.com/books/git/index.html</li></ul></article><div class="pn"><a class="cta g" href="k02-装配工作台.html">← 上一课：第2课｜装配工作台：装个 IDE，看着 AI 改你的文件</a><a class="cta" href="k04-github上云.html">下一课：第4课｜GitHub：代码头一次离开这台电脑 →</a></div></div><aside class="marginal"><h2>本课账单</h2><ul><li>时间：三招走一遍加一次真改崩，新手预留四十分钟</li><li>费用：git 免费；跟做消耗的 token 几分钱量级（精确以平台用量页为准）</li><li>图一张为课内自制示意；<code>git log</code> 终端实拍留给作者补链</li></ul></aside></div>
 <footer><span>叮叮猫儿Lab · 漫游数字世界，实验AI与互联网，同步新鲜动态与实践思考。</span><span class="no">est. 2026</span></footer>
 </div>
 <div class="drawer"><label class="ovl" for="navcb"></label><div class="panel"><a class="dl" href="../index.html">首页</a><a class="dl on" href="../learn.html">课程</a><a class="dl" href="../list.html">文章</a><a class="dl" href="../gallery.html">图文</a><a class="dl" href="../about.html">关于</a><div class="dfoot">本站纯静态 · 零 Cookie 零追踪<br>公众号首发 · 这里永久存档</div></div></div>
